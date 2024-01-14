@@ -29,17 +29,31 @@ public class MusicController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        secondsThroughSegment += Time.deltaTime;
-        if(secondsThroughSegment >= segmentLengthSeconds)
+        if (backgroundMusic.isPlaying)
         {
-            secondsThroughSegment = 0f;
-            backgroundMusic.time = intensityLevel * segmentLengthSeconds;
+            secondsThroughSegment += Time.deltaTime;
+            if (secondsThroughSegment >= segmentLengthSeconds)
+            {
+                secondsThroughSegment = 0f;
+                backgroundMusic.time = intensityLevel * segmentLengthSeconds;
 
-            // TEMPORARY: Randomly increases or lowers the music intensity
-            intensityLevel += intensityLevel == numberOfSegments - 1 ? -1 : Random.Range(-1, 2);
-            intensityLevel = Mathf.Clamp(intensityLevel, 0, numberOfSegments - 1);
+                // TEMPORARY: Randomly increases or lowers the music intensity
+                intensityLevel += intensityLevel == numberOfSegments - 1 ? -1 : Random.Range(-1, 2);
+                intensityLevel = Mathf.Clamp(intensityLevel, 0, numberOfSegments - 1);
+            }
         }
     }
 
+    public void SetVolume(float volume)
+    {
+        backgroundMusic.volume = volume;
+    }
 
+    public void PausePlayMusic()
+    {
+        if (backgroundMusic.isPlaying)
+            backgroundMusic.Pause();
+        else
+            backgroundMusic.Play();
+    }
 }
