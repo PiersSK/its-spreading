@@ -82,8 +82,6 @@ public class TimeController : MonoBehaviour
         Color sunColor = lowSunColor;
         sunColor.g = lowSunColor.g + (1 - lowSunColor.g) * percToLowSun;
         sunColor.b = lowSunColor.b + (1 - lowSunColor.b) * percToLowSun;
-
-        Debug.Log("Setting sun to color: " + sunColor);
         return sunColor;
     }
 }
