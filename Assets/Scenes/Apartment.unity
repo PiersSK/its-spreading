@@ -1246,6 +1246,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76137278}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &105033155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 105033156}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &105033156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105033155}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1125509783}
+  m_Father: {fileID: 1481835118}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &106181061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,7 +1957,7 @@ GameObject:
   - component: {fileID: 138930479}
   - component: {fileID: 138930480}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Bedroom Lamp 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1939,12 +1971,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138930478}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.153, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.7000008, y: 1.803, z: -12.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 587937857}
+  m_Father: {fileID: 1481835118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &138930480
 Light:
@@ -4799,7 +4831,7 @@ GameObject:
   - component: {fileID: 295366624}
   - component: {fileID: 295366625}
   m_Layer: 0
-  m_Name: Point Light (5)
+  m_Name: Study Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4814,11 +4846,11 @@ Transform:
   m_GameObject: {fileID: 295366623}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.16, y: 5.5, z: -2.46}
+  m_LocalPosition: {x: 7.16, y: 5.4999995, z: 11.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 504942204}
+  m_Father: {fileID: 1481835118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &295366625
 Light:
@@ -5683,8 +5715,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTimeHours: 8
-  realtimeDayLengthMins: 20
+  realtimeDayLengthMins: 1
   clockUI: {fileID: 1225046512}
+  sun: {fileID: 1125509782}
+  roomLights:
+  - {fileID: 370074543}
+  - {fileID: 1335083381}
+  - {fileID: 1268268368}
+  - {fileID: 366799108}
+  - {fileID: 295366623}
+  - {fileID: 1106031452}
+  - {fileID: 1060514729}
+  - {fileID: 138930478}
 --- !u!4 &336765267
 Transform:
   m_ObjectHideFlags: 0
@@ -6135,7 +6177,7 @@ GameObject:
   - component: {fileID: 366799109}
   - component: {fileID: 366799110}
   m_Layer: 0
-  m_Name: Point Light (3)
+  m_Name: Hallway Light 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6150,11 +6192,11 @@ Transform:
   m_GameObject: {fileID: 366799108}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 5.5, z: 0}
+  m_LocalPosition: {x: -4, y: 5.4999995, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 382063082}
+  m_Father: {fileID: 1481835118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &366799110
 Light:
@@ -6334,7 +6376,7 @@ GameObject:
   - component: {fileID: 370074544}
   - component: {fileID: 370074545}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Living Room Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6348,12 +6390,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370074543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.5, z: 0.26}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4, y: 5.4999995, z: -5.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1348445669}
+  m_Father: {fileID: 1481835118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &370074545
 Light:
@@ -6766,8 +6808,6 @@ Transform:
   - {fileID: 1684628771}
   - {fileID: 374207423}
   - {fileID: 1758220458}
-  - {fileID: 1268268369}
-  - {fileID: 366799109}
   m_Father: {fileID: 1454415445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386036038
@@ -9447,8 +9487,6 @@ Transform:
   m_Children:
   - {fileID: 1894715351}
   - {fileID: 1218303414}
-  - {fileID: 1106031453}
-  - {fileID: 295366624}
   - {fileID: 1726533660}
   - {fileID: 551568405}
   - {fileID: 978248534}
@@ -10822,7 +10860,6 @@ Transform:
   - {fileID: 338865522}
   - {fileID: 611627081}
   - {fileID: 193590709}
-  - {fileID: 138930479}
   m_Father: {fileID: 502778515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &589753697
@@ -19044,7 +19081,7 @@ GameObject:
   - component: {fileID: 1060514730}
   - component: {fileID: 1060514731}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Bedroom Lamp 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19058,12 +19095,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060514729}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.153, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.220001, y: 1.803, z: -12.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1700492753}
+  m_Father: {fileID: 1481835118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1060514731
 Light:
@@ -19526,7 +19563,7 @@ GameObject:
   - component: {fileID: 1106031453}
   - component: {fileID: 1106031454}
   m_Layer: 0
-  m_Name: Point Light (4)
+  m_Name: Bathroom Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19541,11 +19578,11 @@ Transform:
   m_GameObject: {fileID: 1106031452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.5, z: -2.46}
+  m_LocalPosition: {x: -4, y: 5.4999995, z: 11.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 504942204}
+  m_Father: {fileID: 1481835118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1106031454
 Light:
@@ -19819,6 +19856,100 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124854761}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1125509782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125509783}
+  - component: {fileID: 1125509784}
+  m_Layer: 0
+  m_Name: Sun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1125509783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125509782}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 105033156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &1125509784
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125509782}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 10
+  m_Range: 50
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 2
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1126919324
 GameObject:
   m_ObjectHideFlags: 0
@@ -20484,7 +20615,6 @@ Transform:
   - {fileID: 1095884905}
   - {fileID: 502778515}
   - {fileID: 275867397}
-  - {fileID: 1335083382}
   m_Father: {fileID: 1454415445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1191414699
@@ -21960,7 +22090,7 @@ GameObject:
   - component: {fileID: 1268268369}
   - component: {fileID: 1268268370}
   m_Layer: 0
-  m_Name: Point Light (2)
+  m_Name: Hallway Light 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21975,11 +22105,11 @@ Transform:
   m_GameObject: {fileID: 1268268368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 5.5, z: 0}
+  m_LocalPosition: {x: 6, y: 5.4999995, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 382063082}
+  m_Father: {fileID: 1481835118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1268268370
 Light:
@@ -22404,7 +22534,7 @@ GameObject:
   - component: {fileID: 1335083382}
   - component: {fileID: 1335083383}
   m_Layer: 0
-  m_Name: Point Light (1)
+  m_Name: Bedroom Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22419,11 +22549,11 @@ Transform:
   m_GameObject: {fileID: 1335083381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27999973, y: 5.5, z: 0.26000023}
+  m_LocalPosition: {x: 6.279999, y: 5.4999995, z: -5.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1190751992}
+  m_Father: {fileID: 1481835118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1335083383
 Light:
@@ -22733,7 +22863,6 @@ Transform:
   - {fileID: 1717556337}
   - {fileID: 794544533}
   - {fileID: 1516274742}
-  - {fileID: 370074544}
   m_Father: {fileID: 1454415445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1348877373
@@ -26273,6 +26402,46 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467804205}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1481835117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1481835118}
+  m_Layer: 0
+  m_Name: Lights
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1481835118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481835117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 105033156}
+  - {fileID: 370074544}
+  - {fileID: 1335083382}
+  - {fileID: 1268268369}
+  - {fileID: 366799109}
+  - {fileID: 295366624}
+  - {fileID: 1106031453}
+  - {fileID: 1060514730}
+  - {fileID: 138930479}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1503578397
 GameObject:
   m_ObjectHideFlags: 0
@@ -30711,7 +30880,6 @@ Transform:
   - {fileID: 1799254142}
   - {fileID: 1890462320}
   - {fileID: 1702290306}
-  - {fileID: 1060514730}
   m_Father: {fileID: 275867397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1702290305
@@ -37905,3 +38073,4 @@ SceneRoots:
   - {fileID: 423769743}
   - {fileID: 1182591618}
   - {fileID: 336765267}
+  - {fileID: 1481835118}
