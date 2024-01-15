@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -30,8 +31,6 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-
-        SetMasterVolume();
     }
 
     public void Pause()
@@ -55,10 +54,6 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private void SetMasterVolume()
-    {
-        volumeValueDisplay.text = volumeSlider.value.ToString() + "%";
-        MusicController.Instance.SetVolume(volumeSlider.value / 100f);
-    }
+    
 
 }
