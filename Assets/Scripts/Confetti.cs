@@ -78,5 +78,13 @@ public class Confetti : MonoBehaviour
             }
         }
 
+        //Pause sounds while pause menu is active
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PauseMenu.isPaused)
+                audioSource.Pause();
+            else
+                audioSource.UnPause();
+        }
     }
 }
