@@ -24901,7 +24901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4f464cb10e2c148adb110d635c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 1165256977}
+  pauseMenu: {fileID: 1061140216}
   volumeSlider: {fileID: 485808580}
   volumeValueDisplay: {fileID: 431718508}
 --- !u!4 &1341406433
