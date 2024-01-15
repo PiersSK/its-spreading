@@ -56,4 +56,18 @@ public class MusicController : MonoBehaviour
         else
             backgroundMusic.Play();
     }
+
+    public void SetMusicIntensity(int intensity)
+    {
+        intensityLevel = intensity;
+        if (intensity > numberOfSegments - 1)
+        {
+            Debug.LogWarning("Tried to set intensity to " + intensity + " but maximum is " + (numberOfSegments - 1) + ". Setting to max instead");
+            intensityLevel = numberOfSegments - 1;
+        } else if (intensity < 0)
+        {
+            Debug.LogWarning("Tried to set intensity to " + intensity + " but minimum is 0. Setting to 0 instead");
+            intensityLevel = 0;
+        }
+    }
 }
