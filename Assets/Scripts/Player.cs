@@ -9,12 +9,17 @@ public class Player : MonoBehaviour
     private Vector3 direction;
     public Controls playerControls;
     private InputAction move;
-
+    private PlayerInteract _playerInteract;
 
     void Awake()
     {
         playerControls = new Controls();
         _characterController = GetComponent<CharacterController>();
+        _playerInteract = GetComponent<PlayerInteract>();
+
+        playerControls.Player.Interact.performed += ctx => _playerInteract.InteractWithSelected();
+        playerControls.Player.ToggleInteract.performed += ctx => _playerInteract.CycleInteractable();
+
     }
 
     private void Update()

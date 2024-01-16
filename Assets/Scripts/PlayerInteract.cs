@@ -21,6 +21,12 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private List<Interactable> interactablesInRange = new();
     [SerializeField] private Interactable selectedInteractable;
 
+
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     {
         // Takes snapshot of interactables currently in range
@@ -38,23 +44,29 @@ public class PlayerInteract : MonoBehaviour
             HighlightSelectedObject();
         }
 
+        ShowSelectedInteractablePrompt();
+    }
+
+    public void InteractWithSelected()
+    {
+        Debug.Log("E");
+
+        if (selectedInteractable != null)
+        {
+            selectedInteractable.Interact();
+        }
+    }
+
+    public void CycleInteractable() {
         // If player presses Tab, cycle through interactables in range
-        if (Input.GetKeyDown(KeyCode.Tab) && interactablesInRange.Count > 1)
+        if (interactablesInRange.Count > 1)
         {
             int currentSelectedIndex = interactablesInRange.IndexOf(selectedInteractable);
             int newIndex = (currentSelectedIndex + 1) % interactablesInRange.Count;
 
             selectedInteractable = interactablesInRange[newIndex];
             HighlightSelectedObject();
-
         }
-
-        if (Input.GetKeyDown(KeyCode.E) && selectedInteractable != null)
-        {
-            selectedInteractable.Interact();
-        }
-
-        ShowSelectedInteractablePrompt();
     }
 
     private void UpdateInteractablesInRange()
