@@ -13,8 +13,8 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField] Color interactHighlightColor = new Color(0.3f, 0.3f, 0.3f);
 
-    private List<Interactable> interactablesInRange = new();
-    private Interactable selectedInteractable;
+    [SerializeField] private List<Interactable> interactablesInRange = new();
+    [SerializeField] private Interactable selectedInteractable;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class PlayerInteract : MonoBehaviour
             && interactablesInRange.Count > 0)
         {
             selectedInteractable = GetBestInteractable();
-            SetObjectAndChildrenHighlight(selectedInteractable.transform, true);
+            HighlightSelectedObject();
         }
 
         // If player presses Tab, cycle through interactables in range
@@ -45,10 +45,7 @@ public class PlayerInteract : MonoBehaviour
             int newIndex = (currentSelectedIndex + 1) % interactablesInRange.Count;
 
             selectedInteractable = interactablesInRange[newIndex];
-            foreach (Interactable interatable in interactablesInRange)
-                SetObjectAndChildrenHighlight(interatable.transform, false);
-
-            SetObjectAndChildrenHighlight(selectedInteractable.transform, true);
+            HighlightSelectedObject();
 
         }
 
@@ -85,6 +82,15 @@ public class PlayerInteract : MonoBehaviour
                 SetObjectAndChildrenHighlight(interactable.transform, false);
             }
         }
+    }
+
+    private void HighlightSelectedObject()
+    {
+        foreach (Interactable interatable in interactablesInRange)
+            SetObjectAndChildrenHighlight(interatable.transform, false);
+
+        SetObjectAndChildrenHighlight(selectedInteractable.transform, true);
+
     }
 
     private void SetObjectAndChildrenHighlight(Transform objectToHighlight, bool shouldHighlight)
