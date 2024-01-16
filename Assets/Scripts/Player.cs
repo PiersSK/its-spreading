@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 5;
-    public CharacterController _characterController;
+    [SerializeField] private float speed = 5;
+    [SerializeField] private CharacterController _characterController;
     private Vector3 direction;
     public Controls playerControls;
     private InputAction move;
