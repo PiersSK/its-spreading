@@ -41736,7 +41736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc71673aa48044d019db37bc7df1e1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptText: Wobble Bottle
+  promptText: Spill Bottle
 --- !u!1 &2048787160
 GameObject:
   m_ObjectHideFlags: 0
