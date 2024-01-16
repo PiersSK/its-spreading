@@ -4,17 +4,23 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
+
     [SerializeField] private float speed = 5;
     [SerializeField] private CharacterController _characterController;
     private Vector3 direction;
-    public Controls playerControls;
 
+    public Controls playerControls;
     private Controls.PlayerActions controlActions;
 
     private PlayerInteract _playerInteract;
 
+    public bool canMove = true;
+
     void Awake()
     {
+        Instance = this;
+
         playerControls = new Controls();
         controlActions = playerControls.Player;
 
@@ -33,11 +39,14 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        _characterController.Move(direction.normalized * speed * Time.deltaTime);
-
-        if (direction != Vector3.zero)
+        if (canMove)
         {
-            transform.rotation = transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.15F);
+            _characterController.Move(direction.normalized * speed * Time.deltaTime);
+
+            if (direction != Vector3.zero)
+            {
+                transform.rotation = transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.15F);
+            }
         }
     }
 

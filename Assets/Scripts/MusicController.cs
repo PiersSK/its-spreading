@@ -1,26 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MusicController : MonoBehaviour
 {
     public static MusicController Instance { get; private set; } // Singleton
 
-    [SerializeField] private int numberOfSegments;
-    [SerializeField] private int finalStandardSegment;
+    public event EventHandler<EventArgs> LoopReset;
 
-    public enum SpecialMusicSegment
-    {
-        MaxIntensity,
-        Piano
-    }
+    [SerializeField] private int numberOfSegments;
 
     private float segmentLengthSeconds;
 
     public bool playRandom = true;
     public int intensityLevel = 0;
 
-    private float secondsThroughSegment = 0f;
+    public float secondsThroughSegment = 0f;
     private AudioSource backgroundMusic;
 
     private void Awake()
@@ -44,15 +41,16 @@ public class MusicController : MonoBehaviour
             {
                 secondsThroughSegment = 0f;
                 backgroundMusic.time = intensityLevel * segmentLengthSeconds;
+                LoopReset?.Invoke(this, new EventArgs());
 
                 if (playRandom)
                 {
                     int increment = Random.Range(-1, 2);
-                    if (intensityLevel == finalStandardSegment) increment = -1;
+                    if (intensityLevel == numberOfSegments - 1) increment = -1;
                     else if (intensityLevel == 0) increment = 1;
 
                     intensityLevel += increment;
-                    intensityLevel = Mathf.Clamp(intensityLevel, 0, finalStandardSegment);
+                    intensityLevel = Mathf.Clamp(intensityLevel, 0, numberOfSegments - 1);
                 }
             }
         }
@@ -79,23 +77,6 @@ public class MusicController : MonoBehaviour
             intensityLevel = numberOfSegments - 1;
         } else if (intensity < 0)
         {
-            intensityLevel = 0;
-        }
-    }
-
-    public void SetMusicIntensity(SpecialMusicSegment segment)
-    {
-        int intensity = finalStandardSegment + (int)segment;
-
-        intensityLevel = intensity;
-        if (intensity > numberOfSegments - 1)
-        {
-            Debug.LogWarning("Tried to set intensity to " + intensity + " but maximum is " + (numberOfSegments - 1) + ". Setting to max instead");
-            intensityLevel = numberOfSegments - 1;
-        }
-        else if (intensity < 0)
-        {
-            Debug.LogWarning("Tried to set intensity to " + intensity + " but minimum is 0. Setting to 0 instead");
             intensityLevel = 0;
         }
     }
