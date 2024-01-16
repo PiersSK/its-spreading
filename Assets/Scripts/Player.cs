@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 100;
-    public Rigidbody _rb;
+    private float speed = 5;
+    public CharacterController _characterController;
     private Vector3 direction;
     public Controls playerControls;
     private InputAction move;
@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         playerControls = new Controls();
-        _rb = GetComponent<Rigidbody>();
+        _characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -25,11 +25,11 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rb.velocity = direction.normalized * speed * Time.deltaTime;
+        _characterController.Move(direction.normalized * speed * Time.deltaTime);
 
         if (direction != Vector3.zero)
         {
-            _rb.rotation = transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.15F);
+            transform.rotation = transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.15F);
         }
     }
 
