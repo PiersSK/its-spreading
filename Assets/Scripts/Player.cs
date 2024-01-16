@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rb.velocity = direction * speed * Time.deltaTime;
+        _rb.velocity = direction.normalized * speed * Time.deltaTime;
 
         if (direction != Vector3.zero)
         {
