@@ -15,6 +15,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] Color interactHighlightColor = new Color(0.3f, 0.3f, 0.3f);
 
     [SerializeField] TextMeshProUGUI promptTextUI;
+    [SerializeField] TextMeshProUGUI interactableNameUI;
 
     // Serialized for debugging only
     [SerializeField] private List<Interactable> interactablesInRange = new();
@@ -95,6 +96,7 @@ public class PlayerInteract : MonoBehaviour
     private void ShowSelectedInteractablePrompt()
     {
         promptTextUI.text = selectedInteractable == null ? string.Empty : "[E] " + selectedInteractable.promptText;
+        interactableNameUI.text = selectedInteractable == null ? string.Empty : selectedInteractable.name;
     }
 
     private void HighlightSelectedObject()
