@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public string promptText;
+
+    public virtual bool CanInteract()
     {
-        
+        return true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Interact()
     {
-        
+        Debug.Log(gameObject.name + " interacted with!");
     }
 }

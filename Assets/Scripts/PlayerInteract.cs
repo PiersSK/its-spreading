@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
@@ -13,13 +14,11 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField] Color interactHighlightColor = new Color(0.3f, 0.3f, 0.3f);
 
+    [SerializeField] TextMeshProUGUI promptTextUI;
+
+    // Serialized for debugging only
     [SerializeField] private List<Interactable> interactablesInRange = new();
     [SerializeField] private Interactable selectedInteractable;
-
-    private void Start()
-    {
-        Debug.Log(transform.forward);
-    }
 
     private void Update()
     {
@@ -49,6 +48,12 @@ public class PlayerInteract : MonoBehaviour
 
         }
 
+        if (Input.GetKeyDown(KeyCode.E) && selectedInteractable != null)
+        {
+            selectedInteractable.Interact();
+        }
+
+        ShowSelectedInteractablePrompt();
     }
 
     private void UpdateInteractablesInRange()
@@ -60,7 +65,10 @@ public class PlayerInteract : MonoBehaviour
             float angleToPlayer = Vector3.Angle(direction, transform.forward);
 
             // If the interactable is in range...
-            if (distance < interactRange && angleToPlayer >= -interactMaxAngle && angleToPlayer <= interactMaxAngle)
+            if (distance < interactRange
+                && angleToPlayer >= -interactMaxAngle
+                && angleToPlayer <= interactMaxAngle
+                && interactable.CanInteract()) // ...and it's currently interactable...
             {
 
                 Ray ray = new(transform.position + eyeOffset, direction);
@@ -73,15 +81,20 @@ public class PlayerInteract : MonoBehaviour
                     // ... add it to the list (if not already there)
                     if (!interactablesInRange.Contains(interactable)) interactablesInRange.Add(interactable);
                 }
-
             }
             else
             {
                 // Remove from the list and unhighlight
                 if (interactablesInRange.Contains(interactable)) interactablesInRange.Remove(interactable);
-                SetObjectAndChildrenHighlight(interactable.transform, false);
+                if (selectedInteractable == interactable) selectedInteractable = null;
+                SetObjectAndChildrenHighlight(interactable.transform, false); 
             }
         }
+    }
+
+    private void ShowSelectedInteractablePrompt()
+    {
+        promptTextUI.text = selectedInteractable == null ? string.Empty : "[E] " + selectedInteractable.promptText;
     }
 
     private void HighlightSelectedObject()
