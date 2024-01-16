@@ -49,8 +49,6 @@ public class PlayerInteract : MonoBehaviour
 
     public void InteractWithSelected()
     {
-        Debug.Log("E");
-
         if (selectedInteractable != null)
         {
             selectedInteractable.Interact();
