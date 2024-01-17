@@ -8,18 +8,27 @@ public class Player : MonoBehaviour
     [SerializeField] private CharacterController _characterController;
     private Vector3 direction;
     public Controls playerControls;
-    private InputAction move;
 
+    private Controls.PlayerActions controlActions;
+
+    private PlayerInteract _playerInteract;
 
     void Awake()
     {
         playerControls = new Controls();
+        controlActions = playerControls.Player;
+
         _characterController = GetComponent<CharacterController>();
+        _playerInteract = GetComponent<PlayerInteract>();
+
+        controlActions.Interact.performed += ctx => _playerInteract.InteractWithSelected();
+        controlActions.ToggleInteract.performed += ctx => _playerInteract.CycleInteractable();
+
     }
 
     private void Update()
     {
-        direction = ConvertToIsoVector(move.ReadValue<Vector3>());
+        direction = ConvertToIsoVector(controlActions.Move.ReadValue<Vector3>());
     }
 
     void FixedUpdate()
@@ -42,12 +51,11 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        move = playerControls.Player.Move;
-        move.Enable();
+        controlActions.Enable();
     }
 
     private void OnDisable()
     {
-        move.Disable();
+        controlActions.Disable();
     }
 }
