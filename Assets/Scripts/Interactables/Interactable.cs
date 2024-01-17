@@ -11,11 +11,6 @@ public class Interactable : MonoBehaviour
         return true;
     }
 
-    public virtual bool ShouldHighlight()
-    {
-        return true;
-    }
-
     public virtual void Interact()
     {
         Debug.Log(gameObject.name + " interacted with!");

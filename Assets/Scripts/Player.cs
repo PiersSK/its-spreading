@@ -67,4 +67,13 @@ public class Player : MonoBehaviour
     {
         controlActions.Disable();
     }
+
+    public void TogglePlayerIsEngaged()
+    {
+        canMove = !canMove;
+        if (controlActions.ToggleInteract.enabled)
+            controlActions.ToggleInteract.Disable();
+        else
+            controlActions.ToggleInteract.Enable();
+    }
 }

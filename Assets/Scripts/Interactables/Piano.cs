@@ -5,6 +5,7 @@ using UnityEngine;
 public class Piano : Interactable
 {
     private AudioSource pianoAudio;
+    private Animation noteAnim;
     private bool isPlaying;
 
     private const string PLAY = "Play";
@@ -14,8 +15,8 @@ public class Piano : Interactable
     {
         promptText = PLAY;
         pianoAudio = GetComponent<AudioSource>();
+        noteAnim = GetComponent<Animation>();
         MusicController.Instance.LoopReset += ResetPianoTrack;
-
     }
 
     public override void Interact()
@@ -30,8 +31,12 @@ public class Piano : Interactable
             pianoAudio.time = MusicController.Instance.secondsThroughSegment;
             pianoAudio.Play();
 
+            noteAnim.wrapMode = WrapMode.Loop;
+            noteAnim.Play();
+
             // Lock player here
             Player.Instance.canMove = false;
+            Player.Instance.GetComponent<PlayerInteract>().SetObjectAndChildrenHighlight(transform, false);
 
             // Toggle action
             promptText = STOP;
@@ -39,8 +44,12 @@ public class Piano : Interactable
         } else
         {
             MusicController.Instance.playRandom = true;
+
             pianoAudio.Pause();
+            noteAnim.wrapMode = WrapMode.Once;
+
             Player.Instance.canMove = true;
+            Player.Instance.GetComponent<PlayerInteract>().SetObjectAndChildrenHighlight(transform, true);
             promptText = PLAY;
             isPlaying = false;
         }
@@ -49,10 +58,5 @@ public class Piano : Interactable
     private void ResetPianoTrack(object sender, System.EventArgs e)
     {
         pianoAudio.time = 0;
-    }
-
-    public override bool ShouldHighlight()
-    {
-        return !isPlaying;
     }
 }
