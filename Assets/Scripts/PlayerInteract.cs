@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
+    [Header("Config")]
     [SerializeField] private float interactRange;
     [SerializeField] private float interactMaxAngle;
 
@@ -14,9 +15,12 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField] Color interactHighlightColor = new Color(0.3f, 0.3f, 0.3f);
 
+    [Header("UI")]
     [SerializeField] TextMeshProUGUI promptTextUI;
     [SerializeField] TextMeshProUGUI interactableNameUI;
+    [SerializeField] GameObject cyclePrompt;
 
+    [Header("Debug Fields")]
     // Serialized for debugging only
     [SerializeField] private List<Interactable> interactablesInRange = new();
     [SerializeField] private Interactable selectedInteractable;
@@ -107,6 +111,8 @@ public class PlayerInteract : MonoBehaviour
     {
         promptTextUI.text = selectedInteractable == null ? string.Empty : "[E] " + selectedInteractable.promptText;
         interactableNameUI.text = selectedInteractable == null ? string.Empty : selectedInteractable.name;
+
+        cyclePrompt.SetActive(interactablesInRange.Count > 1);
     }
 
     private void HighlightSelectedObject()
