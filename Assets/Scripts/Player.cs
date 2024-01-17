@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDataPersistence
 {
     public static Player Instance { get; private set; }
 
@@ -16,6 +16,18 @@ public class Player : MonoBehaviour
     private PlayerInteract _playerInteract;
 
     public bool canMove = true;
+
+    public void LoadData(GameData data)
+    {
+        _characterController.enabled = false;
+        this.transform.position = data.playerPosition;
+        _characterController.enabled = true;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
+    }
 
     void Awake()
     {
