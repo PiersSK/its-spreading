@@ -5,7 +5,6 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public string promptText;
-
     public virtual bool CanInteract()
     {
         return true;
