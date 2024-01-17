@@ -2,24 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private float speed = 5;
     [SerializeField] private CharacterController _characterController;
     private Vector3 direction;
     public Controls playerControls;
-    private InputAction move;
 
+    private Controls.PlayerActions controlActions;
+
+    private PlayerInteract _playerInteract;
+
+
+    public void LoadData(GameData data)
+    {
+        _characterController.enabled = false;
+        this.transform.position = data.playerPosition;
+        _characterController.enabled = true;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
+    }
 
     void Awake()
     {
         playerControls = new Controls();
+        controlActions = playerControls.Player;
+
         _characterController = GetComponent<CharacterController>();
+        _playerInteract = GetComponent<PlayerInteract>();
+
+        controlActions.Interact.performed += ctx => _playerInteract.InteractWithSelected();
+        controlActions.ToggleInteract.performed += ctx => _playerInteract.CycleInteractable();
+
     }
 
     private void Update()
     {
-        direction = ConvertToIsoVector(move.ReadValue<Vector3>());
+        direction = ConvertToIsoVector(controlActions.Move.ReadValue<Vector3>());
     }
 
     void FixedUpdate()
@@ -42,12 +64,11 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        move = playerControls.Player.Move;
-        move.Enable();
+        controlActions.Enable();
     }
 
     private void OnDisable()
     {
-        move.Disable();
+        controlActions.Disable();
     }
 }
