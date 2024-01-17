@@ -27,7 +27,7 @@ public class TimeController : MonoBehaviour
 
     private float timeMultiplier;
     private float time = 0f;
-    private float maxNaturalLight = 2f;
+    private float maxNaturalLight = 1.5f;
 
     private void Start()
     {
