@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private float speed = 5;
     [SerializeField] private CharacterController _characterController;
@@ -12,6 +12,19 @@ public class Player : MonoBehaviour
     private Controls.PlayerActions controlActions;
 
     private PlayerInteract _playerInteract;
+
+
+    public void LoadData(GameData data)
+    {
+        _characterController.enabled = false;
+        this.transform.position = data.playerPosition;
+        _characterController.enabled = true;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerPosition = this.transform.position;
+    }
 
     void Awake()
     {
