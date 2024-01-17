@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TimeController : MonoBehaviour
+public class TimeController : MonoBehaviour, IDataPersistence
 {
     private const float REALDAYLENGTHMINS = 1440f;
     private const float REALDAYLENGTHSECONDS = 86400f;
@@ -11,6 +11,7 @@ public class TimeController : MonoBehaviour
 
     private const int SUNRISEHOURS = 8;
     private const int SUNSETHOURS = 19;
+    private int daysComplete = 0;
 
     [Header("Time Settings")]
     [Range(0, 23)]
@@ -29,6 +30,16 @@ public class TimeController : MonoBehaviour
     private float time = 0f;
     private float maxNaturalLight = 2f;
 
+    public void LoadData(GameData data)
+    {
+        this.daysComplete = data.daysComplete;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.daysComplete = this.daysComplete;
+    }
+    
     private void Start()
     {
         timeMultiplier = REALDAYLENGTHMINS / realtimeDayLengthMins;
@@ -40,7 +51,11 @@ public class TimeController : MonoBehaviour
     {
         // Update Time
         time += Time.deltaTime * timeMultiplier;
-        if (time > REALDAYLENGTHSECONDS) time = 0f;
+        if (time > REALDAYLENGTHSECONDS)
+        {
+            time = 0f;
+            OnDayComplete();
+        }
         UpdateClockUI();
 
         // Update Lights
@@ -83,5 +98,10 @@ public class TimeController : MonoBehaviour
         sunColor.g = lowSunColor.g + (1 - lowSunColor.g) * percToLowSun;
         sunColor.b = lowSunColor.b + (1 - lowSunColor.b) * percToLowSun;
         return sunColor;
+    }
+
+    private void OnDayComplete()
+    {
+        daysComplete++;
     }
 }
