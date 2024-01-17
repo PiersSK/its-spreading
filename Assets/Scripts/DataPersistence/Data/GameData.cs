@@ -15,6 +15,6 @@ public class GameData
     {
         this.spreadEventsTriggered = 0;
         this.daysComplete = 0;
-        this.playerPosition = Vector3.zero;
+        this.playerPosition = new Vector3 (0, 1.1f, 0);
     }
 }
