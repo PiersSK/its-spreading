@@ -37,7 +37,8 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = true;
         pauseMenu.SetActive(true);
-        MusicController.Instance.PausePlayMusic();
+        //MusicController.Instance.PausePlayMusic(); keeping this as I think the below fix is a touch extreme, we may want _some_ form of music on the pause screen in future
+        AudioListener.pause = true;
         Time.timeScale = 0f;
     }
 
@@ -45,7 +46,8 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         pauseMenu.SetActive(false);
-        MusicController.Instance.PausePlayMusic();
+       // MusicController.Instance.PausePlayMusic(); see above.
+        AudioListener.pause = false;
         Time.timeScale = 1f;
     }
 
