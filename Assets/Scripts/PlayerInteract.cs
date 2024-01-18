@@ -124,13 +124,13 @@ public class PlayerInteract : MonoBehaviour
 
     }
 
-    private void SetObjectAndChildrenHighlight(Transform objectToHighlight, bool shouldHighlight)
+    public void SetObjectAndChildrenHighlight(Transform objectToHighlight, bool shouldHighlight)
     {
         SetObjectHighlight(objectToHighlight, shouldHighlight);
 
         foreach (Transform objectChild in objectToHighlight)
         {
-            SetObjectHighlight(objectChild, shouldHighlight);
+            SetObjectAndChildrenHighlight(objectChild, shouldHighlight);
         }
     }
 

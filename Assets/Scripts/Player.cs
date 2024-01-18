@@ -4,15 +4,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour, IDataPersistence
 {
+    public static Player Instance { get; private set; }
+
     [SerializeField] private float speed = 5;
     [SerializeField] private CharacterController _characterController;
     private Vector3 direction;
-    public Controls playerControls;
 
+    public Controls playerControls;
     private Controls.PlayerActions controlActions;
 
     private PlayerInteract _playerInteract;
 
+    public bool canMove = true;
 
     public void LoadData(GameData data)
     {
@@ -28,6 +31,8 @@ public class Player : MonoBehaviour, IDataPersistence
 
     void Awake()
     {
+        Instance = this;
+
         playerControls = new Controls();
         controlActions = playerControls.Player;
 
@@ -46,11 +51,14 @@ public class Player : MonoBehaviour, IDataPersistence
 
     void FixedUpdate()
     {
-        _characterController.Move(direction.normalized * speed * Time.deltaTime);
-
-        if (direction != Vector3.zero)
+        if (canMove)
         {
-            transform.rotation = transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.15F);
+            _characterController.Move(direction.normalized * speed * Time.deltaTime);
+
+            if (direction != Vector3.zero)
+            {
+                transform.rotation = transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.15F);
+            }
         }
     }
 
@@ -70,5 +78,14 @@ public class Player : MonoBehaviour, IDataPersistence
     private void OnDisable()
     {
         controlActions.Disable();
+    }
+
+    public void TogglePlayerIsEngaged()
+    {
+        canMove = !canMove;
+        if (controlActions.ToggleInteract.enabled)
+            controlActions.ToggleInteract.Disable();
+        else
+            controlActions.ToggleInteract.Enable();
     }
 }
