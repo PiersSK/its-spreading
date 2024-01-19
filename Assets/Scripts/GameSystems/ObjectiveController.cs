@@ -10,7 +10,11 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
     [SerializeField] private TextMeshProUGUI scoreDisplay;
     [SerializeField] private TextMeshProUGUI historicStatDisplay;
     [SerializeField] private int totalObjectives = 10;
+
     private int objectivesComplete = 0;
+    private int objectivesCompleteAllTime = 0;
+
+    private const string HISTSTATPREFIX = "Total spreads found ever: ";
 
 
     public int ObjectivesComplete
@@ -20,6 +24,7 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
         {
             objectivesComplete = value;
             scoreDisplay.text = objectivesComplete.ToString() + "/" + totalObjectives.ToString();
+            historicStatDisplay.text = HISTSTATPREFIX + (objectivesCompleteAllTime + objectivesComplete);
         }
     }
 
@@ -30,7 +35,8 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        historicStatDisplay.text = "Total spreads found ever: " + data.spreadEventsTriggered;
+        historicStatDisplay.text = HISTSTATPREFIX + data.spreadEventsTriggered;
+        objectivesCompleteAllTime = data.spreadEventsTriggered;
     }
     public void SaveData(ref GameData data)
     {
