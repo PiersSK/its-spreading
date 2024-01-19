@@ -19,11 +19,15 @@ public class Bathtub : Interactable
     [SerializeField] private Transform waterLevel;
     private Vector3 waterAtEmpty;
 
+    [SerializeField] private AudioClip waterFill;
+    [SerializeField] private AudioClip waterDrain;
+    [SerializeField] private AudioClip waterEnter;
+    private AudioSource _audioSource;
+
     [SerializeField] private Transform inBathPosition;
     private Vector3 resetPosition;
     private Quaternion resetRotation;
     private Player player;
-
 
     private float currentFillLevel = 0f;
     private float maxFillHeight = 1f;
@@ -39,6 +43,7 @@ public class Bathtub : Interactable
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         currentState = BathState.Drained;
         promptText = FILL;
         waterAtEmpty = waterLevel.localPosition;
@@ -53,6 +58,7 @@ public class Bathtub : Interactable
             else
             {
                 currentState = BathState.Filled;
+                _audioSource.Pause();
                 promptText = GETIN;
             }
         } else if (currentState == BathState.Draining)
@@ -74,17 +80,23 @@ public class Bathtub : Interactable
         switch (currentState)
         {
             case BathState.Drained:
+                _audioSource.clip = waterFill;
                 readyToDrain = false;
                 currentState = BathState.Filling;
+                _audioSource.Play();
                 promptText = STOP;
                 return;
             case BathState.Filling:
                 currentState = BathState.PartFilled;
+                _audioSource.Pause();
                 promptText = FILL;
                 return;
             case BathState.PartFilled:
                 if (!readyToDrain)
+                {
                     currentState = BathState.Filling;
+                    _audioSource.Play();
+                }
                 else
                     currentState = BathState.Draining;
 
@@ -92,6 +104,8 @@ public class Bathtub : Interactable
                 return;
             case BathState.Filled:
                 currentState = BathState.Occupied;
+                _audioSource.clip = null;
+                _audioSource.PlayOneShot(waterEnter, 1f);
 
                 player.GetComponent<PlayerInteract>().persistSelectedInteractable = true;
                 player.TogglePlayerIsEngaged();
@@ -117,6 +131,7 @@ public class Bathtub : Interactable
                 return;
             case BathState.Used:
                 currentState = BathState.Draining;
+                _audioSource.PlayOneShot(waterDrain, 1f);
                 promptText = STOP;
                 return;
             case BathState.Draining:
