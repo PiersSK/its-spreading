@@ -10,8 +10,9 @@ public class SpreadingEvent : MonoBehaviour
     {
         if (ShouldEventTrigger() && !eventComplete)
         {
-            Confetti.Instance.ConfettiExplosion();
             eventComplete = true;
+            Confetti.Instance.ConfettiExplosion();
+            EventImpact();
         }
     }
 
@@ -19,5 +20,7 @@ public class SpreadingEvent : MonoBehaviour
     {
         return false;
     }
+
+    protected virtual void EventImpact() { }
 
 }

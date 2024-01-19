@@ -11,12 +11,16 @@ public class Piano : Interactable
     private const string PLAY = "Play";
     private const string STOP = "Stop";
 
+    private BackgroundMusicLayer pianoLayer;
+
     private void Start()
     {
         promptText = PLAY;
         pianoAudio = GetComponent<AudioSource>();
         noteAnim = GetComponent<Animation>();
         MusicController.Instance.LoopReset += ResetPianoTrack;
+
+        pianoLayer = new BackgroundMusicLayer(pianoAudio);
     }
 
     public override void Interact()
@@ -28,8 +32,7 @@ public class Piano : Interactable
             MusicController.Instance.playRandom = false;
 
             // Play piano intime with bg music
-            pianoAudio.time = MusicController.Instance.secondsThroughSegment;
-            pianoAudio.Play();
+            pianoLayer.PlayLayer();
 
             noteAnim.wrapMode = WrapMode.Loop;
             noteAnim.Play();
@@ -45,7 +48,8 @@ public class Piano : Interactable
         {
             MusicController.Instance.playRandom = true;
 
-            pianoAudio.Pause();
+            pianoLayer.PauseLayer();
+
             noteAnim.wrapMode = WrapMode.Once;
 
             Player.Instance.canMove = true;
