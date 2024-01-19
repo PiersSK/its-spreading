@@ -83,9 +83,11 @@ public class Player : MonoBehaviour, IDataPersistence
     public void TogglePlayerIsEngaged()
     {
         canMove = !canMove;
+        _characterController.enabled = !_characterController.enabled;
         if (controlActions.ToggleInteract.enabled)
             controlActions.ToggleInteract.Disable();
         else
             controlActions.ToggleInteract.Enable();
+
     }
 }

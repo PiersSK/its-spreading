@@ -5961,6 +5961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Play
+  objectBounds: {x: 0, y: 0, z: 0}
 --- !u!82 &213810336
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7189,7 +7190,7 @@ Transform:
   m_GameObject: {fileID: 249776880}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.09, z: -3.67}
+  m_LocalPosition: {x: 0, y: 1.09, z: 0.74000025}
   m_LocalScale: {x: 5.4, y: 0.3, z: 4.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23370,7 +23371,7 @@ Transform:
   m_GameObject: {fileID: 773371183}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -1.2, y: 1.28, z: -6.75}
+  m_LocalPosition: {x: -1.2, y: 1.28, z: -2.3}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24990,7 +24991,7 @@ Transform:
   m_GameObject: {fileID: 811280171}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6, y: 0.85, z: -3.67}
+  m_LocalPosition: {x: -2.6, y: 0.85, z: 0.74000025}
   m_LocalScale: {x: 0.2, y: 0.7, z: 4.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27034,7 +27035,7 @@ Transform:
   m_GameObject: {fileID: 882071439}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.85200006, z: -1.37}
+  m_LocalPosition: {x: 0, y: 0.85200006, z: 3.04}
   m_LocalScale: {x: 5.3, y: 0.7, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39477,7 +39478,7 @@ Transform:
   m_GameObject: {fileID: 1348877373}
   serializedVersion: 2
   m_LocalRotation: {x: 0.071031675, y: -0.07103165, z: 0.7035301, w: 0.7035301}
-  m_LocalPosition: {x: -1.2000003, y: 1.4870596, z: -6.7605896}
+  m_LocalPosition: {x: -1.2000003, y: 1.4870596, z: -2.3}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39932,7 +39933,7 @@ Transform:
   m_GameObject: {fileID: 1362980581}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.2, y: 1.283, z: -6.75}
+  m_LocalPosition: {x: 1.2, y: 1.283, z: -2.3}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46983,7 +46984,7 @@ Transform:
   m_GameObject: {fileID: 1561877577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.69, z: -4.41}
+  m_LocalPosition: {x: 0, y: 0.69, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49724,7 +49725,7 @@ Transform:
   m_GameObject: {fileID: 1645671465}
   serializedVersion: 2
   m_LocalRotation: {x: 0.071031675, y: -0.07103165, z: 0.7035301, w: 0.7035301}
-  m_LocalPosition: {x: 1.2000003, y: 1.49, z: -6.76}
+  m_LocalPosition: {x: 1.2000003, y: 1.49, z: -2.3}
   m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51477,8 +51478,8 @@ Transform:
   m_GameObject: {fileID: 1694689927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.66, y: 2.2, z: -1.53}
-  m_LocalScale: {x: 1.5, y: 2, z: 1.5}
+  m_LocalPosition: {x: -4.89, y: 2.2, z: 6.83}
+  m_LocalScale: {x: 1.5000004, y: 2, z: 1.5000007}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1470442343}
@@ -51612,7 +51613,7 @@ Transform:
   m_GameObject: {fileID: 1698245301}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.593, y: 0.85, z: -3.67}
+  m_LocalPosition: {x: 2.593, y: 0.85, z: 0.74000025}
   m_LocalScale: {x: 0.2, y: 0.7, z: 4.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57674,6 +57675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1901640158}
+  - component: {fileID: 1901640159}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Untagged
@@ -57690,7 +57692,7 @@ Transform:
   m_GameObject: {fileID: 1901640157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -57703,8 +57705,24 @@ Transform:
   - {fileID: 773371184}
   - {fileID: 1645671466}
   - {fileID: 1348877374}
+  - {fileID: 1993055184}
   m_Father: {fileID: 1190751992}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1901640159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901640157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea21c6b92ba2540c4a905d6841ec92e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptText: Rest
+  objectBounds: {x: 0, y: 0, z: 0}
+  inBedPosition: {fileID: 1993055184}
 --- !u!1 &1903704494
 GameObject:
   m_ObjectHideFlags: 0
@@ -59733,6 +59751,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984316233}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1993055183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1993055184}
+  m_Layer: 0
+  m_Name: InBed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1993055184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993055183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
+  m_LocalPosition: {x: -1.12, y: 1.653, z: -0.285}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1901640158}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 180}
 --- !u!1 &2001332729
 GameObject:
   m_ObjectHideFlags: 0
@@ -64357,8 +64406,8 @@ SceneRoots:
   - {fileID: 1481835118}
   - {fileID: 1454415445}
   - {fileID: 1782098105}
-  - {fileID: 1359018243}
   - {fileID: 1694689931}
+  - {fileID: 1359018243}
   - {fileID: 2110580304}
   - {fileID: 1165256981}
   - {fileID: 1182591618}
