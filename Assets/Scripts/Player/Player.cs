@@ -7,7 +7,9 @@ public class Player : MonoBehaviour, IDataPersistence
     public static Player Instance { get; private set; }
 
     [SerializeField] private float speed = 5;
+    [SerializeField] private float gravity = -9.8f;
     [SerializeField] private CharacterController _characterController;
+    private Vector3 playerVelocity;
     private Vector3 direction;
 
     public Controls playerControls;
@@ -54,6 +56,11 @@ public class Player : MonoBehaviour, IDataPersistence
         if (canMove)
         {
             _characterController.Move(direction.normalized * speed * Time.deltaTime);
+
+            playerVelocity.y += gravity * Time.deltaTime;
+            if (_characterController.isGrounded && playerVelocity.y < 0)
+                playerVelocity.y = -2.0f;
+            _characterController.Move(playerVelocity * Time.deltaTime);
 
             if (direction != Vector3.zero)
             {
