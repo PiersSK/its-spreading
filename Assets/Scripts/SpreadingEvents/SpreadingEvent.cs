@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpreadingEvent : MonoBehaviour
 {
+    [SerializeField] Objective _objective;
     protected bool eventComplete = false;
 
     protected virtual void Update()
@@ -12,6 +13,8 @@ public class SpreadingEvent : MonoBehaviour
         {
             eventComplete = true;
             Confetti.Instance.ConfettiExplosion();
+            _objective.CompleteObjective();
+            ObjectiveController.Instance.ObjectivesComplete++;
             EventImpact();
         }
     }
