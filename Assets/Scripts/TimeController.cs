@@ -29,7 +29,8 @@ public class TimeController : MonoBehaviour, IDataPersistence
     [SerializeField] private Color lowSunColor;
 
     [Header("Events")]
-    [SerializeField] private List<TimedEvent> scheduledEvents;
+    [SerializeField] private Transform scheduledEvents;
+    //[SerializeField] private List<TimedEvent> scheduledEvents;
 
     private float timeMultiplier;
     private float time = 0f;
@@ -74,12 +75,24 @@ public class TimeController : MonoBehaviour, IDataPersistence
 
     private void TriggerEvents()
     {
-        foreach (TimedEvent e in scheduledEvents)
+        foreach (Transform eventTransform in scheduledEvents)
         {
-            if (e.ShouldEventTrigger())
+            if (eventTransform.TryGetComponent(out TimedEvent e))
             {
-                e.TriggerEvent();
-                e.hasBeenTriggered = true;
+                if (e.ShouldEventTrigger())
+                {
+                    e.TriggerEvent();
+                    e.hasBeenTriggered = true;
+                }
+            }
+
+            if (e.TryGetComponent(out LimitedTimedEvent lte))
+            {
+                if (lte.ShouldEventEndTrigger())
+                {
+                    lte.TriggerEventEnd();
+                    lte.eventHasEnded = true;
+                }
             }
         }
     }

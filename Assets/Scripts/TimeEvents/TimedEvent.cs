@@ -5,9 +5,9 @@ using UnityEngine;
 public class TimedEvent : MonoBehaviour 
 {
     [Range(0,23)]
-    [SerializeField] private int eventHour;
+    [SerializeField] protected int eventHour;
     [Range(0, 59)]
-    [SerializeField] private int eventMinute;
+    [SerializeField] protected int eventMinute;
 
     public bool hasBeenTriggered = false;
 
