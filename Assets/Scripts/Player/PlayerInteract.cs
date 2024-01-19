@@ -25,27 +25,27 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private List<Interactable> interactablesInRange = new();
     [SerializeField] private Interactable selectedInteractable;
 
-
-    private void Start()
-    {
-        
-    }
+    public bool persistSelectedInteractable = false;
 
     private void Update()
     {
-        // Takes snapshot of interactables currently in range
-        List<Interactable> initialInteractables = new();
-        initialInteractables.AddRange(interactablesInRange);
-
-        UpdateInteractablesInRange();
-
-        // If interactablesInRange has changed (and there are any), highlight a "best interactable"
-        if ((!interactablesInRange.All(initialInteractables.Contains)
-            || interactablesInRange.Count != initialInteractables.Count)
-            && interactablesInRange.Count > 0)
+        if (!persistSelectedInteractable)
         {
-            selectedInteractable = GetBestInteractable();
-            HighlightSelectedObject();
+            // Takes snapshot of interactables currently in range
+            List<Interactable> initialInteractables = new();
+            initialInteractables.AddRange(interactablesInRange);
+
+            UpdateInteractablesInRange();
+
+            // If interactablesInRange has changed (and there are any), highlight a "best interactable"
+            if ((!interactablesInRange.All(initialInteractables.Contains)
+                || interactablesInRange.Count != initialInteractables.Count)
+                && interactablesInRange.Count > 0)
+            {
+                selectedInteractable = GetBestInteractable();
+                HighlightSelectedObject();
+            }
+
         }
 
         ShowSelectedInteractablePrompt();

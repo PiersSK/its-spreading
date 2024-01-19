@@ -33,6 +33,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     //[SerializeField] private List<TimedEvent> scheduledEvents;
 
     private float timeMultiplier;
+    public float tempMultiplier = 1f;
     private float time = 0f;
     private float maxNaturalLight = 1.5f;
 
@@ -61,7 +62,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private void Update()
     {
         // Update Time
-        time += Time.deltaTime * timeMultiplier;
+        time += Time.deltaTime * timeMultiplier * tempMultiplier;
         if (time > REALDAYLENGTHSECONDS)
         {
             time = 0f;
