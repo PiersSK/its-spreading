@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Timeline;
 
-public class NPC : MonoBehaviour
+public class DownstairsNeighbour : NPC
 {
     [SerializeField] private AudioClip humClip;
     [SerializeField] private AudioClip whistleClip;
     [SerializeField] private AudioClip currentClip;
 
-    private AudioSource npcAudio;
-    private Animation noteAnim;
     private BackgroundMusicLayer npcAudioLayer;
 
     private float humAnimTimer = 0f;
@@ -18,11 +15,9 @@ public class NPC : MonoBehaviour
 
     public bool audioIsPlaying = false;
 
-    private void Start()
+    protected override void Start()
     {
-        npcAudio = GetComponent<AudioSource>();
-        noteAnim = GetComponent<Animation>();
-
+        base.Start();
         npcAudioLayer = new BackgroundMusicLayer(npcAudio);
     }
 
@@ -33,7 +28,7 @@ public class NPC : MonoBehaviour
             humAnimTimer += Time.deltaTime;
             if (humAnimTimer >= humAnimMinSpace)
             {
-                if (Random.Range(0, 100) < 50) noteAnim.Play();
+                if (Random.Range(0, 100) < 50) npcAnim.Play();
                 humAnimTimer = 0f;
             }
         }
@@ -42,36 +37,36 @@ public class NPC : MonoBehaviour
     public void SetTrackToHum()
     {
         currentClip = humClip;
-        noteAnim.wrapMode = WrapMode.Once;
+        npcAnim.wrapMode = WrapMode.Once;
 
     }
 
     public void SetTrackToWhistle()
     {
         currentClip = whistleClip;
-        noteAnim.wrapMode = WrapMode.Loop;
+        npcAnim.wrapMode = WrapMode.Loop;
     }
 
-    public void PauseNPCAudio()
+    public override void PauseNPCAudio()
     {
         npcAudioLayer.PauseLayer();
-        noteAnim.wrapMode = WrapMode.Once;
+        npcAnim.wrapMode = WrapMode.Once;
         audioIsPlaying = false;
     }
 
-    public void PlayNPCAudio()
+    public override void PlayNPCAudio()
     {
 
         npcAudio.clip = currentClip;
         npcAudioLayer.PlayLayer();
-        noteAnim.Play();
+        npcAnim.Play();
         audioIsPlaying = true;
     }
 
-    public void FadeNPCAudioOut(float fadeDuration)
+    public override void FadeNPCAudioOut(float fadeDuration)
     {
-        StartCoroutine(npcAudioLayer.FadeLayerOut(fadeDuration));
-        noteAnim.wrapMode = WrapMode.Once;
+        StartCoroutine(FadeLayerOut(fadeDuration));
+        npcAnim.wrapMode = WrapMode.Once;
         audioIsPlaying = false;
     }
 }

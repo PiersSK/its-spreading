@@ -6,7 +6,7 @@ public class TuneSpreadingEvent : SpreadingEvent
 {
     [SerializeField] private Piano piano;
     [SerializeField] private NeighbourAppearance neighbourAppearance;
-    [SerializeField] private NPC neighbourNPC;
+    [SerializeField] private DownstairsNeighbour neighbourNPC;
 
     [SerializeField] private float tuneSpreadTimeRequired = 12f;
     [SerializeField] private float tuneSpreadTime = 0f;
