@@ -9945,6 +9945,7 @@ MonoBehaviour:
   - {fileID: 390143172}
   lowSunColor: {r: 1, g: 0.53873897, b: 0, a: 1}
   scheduledEvents: {fileID: 306180224}
+  tempMultiplier: 1
 --- !u!4 &336765267
 Transform:
   m_ObjectHideFlags: 0
@@ -53252,6 +53253,7 @@ MonoBehaviour:
   cyclePrompt: {fileID: 865945180}
   interactablesInRange: []
   selectedInteractable: {fileID: 0}
+  persistSelectedInteractable: 0
 --- !u!114 &1694689934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59876,6 +59878,7 @@ MonoBehaviour:
   promptText: Rest
   objectBounds: {x: 0, y: 0, z: 0}
   inBedPosition: {fileID: 710849446}
+  restTimeMultiplier: 5
 --- !u!1 &1903704494
 GameObject:
   m_ObjectHideFlags: 0
