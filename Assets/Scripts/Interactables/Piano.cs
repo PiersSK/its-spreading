@@ -6,7 +6,7 @@ public class Piano : Interactable
 {
     private AudioSource pianoAudio;
     private Animation noteAnim;
-    private bool isPlaying;
+    public bool isPlaying;
 
     private const string PLAY = "Play";
     private const string STOP = "Stop";

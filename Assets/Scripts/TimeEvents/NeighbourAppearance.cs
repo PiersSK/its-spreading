@@ -9,6 +9,7 @@ public class NeighbourAppearance : LimitedTimedEvent
     [SerializeField] private Transform endPosition;
 
     private Vector3 startPosition;
+    public bool neighbourIsOut;
 
     private void Start()
     {
@@ -17,11 +18,13 @@ public class NeighbourAppearance : LimitedTimedEvent
 
     public override void TriggerEvent() {
         neighbour.SetDestination(endPosition.position);
+        neighbourIsOut = true;
     }
 
     public override void TriggerEventEnd()
     {
         neighbour.SetDestination(startPosition);
+        neighbourIsOut = false;
     }
 
 }
