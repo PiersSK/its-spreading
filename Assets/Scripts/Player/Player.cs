@@ -57,8 +57,8 @@ public class Player : MonoBehaviour, IDataPersistence
         _playerInteract = GetComponent<PlayerInteract>();
         _animator = GetComponent<Animator>();
 
-        controlActions.Interact.performed += ctx => _playerInteract.InteractWithSelected();
-        controlActions.ToggleInteract.performed += ctx => _playerInteract.CycleInteractable();
+        controlActions.Interact.performed += ctx => Interact();
+        controlActions.ToggleInteract.performed += ctx => ToggleInteract();
         controlActions.Emote1.performed += ctx => Wave();
     }
 
@@ -113,6 +113,19 @@ public class Player : MonoBehaviour, IDataPersistence
     private void Wave()
     {
         _animator.SetTrigger(ANIMWAVE);
+        idleTimer = 0f;
+    }
+
+    private void Interact()
+    {
+        _playerInteract.InteractWithSelected();
+        idleTimer = 0f;
+    }
+
+    private void ToggleInteract()
+    {
+        _playerInteract.CycleInteractable();
+        idleTimer = 0f;
     }
 
     private void OnEnable()
