@@ -53,6 +53,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Emote1"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff5cc2ae-918a-407b-b322-d3bfe2afd35c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,61 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""26de40ac-e76c-461d-bba3-f30ae33c3623"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""32405763-19bf-4d0f-a763-db0279006a6f"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d5bcae18-a335-4ca2-be61-726084f99827"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""b3d1c08b-753c-4534-a0f9-60bb6f395c7e"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fb72454a-97da-4089-8908-52e7a81e0263"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""871b60a5-0e59-4354-a933-892ba1caec9d"",
                     ""path"": ""<Keyboard>/e"",
@@ -152,6 +216,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ToggleInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0dd6aab7-e641-45de-aacb-b7519284aa2b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Emote1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""575a1d3b-916d-4e25-95ca-f4a51497dd99"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Emote1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -681,6 +767,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_ToggleInteract = m_Player.FindAction("ToggleInteract", throwIfNotFound: true);
+        m_Player_Emote1 = m_Player.FindAction("Emote1", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -757,6 +844,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_ToggleInteract;
+    private readonly InputAction m_Player_Emote1;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -764,6 +852,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @ToggleInteract => m_Wrapper.m_Player_ToggleInteract;
+        public InputAction @Emote1 => m_Wrapper.m_Player_Emote1;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -782,6 +871,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ToggleInteract.started += instance.OnToggleInteract;
             @ToggleInteract.performed += instance.OnToggleInteract;
             @ToggleInteract.canceled += instance.OnToggleInteract;
+            @Emote1.started += instance.OnEmote1;
+            @Emote1.performed += instance.OnEmote1;
+            @Emote1.canceled += instance.OnEmote1;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -795,6 +887,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ToggleInteract.started -= instance.OnToggleInteract;
             @ToggleInteract.performed -= instance.OnToggleInteract;
             @ToggleInteract.canceled -= instance.OnToggleInteract;
+            @Emote1.started -= instance.OnEmote1;
+            @Emote1.performed -= instance.OnEmote1;
+            @Emote1.canceled -= instance.OnEmote1;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -935,6 +1030,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnToggleInteract(InputAction.CallbackContext context);
+        void OnEmote1(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

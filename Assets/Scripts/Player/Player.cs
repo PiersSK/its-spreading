@@ -29,6 +29,11 @@ public class Player : MonoBehaviour, IDataPersistence
     [SerializeField] private float idleTimer = 0f; // Serialized for debug
     private const int NUMBEROFIDLEANIMS = 4;
 
+    private const string ANIMWALKING = "isWalking";
+    private const string ANIMIDLE = "idle";
+    private const string ANIMIDLEINDEX = "idleIndex";
+    private const string ANIMWAVE = "wave";
+
     public void LoadData(GameData data)
     {
         _characterController.enabled = false;
@@ -54,7 +59,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
         controlActions.Interact.performed += ctx => _playerInteract.InteractWithSelected();
         controlActions.ToggleInteract.performed += ctx => _playerInteract.CycleInteractable();
-
+        controlActions.Emote1.performed += ctx => Wave();
     }
 
     private void Update()
@@ -63,14 +68,14 @@ public class Player : MonoBehaviour, IDataPersistence
         isMoving = direction != Vector3.zero;
 
         // Control basic animations
-        if (canMove) _animator.SetBool("isWalking", isMoving);
+        if (canMove) _animator.SetBool(ANIMWALKING, isMoving);
         if (!isMoving)
         {
             idleTimer += Time.deltaTime;
             if(idleTimer >= idleAnimTime)
             {
-                _animator.SetInteger("idleIndex", Random.Range(0, NUMBEROFIDLEANIMS));
-                _animator.SetTrigger("idle");
+                _animator.SetInteger(ANIMIDLEINDEX, Random.Range(0, NUMBEROFIDLEANIMS));
+                _animator.SetTrigger(ANIMIDLE);
                 idleTimer = -idleCooldown;
             }
         } else
@@ -103,6 +108,11 @@ public class Player : MonoBehaviour, IDataPersistence
         Quaternion rotation = Quaternion.Euler(0, 45.0f, 0);
         Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
         return isoMatrix.MultiplyPoint3x4(toConvert);
+    }
+
+    private void Wave()
+    {
+        _animator.SetTrigger(ANIMWAVE);
     }
 
     private void OnEnable()
