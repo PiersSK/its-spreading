@@ -22,6 +22,12 @@ public class Player : MonoBehaviour, IDataPersistence
     private PlayerInteract _playerInteract;
 
     public bool canMove = true;
+    private bool isMoving = false;
+
+    [SerializeField] private float idleAnimTime = 10f;
+    [SerializeField] private float idleCooldown = 5f;
+    [SerializeField] private float idleTimer = 0f; // Serialized for debug
+    private const int NUMBEROFIDLEANIMS = 4;
 
     public void LoadData(GameData data)
     {
@@ -54,7 +60,23 @@ public class Player : MonoBehaviour, IDataPersistence
     private void Update()
     {
         direction = ConvertToIsoVector(controlActions.Move.ReadValue<Vector3>());
-        if (canMove) _animator.SetBool("isWalking", direction != Vector3.zero);
+        isMoving = direction != Vector3.zero;
+
+        // Control basic animations
+        if (canMove) _animator.SetBool("isWalking", isMoving);
+        if (!isMoving)
+        {
+            idleTimer += Time.deltaTime;
+            if(idleTimer >= idleAnimTime)
+            {
+                _animator.SetInteger("idleIndex", Random.Range(0, NUMBEROFIDLEANIMS));
+                _animator.SetTrigger("idle");
+                idleTimer = -idleCooldown;
+            }
+        } else
+        {
+            idleTimer = 0f;
+        }
     }
 
     void FixedUpdate()

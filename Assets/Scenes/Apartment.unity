@@ -53960,6 +53960,9 @@ MonoBehaviour:
   speed: 5
   gravity: -9.8
   canMove: 1
+  idleAnimTime: 10
+  idleCooldown: 5
+  idleTimer: 0
 --- !u!143 &1694689935
 CharacterController:
   m_ObjectHideFlags: 0
@@ -67051,6 +67054,9 @@ MonoBehaviour:
   speed: 5
   gravity: -9.8
   canMove: 1
+  idleAnimTime: 10
+  idleCooldown: 5
+  idleTimer: 0
 --- !u!95 &2132258651
 Animator:
   serializedVersion: 5
