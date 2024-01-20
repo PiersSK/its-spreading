@@ -74,6 +74,11 @@ public class Confetti : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            ConfettiExplosion();
+        }
+
         // Despawn oldest confetti if total amount is above the limit
         if (transform.childCount > confettiGlobalLimit)
         {
