@@ -40,6 +40,8 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private void Awake()
     {
         Instance = this;
+        timeMultiplier = REALDAYLENGTHMINS / realtimeDayLengthMins;
+        time = startTimeHours * REALHOURLENGTHSECONDS;
     }
 
     public void LoadData(GameData data)
@@ -50,13 +52,6 @@ public class TimeController : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.daysComplete = this.daysComplete;
-    }
-    
-    private void Start()
-    {
-        timeMultiplier = REALDAYLENGTHMINS / realtimeDayLengthMins;
-        time = startTimeHours * REALHOURLENGTHSECONDS;
-
     }
 
     private void Update()
@@ -149,5 +144,10 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private void OnDayComplete()
     {
         daysComplete++;
+    }
+
+    public float InGameMinsToRealSeconds(int mins)
+    {
+        return (mins * 60f) / timeMultiplier;
     }
 }
