@@ -8,7 +8,7 @@ public class LockinInteractable : Interactable
     protected Vector3 resetPosition;
     protected Quaternion resetRotation;
 
-    protected bool isLockedIn = false;
+    public bool isLockedIn = false;
     [SerializeField] protected string freePrompt;
     [SerializeField] protected string lockedPrompt;
 
