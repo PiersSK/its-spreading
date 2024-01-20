@@ -66186,7 +66186,7 @@ MonoBehaviour:
   confettiGlobalLimit: 500
   confettiFadeChance: 80
   player: {fileID: 2132258647}
-  spawnOffset: {x: 0, y: 1.5, z: 0}
+  spawnOffset: {x: 0, y: 3, z: 0}
   confettiPerExplosion: 100
   explosionVerticalVelocity: 6
   explosionHorizontalVelocity: 3
