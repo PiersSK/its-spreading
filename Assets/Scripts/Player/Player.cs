@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour, IDataPersistence
@@ -8,7 +9,10 @@ public class Player : MonoBehaviour, IDataPersistence
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float gravity = -9.8f;
-    [SerializeField] private CharacterController _characterController;
+
+    private CharacterController _characterController;
+    private Animator _animator;
+
     private Vector3 playerVelocity;
     private Vector3 direction;
 
@@ -40,6 +44,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
         _characterController = GetComponent<CharacterController>();
         _playerInteract = GetComponent<PlayerInteract>();
+        _animator = GetComponent<Animator>();
 
         controlActions.Interact.performed += ctx => _playerInteract.InteractWithSelected();
         controlActions.ToggleInteract.performed += ctx => _playerInteract.CycleInteractable();
@@ -49,6 +54,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private void Update()
     {
         direction = ConvertToIsoVector(controlActions.Move.ReadValue<Vector3>());
+        if (canMove) _animator.SetBool("isWalking", direction != Vector3.zero);
     }
 
     void FixedUpdate()
