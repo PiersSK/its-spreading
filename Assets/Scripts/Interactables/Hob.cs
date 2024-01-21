@@ -7,6 +7,7 @@ public class Hob : Interactable
     [Header("Hob References")]
     [SerializeField] private Light hobLight;
     [SerializeField] private ParticleSystem hobSmoke;
+    [SerializeField] private AudioSource smokeAlarm;
     [SerializeField] private AudioClip ignitionSound;
     private AudioSource _audioSource;
 
@@ -60,6 +61,10 @@ public class Hob : Interactable
                 fireSpread = true;
             }
         }
+
+        bool firePresent = firstFire.isLit || secondFire.isLit;
+        if (firePresent && !smokeAlarm.isPlaying) smokeAlarm.Play();
+        else if (!firePresent && smokeAlarm.isPlaying) smokeAlarm.Pause();
     }
 
     private void UpdateHob()
