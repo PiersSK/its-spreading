@@ -44,6 +44,11 @@ public class OrderItemUI : MonoBehaviour
         TimeSpan startTime = currentTime.Add(new TimeSpan(1, 0, 0));
         TimeSpan endTime = currentTime.Add(new TimeSpan(1, 30, 0));
 
+        foreach (NeighbourAppearance scheduledAppearences in FindObjectsOfType<NeighbourAppearance>())
+        {
+            // check for scheduling conflicts
+        }
+
 
         npcArrival.SetEventStartTime(startTime.Hours, startTime.Minutes);
         npcArrival.SetEventEndTime(endTime.Hours, endTime.Minutes);

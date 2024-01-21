@@ -24,7 +24,6 @@ public class DeliveryNPC : NPC
 
     public override void Interact()
     {
-        Debug.Log("Gave " + objectToDeliverName + " to player");
         Player.Instance.GetComponent<Inventory>().inventory.Add(objectToDeliver);
         hasDelivered = true;
         currentScheduler.TriggerEventEnd();
