@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11649,7 +11649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computerAudio: {fileID: 158382869}
-  clickSound: {fileID: 8300000, guid: 375344271f720423f8f1f28d36a6f87e, type: 3}
+  clickSound: {fileID: 8300000, guid: 0cd87dd05092a45ed9e0c79b01813845, type: 3}
   browserBackground: {fileID: 189075573}
   browserContent:
   - {fileID: 2014891687}
@@ -12138,7 +12138,7 @@ MonoBehaviour:
   isLockedIn: 0
   freePrompt: Surf The Web
   lockedPrompt: Leave Computer
-  keyboardSound: {fileID: 8300000, guid: 7fc3bfed0663644be90fc11fb78ff7ea, type: 3}
+  keyboardSound: {fileID: 8300000, guid: e4b4c98c897af4e909bf9244386e36d8, type: 3}
 --- !u!82 &158382869
 AudioSource:
   m_ObjectHideFlags: 0
