@@ -7,6 +7,8 @@ public class ComputerUI : MonoBehaviour
 {
     public static ComputerUI Instance { get; private set; }
 
+    public AudioSource computerAudio;
+    [SerializeField] public AudioClip clickSound;
     public Image browserBackground;
     public List<GameObject> browserContent;
 
@@ -17,6 +19,17 @@ public class ComputerUI : MonoBehaviour
     private void Start()
     {
         gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(gameObject.activeSelf)
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                computerAudio.PlayOneShot(clickSound);
+            }
+        }
     }
 
 }

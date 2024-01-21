@@ -5,10 +5,12 @@ using UnityEngine;
 public class Door : Interactable
 {
     [SerializeField] private AudioClip doorKnock;
+    [SerializeField] private AudioClip doorOpenSound;
     [SerializeField] private Animation doorKnockAnim;
+    [SerializeField] private AudioSource knockSource;
+    [SerializeField] private AudioSource doorSource;
 
     private Animator doorAnimation;
-    private AudioSource _audioSource;
     public bool isOpen = false;
 
     private const string OPENPROMPT = "Open Door";
@@ -17,7 +19,6 @@ public class Door : Interactable
     private void Start()
     {
         doorAnimation = GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
         promptText = OPENPROMPT;
     }
 
@@ -26,10 +27,11 @@ public class Door : Interactable
         isOpen = !isOpen;
         doorAnimation.SetBool("isOpen", isOpen);
         promptText = isOpen ? CLOSEPROMPT : OPENPROMPT;
+        doorSource.PlayOneShot(doorOpenSound);
 
         if(isOpen)
         {
-            _audioSource.Pause();
+            knockSource.Pause();
             doorKnockAnim.Stop();
         }
     }
@@ -38,7 +40,7 @@ public class Door : Interactable
     {
         if (!isOpen)
         {
-            _audioSource.PlayOneShot(doorKnock);
+            knockSource.PlayOneShot(doorKnock);
             doorKnockAnim.Play();
         }
     }

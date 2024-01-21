@@ -12,6 +12,8 @@ public class Vines : Interactable
     private bool onCooldown;
 
     [SerializeField] private ParticleSystem sparkle;
+    [SerializeField] private AudioClip sparkleSound;
+
     [SerializeField] private Material aliveMaterial;
     [SerializeField] private List<Renderer> startingLeaves;
 
@@ -26,9 +28,11 @@ public class Vines : Interactable
     public PlantState currentState = PlantState.Dead;
 
     private Animator _animator;
+    private AudioSource _audioSource;
     private void Start()
     {
-        _animator = GetComponent<Animator>(); 
+        _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -44,6 +48,7 @@ public class Vines : Interactable
     public override void Interact()
     {
         sparkle.Play();
+        _audioSource.PlayOneShot(sparkleSound);
         currentState++;
         if (currentState == PlantState.Alive)
             foreach (Renderer renderer in startingLeaves) renderer.material = aliveMaterial;

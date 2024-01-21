@@ -10,6 +10,8 @@ public class OrderItemUI : MonoBehaviour
 {
 
     [SerializeField] private Inventory.InventoryItem objectBeingPurchased;
+    [SerializeField] private AudioClip purchaseConfirmSound;
+
 
     [Header("References")]
     [SerializeField] private DeliveryNPC deliveryNPC;
@@ -55,6 +57,8 @@ public class OrderItemUI : MonoBehaviour
         scrollWindow.enabled = false;
         purchaseConfirmedTime.text = TimeController.Instance.TimeSpanToClock(startTime);
         purchaseConfirmed.SetActive(true);
+
+        ComputerUI.Instance.computerAudio.PlayOneShot(purchaseConfirmSound);
     }
 
     private void NpcArrival_NPCReachedDestination(object sender, EventArgs e)
