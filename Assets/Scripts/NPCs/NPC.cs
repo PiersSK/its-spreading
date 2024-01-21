@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 
-public class NPC : MonoBehaviour
+public class NPC : Interactable
 {
     protected AudioSource npcAudio;
     protected Animation npcAnim;
@@ -41,5 +41,10 @@ public class NPC : MonoBehaviour
             yield return null;
         }
         yield break;
+    }
+
+    public override bool CanInteract()
+    {
+        return false;
     }
 }

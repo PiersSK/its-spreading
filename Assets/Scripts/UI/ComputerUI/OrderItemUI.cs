@@ -1,13 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class OrderItemUI : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent deliveryNPC;
+
+    [SerializeField] private string objectBeingPurchased;
+
+    [Header("References")]
+    [SerializeField] private DeliveryNPC deliveryNPC;
     [SerializeField] private Transform doorPosition;
     [SerializeField] private Door _door;
 
@@ -18,9 +23,16 @@ public class OrderItemUI : MonoBehaviour
 
     private void OrderItem()
     {
+
         NeighbourAppearance npcArrival = Instantiate(Resources.Load<NeighbourAppearance>("DynamicEvents/NPCArrival"), TimeController.Instance.scheduledEvents);
 
-        npcArrival.neighbour = deliveryNPC;
+        DeliveryNPC _deliverNPC = deliveryNPC.GetComponent<DeliveryNPC>();
+
+        deliveryNPC.ObjectToDeliver = objectBeingPurchased;
+        deliveryNPC.currentScheduler = npcArrival;
+        deliveryNPC.hasDelivered = false;
+
+        npcArrival.neighbour = deliveryNPC.GetComponent<NavMeshAgent>();
         npcArrival.endPosition = doorPosition;
         TimeSpan currentTime = TimeController.Instance.CurrentTime();
         TimeSpan startTime = currentTime.Add(new TimeSpan(1, 0, 0));
@@ -30,8 +42,10 @@ public class OrderItemUI : MonoBehaviour
         npcArrival.SetEventEndTime(endTime.Hours, endTime.Minutes);
 
         npcArrival.NPCReachedDestination += NpcArrival_NPCReachedDestination;
-        // schedule door knock
-        // share info about what's being delivered
+
+        GetComponent<Button>().interactable = false;
+        GetComponent<Image>().color = new Color(0.55f, 0.55f, 0.55f);
+        GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
     }
 
     private void NpcArrival_NPCReachedDestination(object sender, EventArgs e)

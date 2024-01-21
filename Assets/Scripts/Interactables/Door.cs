@@ -9,7 +9,7 @@ public class Door : Interactable
 
     private Animator doorAnimation;
     private AudioSource _audioSource;
-    private bool isOpen = false;
+    public bool isOpen = false;
 
     private const string OPENPROMPT = "Open Door";
     private const string CLOSEPROMPT = "Close Door";
