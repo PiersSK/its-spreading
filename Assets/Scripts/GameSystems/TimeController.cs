@@ -122,10 +122,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private void UpdateClockUI()
     {
         TimeSpan ts = TimeSpan.FromSeconds(time);
-        string timeSuffix = ts.Hours < 12 ? "am" : "pm";
-        int amPmHours = ts.Hours % 12 == 0 ? 12 : ts.Hours % 12;
-
-        clockUI.text = string.Format("{0}:{1:00} {2}", amPmHours, ts.Minutes, timeSuffix);
+        clockUI.text = TimeSpanToClock(ts);
     }
 
     private Color GetSunColor(float percToLowSun)
@@ -154,5 +151,13 @@ public class TimeController : MonoBehaviour, IDataPersistence
     public float InGameMinsToRealSeconds(int mins)
     {
         return (mins * 60f) / timeMultiplier;
+    }
+
+    public string TimeSpanToClock(TimeSpan ts)
+    {
+        string timeSuffix = ts.Hours < 12 ? "am" : "pm";
+        int amPmHours = ts.Hours % 12 == 0 ? 12 : ts.Hours % 12;
+
+        return string.Format("{0}:{1:00} {2}", amPmHours, ts.Minutes, timeSuffix);
     }
 }

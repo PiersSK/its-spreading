@@ -6,6 +6,11 @@ public class Vines : Interactable
 {
     [SerializeField] private Inventory.InventoryItem requiredItem;
 
+    [Range(0,120)]
+    [SerializeField] private int coolDownInGameMins;
+    private float cooldownTimer = 0f;
+    private bool onCooldown;
+
     [SerializeField] private ParticleSystem sparkle;
     [SerializeField] private Material aliveMaterial;
     [SerializeField] private List<Renderer> startingLeaves;
@@ -26,6 +31,16 @@ public class Vines : Interactable
         _animator = GetComponent<Animator>(); 
     }
 
+    private void Update()
+    {
+        if(onCooldown)
+        {
+            cooldownTimer += Time.deltaTime;
+            if(cooldownTimer >= TimeController.Instance.InGameMinsToRealSeconds(coolDownInGameMins))
+                onCooldown = false;
+        }
+    }
+
     public override void Interact()
     {
         sparkle.Play();
@@ -33,10 +48,15 @@ public class Vines : Interactable
         if (currentState == PlantState.Alive)
             foreach (Renderer renderer in startingLeaves) renderer.material = aliveMaterial;
         _animator.SetInteger("plantGrowthIndex", (int)currentState);
+
+        onCooldown = true;
+        cooldownTimer = 0f;
     }
 
     public override bool CanInteract()
     {
-        return Player.Instance.GetComponent<Inventory>().inventory.Contains(requiredItem) && currentState != PlantState.Overgrown;
+        return Player.Instance.GetComponent<Inventory>().inventory.Contains(requiredItem)
+            && currentState != PlantState.Overgrown
+            && !onCooldown;
     }
 }

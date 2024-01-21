@@ -16,6 +16,10 @@ public class OrderItemUI : MonoBehaviour
     [SerializeField] private Transform doorPosition;
     [SerializeField] private Door _door;
 
+    [SerializeField] private ScrollRect scrollWindow;
+    [SerializeField] private GameObject purchaseConfirmed;
+    [SerializeField] private TextMeshProUGUI purchaseConfirmedTime;
+
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OrderItem);
@@ -38,6 +42,7 @@ public class OrderItemUI : MonoBehaviour
         TimeSpan startTime = currentTime.Add(new TimeSpan(1, 0, 0));
         TimeSpan endTime = currentTime.Add(new TimeSpan(1, 30, 0));
 
+
         npcArrival.SetEventStartTime(startTime.Hours, startTime.Minutes);
         npcArrival.SetEventEndTime(endTime.Hours, endTime.Minutes);
 
@@ -46,6 +51,10 @@ public class OrderItemUI : MonoBehaviour
         GetComponent<Button>().interactable = false;
         GetComponent<Image>().color = new Color(0.55f, 0.55f, 0.55f);
         GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
+
+        scrollWindow.enabled = false;
+        purchaseConfirmedTime.text = TimeController.Instance.TimeSpanToClock(startTime);
+        purchaseConfirmed.SetActive(true);
     }
 
     private void NpcArrival_NPCReachedDestination(object sender, EventArgs e)
