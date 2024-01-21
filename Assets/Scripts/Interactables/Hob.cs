@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Hob : Interactable
 {
+    [Header("Hob References")]
     [SerializeField] private Light hobLight;
     [SerializeField] private ParticleSystem hobSmoke;
+    [SerializeField] private AudioClip ignitionSound;
+    private AudioSource _audioSource;
+
+    [Header("Fire Configuration")]
     [SerializeField] private Fire firstFire;
     [SerializeField] private Fire secondFire;
     [SerializeField] private float timeTillFire;
@@ -27,6 +32,7 @@ public class Hob : Interactable
     private void Start()
     {
         promptText = TURNON;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -58,6 +64,11 @@ public class Hob : Interactable
 
     private void UpdateHob()
     {
+        if (hobLevel == 0)
+            _audioSource.Pause();
+        else
+            _audioSource.Play();
+
         promptText = hobLevel == 0 ? TURNON : hobLevel < HOBMAX ? INCREASEHEAT + (hobLevel + 1) : TURNOFF;
 
         hobLight.intensity = HOBLIGHTMAX * ((float)hobLevel / HOBMAX);
@@ -67,8 +78,12 @@ public class Hob : Interactable
 
     public override void Interact()
     {
-        if (hobLevel < HOBMAX) hobLevel++;
-        else hobLevel = 0;
+        if (hobLevel == 0)
+        {
+            _audioSource.PlayOneShot(ignitionSound);
+        }
+
+        hobLevel = hobLevel < HOBMAX ? hobLevel + 1 : 0;
         UpdateHob();
     }
 

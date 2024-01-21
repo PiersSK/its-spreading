@@ -2645,7 +2645,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.39462644, b: 0, a: 1}
-  m_Intensity: 4
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5557,7 +5557,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -24782,6 +24782,7 @@ Transform:
   m_Children:
   - {fileID: 792010589}
   - {fileID: 11904323}
+  - {fileID: 2137815471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &560682115
@@ -25369,9 +25370,10 @@ MonoBehaviour:
   promptText: 
   hobLight: {fileID: 770028434}
   hobSmoke: {fileID: 1242221532}
-  firstFire: {fileID: 1808558501}
-  secondFire: {fileID: 1835473158}
-  timeTillFire: 60
+  firstFire: {fileID: 1808558503}
+  secondFire: {fileID: 1835473163}
+  timeTillFire: 20
+  fireTimer: 0
 --- !u!1 &578703983
 GameObject:
   m_ObjectHideFlags: 0
@@ -33698,6 +33700,7 @@ Transform:
   m_Children:
   - {fileID: 1466152697}
   - {fileID: 856644746}
+  - {fileID: 1605863605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &837027501
@@ -39386,7 +39389,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -68348,6 +68351,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605753245}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1605863604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1605863605}
+  - component: {fileID: 1605863606}
+  m_Layer: 0
+  m_Name: FireObjective
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1605863605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605863604}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 834394576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1605863606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605863604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054dd113c01fe454fa900eb290eac0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveUI: {fileID: 218231632}
+  completedIcon: {fileID: 21300000, guid: 3a7bd4358af024cd59e13b53fceebd31, type: 3}
 --- !u!1 &1605931426
 GameObject:
   m_ObjectHideFlags: 0
@@ -72587,8 +72636,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1808558502}
   - {fileID: 1096328949}
+  - {fileID: 1808558502}
   - {fileID: 1835473162}
   - {fileID: 578106737}
   - {fileID: 1884847083}
@@ -74788,7 +74837,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.39462644, b: 0, a: 1}
-  m_Intensity: 4
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -76134,12 +76183,12 @@ GameObject:
   - component: {fileID: 1808558502}
   - component: {fileID: 1808558503}
   m_Layer: 0
-  m_Name: Fire1
+  m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1808558502
 Transform:
   m_ObjectHideFlags: 0
@@ -76170,6 +76219,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Put Out!
+  fireParticles: {fileID: 128120727}
+  fireLight: {fileID: 75581882}
+  isLit: 0
 --- !u!1 &1810284372
 GameObject:
   m_ObjectHideFlags: 0
@@ -76534,12 +76586,12 @@ GameObject:
   - component: {fileID: 1835473162}
   - component: {fileID: 1835473163}
   m_Layer: 0
-  m_Name: Fire2
+  m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1835473162
 Transform:
   m_ObjectHideFlags: 0
@@ -76570,6 +76622,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Put Out!
+  fireParticles: {fileID: 972346819}
+  fireLight: {fileID: 1764359403}
+  isLit: 0
 --- !u!1 &1835695116
 GameObject:
   m_ObjectHideFlags: 0
@@ -86520,6 +86575,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134072937}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2137815470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2137815471}
+  - component: {fileID: 2137815472}
+  m_Layer: 0
+  m_Name: FireSpread
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2137815471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137815470}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 559315053}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2137815472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137815470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591563f15ed3f499db50f4a6e299554b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objective: {fileID: 1605863606}
+  spreadFire: {fileID: 1835473163}
 --- !u!1 &2142227731
 GameObject:
   m_ObjectHideFlags: 0
