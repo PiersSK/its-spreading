@@ -14,4 +14,9 @@ public class ComputerUI : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
 }
