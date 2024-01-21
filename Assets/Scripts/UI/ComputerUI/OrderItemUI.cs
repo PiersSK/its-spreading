@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class OrderItemUI : MonoBehaviour
 {
 
-    [SerializeField] private string objectBeingPurchased;
+    [SerializeField] private Inventory.InventoryItem objectBeingPurchased;
 
     [Header("References")]
     [SerializeField] private DeliveryNPC deliveryNPC;

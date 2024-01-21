@@ -6,14 +6,16 @@ public class DeliveryNPC : NPC
 {
     [SerializeField] private Door _door;
 
-    private string objectToDeliver;
-    public string ObjectToDeliver
+    private string objectToDeliverName;
+    private Inventory.InventoryItem objectToDeliver;
+    public Inventory.InventoryItem ObjectToDeliver
     {
         get { return objectToDeliver; }
         set
         { 
             objectToDeliver = value;
-            promptText = "Take " + value;
+            objectToDeliverName = Player.Instance.GetComponent<Inventory>().inventoryItemNames[(int)value];
+            promptText = "Take " + objectToDeliverName;
         }
     }
     public NeighbourAppearance currentScheduler;
@@ -22,7 +24,8 @@ public class DeliveryNPC : NPC
 
     public override void Interact()
     {
-        Debug.Log("Gave " + ObjectToDeliver + " to player");
+        Debug.Log("Gave " + objectToDeliverName + " to player");
+        Player.Instance.GetComponent<Inventory>().inventory.Add(objectToDeliver);
         hasDelivered = true;
         currentScheduler.TriggerEventEnd();
     }
