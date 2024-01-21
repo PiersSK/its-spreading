@@ -20,10 +20,8 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] TextMeshProUGUI interactableNameUI;
     [SerializeField] GameObject cyclePrompt;
 
-    [Header("Debug Fields")]
-    // Serialized for debugging only
-    [SerializeField] private List<Interactable> interactablesInRange = new();
-    [SerializeField] private Interactable selectedInteractable;
+    private List<Interactable> interactablesInRange = new();
+    private Interactable selectedInteractable;
 
     public bool persistSelectedInteractable = false;
 
@@ -159,13 +157,21 @@ public class PlayerInteract : MonoBehaviour
     {
         float minDistance = Mathf.Infinity;
         Interactable toSelect = null;
-        foreach(Interactable interactable in interactablesInRange)
+
+        if (interactablesInRange.Any(o => o.priority != interactablesInRange[0].priority))
         {
-            float distanceToInteractable = Vector3.Distance(interactable.transform.position, transform.position);
-            if (distanceToInteractable < minDistance)
+            return interactablesInRange.OrderByDescending(o => o.priority).ToList()[0];
+        }
+        else
+        {
+            foreach (Interactable interactable in interactablesInRange)
             {
-                minDistance = distanceToInteractable;
-                toSelect = interactable;
+                float distanceToInteractable = Vector3.Distance(interactable.transform.position, transform.position);
+                if (distanceToInteractable < minDistance)
+                {
+                    minDistance = distanceToInteractable;
+                    toSelect = interactable;
+                }
             }
         }
 
