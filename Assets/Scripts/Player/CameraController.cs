@@ -4,6 +4,8 @@ public class CameraController : MonoBehaviour
 {
     public static CameraController Instance { get; private set; }
 
+    [SerializeField] private Vector3 cameraOffset = new Vector3(-12f, 10.5f, -12);
+
     public Transform player;
     public Camera _camera;
     private Vector3 initialPosition;
@@ -22,14 +24,14 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        initialPosition = player.transform.position + new Vector3(-11f, 9.94f, -12);
+        initialPosition = player.transform.position + cameraOffset;
         transform.rotation = Quaternion.Euler(new Vector3(30,45,0));
         transform.position = initialPosition;
     }
 
     private void Update()
     {
-        transform.position = player.transform.position + new Vector3(-11f, 9.94f, -12);
+        transform.position = player.transform.position + cameraOffset;
 
         if((int)(_camera.orthographicSize*10) != (int)(zoomTarget*10))
         {

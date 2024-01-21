@@ -7,7 +7,7 @@ public class Player : MonoBehaviour, IDataPersistence
     [SerializeField] private float gravity = -9.8f;
 
     private CharacterController _characterController;
-    private Animator _animator;
+    public Animator _animator;
 
     private Vector3 playerVelocity;
     private Vector3 direction;
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
     public bool canMove = true;
     private bool isMoving = false;
+    private bool isDancing = false;
 
     [SerializeField] private float idleAnimTime = 10f;
     [SerializeField] private float idleCooldown = 5f;
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour, IDataPersistence
         controlActions.Interact.performed += ctx => Interact();
         controlActions.ToggleInteract.performed += ctx => ToggleInteract();
         controlActions.Emote1.performed += ctx => Wave();
+        controlActions.Emote2.performed += ctx => Dance();
     }
 
     private void Update()
@@ -65,7 +67,15 @@ public class Player : MonoBehaviour, IDataPersistence
 
         // Control basic animations
         if (canMove) _animator.SetBool(ANIMWALKING, isMoving);
-        if (!isMoving)
+        if (isDancing && isMoving)
+        {
+            _animator.SetBool("isDancing", false);
+            isDancing = false;
+            CameraController.Instance.SetCameraZoom(9f, 0.5f);
+
+        }
+
+        if (!isMoving && !isDancing && canMove)
         {
             idleTimer += Time.deltaTime;
             if(idleTimer >= idleAnimTime)
@@ -105,10 +115,22 @@ public class Player : MonoBehaviour, IDataPersistence
         Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
         return isoMatrix.MultiplyPoint3x4(toConvert);
     }
-
     private void Wave()
     {
         _animator.SetTrigger(ANIMWAVE);
+    }
+
+
+    private void Dance()
+    {
+        //_animator.SetTrigger(ANIMWAVE);
+        isDancing = !isDancing;
+        _animator.SetBool("isDancing", isDancing);
+        if(isDancing)
+            CameraController.Instance.SetCameraZoom(5f, 10f);
+        else
+            CameraController.Instance.SetCameraZoom(9f, 0.5f);
+
         idleTimer = 0f;
     }
 
