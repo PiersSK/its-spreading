@@ -16,4 +16,10 @@ public class LimitedTimedEvent : TimedEvent
     {
         return hasBeenTriggered && !eventHasEnded && TimeController.Instance.TimeHasPassed(eventEndHour, eventEndMinute);
     }
+
+    public void SetEventEndTime(int hour, int min)
+    {
+        eventEndHour = hour;
+        eventEndMinute = min;
+    }
 }

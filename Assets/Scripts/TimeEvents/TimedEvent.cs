@@ -15,4 +15,10 @@ public class TimedEvent : MonoBehaviour
     public virtual bool ShouldEventTrigger() {
         return !hasBeenTriggered && TimeController.Instance.TimeHasPassed(eventHour, eventMinute);
     }
+
+    public void SetEventStartTime(int hour, int min)
+    {
+        eventHour = hour;
+        eventMinute = min;
+    }
 }

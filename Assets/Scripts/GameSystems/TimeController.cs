@@ -29,7 +29,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     [SerializeField] private Color lowSunColor;
 
     [Header("Events")]
-    [SerializeField] private Transform scheduledEvents;
+    public Transform scheduledEvents;
     //[SerializeField] private List<TimedEvent> scheduledEvents;
 
     private float timeMultiplier;
@@ -144,6 +144,11 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private void OnDayComplete()
     {
         daysComplete++;
+    }
+
+    public TimeSpan CurrentTime()
+    {
+        return TimeSpan.FromSeconds(time);
     }
 
     public float InGameMinsToRealSeconds(int mins)
