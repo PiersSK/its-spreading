@@ -11920,6 +11920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Surf The Web
+  priority: 0
   lockinPos: {fileID: 57296631}
   isLockedIn: 0
   freePrompt: Surf The Web
@@ -13785,6 +13786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Play
+  priority: 0
   isPlaying: 0
 --- !u!82 &213810336
 AudioSource:
@@ -35197,6 +35199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Turn On Tap
+  priority: 0
   water: {fileID: 1605753245}
 --- !u!1 &555766398
 GameObject:
@@ -35996,6 +35999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: 
+  priority: 0
   hobLight: {fileID: 770028434}
   hobSmoke: {fileID: 1242221532}
   smokeAlarm: {fileID: 1222201941}
@@ -44172,6 +44176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Sit
+  priority: 0
   lockinPos: {fileID: 426680606}
   isLockedIn: 0
   freePrompt: Sit
@@ -56569,6 +56574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Flush
+  priority: 0
   flushSound: {fileID: 8300000, guid: 944a0bd2e79ff4d76972f345930f8a23, type: 3}
 --- !u!1 &979159305
 GameObject:
@@ -93806,6 +93812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Turn Tap On
+  priority: 0
   secondsToFill: 5
   waterLevel: {fileID: 582393243}
   waterFill: {fileID: 8300000, guid: 1b7bd0f2b77c04b128d7d460a93b9e03, type: 3}
@@ -95197,6 +95204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Sit
+  priority: 0
   lockinPos: {fileID: 54991351}
   isLockedIn: 0
   freePrompt: Sit
@@ -97053,6 +97061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Open Door
+  priority: 0
   doorKnock: {fileID: 8300000, guid: 9b4f88099fb6d1b40b32df6608264786, type: 3}
   doorKnockAnim: {fileID: 644416185}
   isOpen: 0
@@ -97960,6 +97969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Put Out!
+  priority: 0
   fireParticles: {fileID: 128120727}
   fireLight: {fileID: 75581882}
   smokeParticles: {fileID: 465017300}
@@ -98585,6 +98595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Put Out!
+  priority: 0
   fireParticles: {fileID: 972346819}
   fireLight: {fileID: 1764359403}
   smokeParticles: {fileID: 1985460723}
@@ -100183,6 +100194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: 
+  priority: 0
   humClip: {fileID: 8300000, guid: f80f8dd76bc31433c8ac74fb21a693db, type: 3}
   whistleClip: {fileID: 8300000, guid: 927fbd85848f8404b8c61f876a21a244, type: 3}
   currentClip: {fileID: 0}
@@ -102177,6 +102189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: Rest
+  priority: 0
   lockinPos: {fileID: 710849446}
   isLockedIn: 0
   freePrompt: Rest
@@ -114033,6 +114046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: 
+  priority: 1
   _door: {fileID: 1782588272}
   currentScheduler: {fileID: 0}
   hasDelivered: 0
@@ -115441,7 +115455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c2e84ed7abd400eb905ced86c2a75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactRange: 4
+  interactRange: 4.5
   interactMaxAngle: 60
   eyeOffset: {x: 0, y: 2, z: 0}
   interactBlockLayers:
@@ -115451,8 +115465,6 @@ MonoBehaviour:
   promptTextUI: {fileID: 1208418509}
   interactableNameUI: {fileID: 525329420}
   cyclePrompt: {fileID: 865945180}
-  interactablesInRange: []
-  selectedInteractable: {fileID: 0}
   persistSelectedInteractable: 0
 --- !u!114 &2132258650
 MonoBehaviour:
