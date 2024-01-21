@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +5,8 @@ using UnityEngine.AI;
 
 public class NeighbourAppearance : LimitedTimedEvent
 {
-    public event EventHandler<EventArgs> NPCReachedDestination;
-    private bool destinationReachedTriggered = false;
-
-    public NavMeshAgent neighbour;
-    public Transform endPosition;
+    [SerializeField] private NavMeshAgent neighbour;
+    [SerializeField] private Transform endPosition;
     private NPC neighbourNPC;
 
     private Vector3 startPosition;
@@ -29,12 +25,6 @@ public class NeighbourAppearance : LimitedTimedEvent
         {
             neighbour.transform.rotation = Quaternion.Slerp(neighbour.transform.rotation, Quaternion.LookRotation(endPosition.forward), 1f);
             if(endRotationTimer < 1f) endRotationTimer += Time.deltaTime / 3f;
-
-            if (!destinationReachedTriggered)
-            {
-                NPCReachedDestination?.Invoke(this, new EventArgs());
-                destinationReachedTriggered = true;
-            }
         } 
     }
 

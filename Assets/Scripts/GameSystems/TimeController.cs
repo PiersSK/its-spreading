@@ -29,7 +29,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     [SerializeField] private Color lowSunColor;
 
     [Header("Events")]
-    public Transform scheduledEvents;
+    [SerializeField] private Transform scheduledEvents;
     //[SerializeField] private List<TimedEvent> scheduledEvents;
 
     private float timeMultiplier;
@@ -122,7 +122,10 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private void UpdateClockUI()
     {
         TimeSpan ts = TimeSpan.FromSeconds(time);
-        clockUI.text = TimeSpanToClock(ts);
+        string timeSuffix = ts.Hours < 12 ? "am" : "pm";
+        int amPmHours = ts.Hours % 12 == 0 ? 12 : ts.Hours % 12;
+
+        clockUI.text = string.Format("{0}:{1:00} {2}", amPmHours, ts.Minutes, timeSuffix);
     }
 
     private Color GetSunColor(float percToLowSun)
@@ -143,21 +146,8 @@ public class TimeController : MonoBehaviour, IDataPersistence
         daysComplete++;
     }
 
-    public TimeSpan CurrentTime()
-    {
-        return TimeSpan.FromSeconds(time);
-    }
-
     public float InGameMinsToRealSeconds(int mins)
     {
         return (mins * 60f) / timeMultiplier;
-    }
-
-    public string TimeSpanToClock(TimeSpan ts)
-    {
-        string timeSuffix = ts.Hours < 12 ? "am" : "pm";
-        int amPmHours = ts.Hours % 12 == 0 ? 12 : ts.Hours % 12;
-
-        return string.Format("{0}:{1:00} {2}", amPmHours, ts.Minutes, timeSuffix);
     }
 }
