@@ -6,6 +6,16 @@ public class Fire : Interactable
 {
     [SerializeField] private ParticleSystem fireParticles;
     [SerializeField] private Light fireLight;
+
+    [SerializeField] private ParticleSystem smokeParticles;
+    [SerializeField] private float smokeLife;
+    [SerializeField] private float smokeMaxEmission = 20f;
+    [SerializeField] private float smokeMinEmission = 2f;
+    private float smokeTimer = 0f;
+
+    [SerializeField] private Material burntMaterial;
+    [SerializeField] private List<Renderer> thingsToBurn;
+
     private AudioSource _audioSource;
 
     public bool isLit = false;
@@ -14,34 +24,53 @@ public class Fire : Interactable
     {
         _audioSource = GetComponent<AudioSource>();
         fireLight.intensity = 0f;
-        var fireEmission = fireParticles.emission;
-        fireEmission.rateOverTime = 0f;
+        SetParticleEmission(fireParticles, 0f);
     }
 
     private void Update()
     {
         if (isLit && !_audioSource.isPlaying) _audioSource.Play();
         else if (!isLit && _audioSource.isPlaying) _audioSource.Pause();
+
+        if(smokeTimer > 0)
+        {
+            smokeTimer -= Time.deltaTime;
+            float smokeLevel = smokeMinEmission + (smokeMaxEmission - smokeMinEmission) * (smokeTimer / smokeLife);
+            SetParticleEmission(smokeParticles, smokeLevel);
+        }
+    }
+
+    private void SetParticleEmission(ParticleSystem particle, float emissionRate)
+    {
+        var emission = particle.emission;
+        emission.rateOverTime = emissionRate;
     }
 
     public void LightFire()
     {
         isLit = true;
         fireLight.intensity = 4f;
-        var fireEmission = fireParticles.emission;
-        fireEmission.rateOverTime = 20f;
+        SetParticleEmission(fireParticles, 20f);
+
+        foreach(Renderer burnnItem in thingsToBurn)
+        {
+            burnnItem.material = burntMaterial;
+        }
     }
 
     public override void Interact()
     {
         isLit = false;
         fireLight.intensity = 0f;
-        var fireEmission = fireParticles.emission;
-        fireEmission.rateOverTime = 0f;
+        SetParticleEmission(fireParticles, 0f);
+        SetParticleEmission(smokeParticles, smokeMaxEmission);
+        smokeTimer = smokeLife;
+
     }
 
     public override bool CanInteract()
     {
         return isLit;
     }
+
 }
