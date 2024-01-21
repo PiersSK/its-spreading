@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     private float zoomTarget = 9f;
     private float zoomTargetTime = 0f;
     private float zoomTimer = 0f;
+    private bool isZoomingIn;
 
     private void Awake()
     {
@@ -32,8 +33,15 @@ public class CameraController : MonoBehaviour
 
         if((int)(_camera.orthographicSize*10) != (int)(zoomTarget*10))
         {
-            zoomTimer += Time.deltaTime;
-            _camera.orthographicSize = zoomInitial + (zoomTarget - zoomInitial) * (zoomTimer / zoomTargetTime);
+            if (isZoomingIn & _camera.orthographicSize < zoomTarget)
+                _camera.orthographicSize = zoomTarget;
+            else if (!isZoomingIn & _camera.orthographicSize > zoomTarget)
+                _camera.orthographicSize = zoomTarget;
+            else
+            {
+                zoomTimer += Time.deltaTime;
+                _camera.orthographicSize = zoomInitial + (zoomTarget - zoomInitial) * (zoomTimer / zoomTargetTime);
+            }
         }
     }
 
@@ -45,5 +53,7 @@ public class CameraController : MonoBehaviour
         zoomTarget = zoom;
         zoomTargetTime = secondsToZoom;
         zoomInitial = _camera.orthographicSize;
+
+        isZoomingIn = zoomInitial > zoomTarget;
     }
 }
