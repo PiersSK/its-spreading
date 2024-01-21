@@ -53834,6 +53834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054dd113c01fe454fa900eb290eac0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spreadingVoiceLine: {fileID: 8300000, guid: 0fc8beb77dcc7f549be9a44dfec924de, type: 3}
   objectiveUI: {fileID: 1222697719}
   completedIcon: {fileID: 21300000, guid: 8727708fd7c2b47fa9d82882404eb251, type: 3}
 --- !u!1 &858861197
@@ -57098,6 +57099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054dd113c01fe454fa900eb290eac0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 245929868}
   completedIcon: {fileID: 21300000, guid: 46b02cb5696ef498eb5c6834cac1ff8b, type: 3}
 --- !u!1 &940428435
@@ -89488,6 +89490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054dd113c01fe454fa900eb290eac0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 1779118389}
   completedIcon: {fileID: 21300000, guid: 49570d37cf0244c73835b6813bbbd625, type: 3}
 --- !u!1 &1467042602
@@ -96448,6 +96451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054dd113c01fe454fa900eb290eac0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 218231632}
   completedIcon: {fileID: 21300000, guid: 3a7bd4358af024cd59e13b53fceebd31, type: 3}
 --- !u!1 &1605931426
@@ -124513,7 +124517,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 847a15ad152f84fa88bd3355075aea49, type: 2}
   - {fileID: 2100000, guid: a022659c9462c4a119c99ffee0aa6410, type: 2}
   partyBlowerSound: {fileID: 8300000, guid: 4b142d195a62ec84eaf725b5ab710194, type: 3}
-  yaySound: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
 --- !u!4 &2110580304
 Transform:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class Objective : MonoBehaviour
 {
     private bool isComplete = false;
     //private bool completedBefore = false; // To implement later
+    public AudioClip spreadingVoiceLine;
 
     [Header("UI References")]
     [SerializeField] private Image objectiveUI;
