@@ -7,7 +7,7 @@ public class DeliveryNPC : NPC
     [SerializeField] private Door _door;
 
     private string objectToDeliverName;
-    private Inventory.InventoryItem objectToDeliver;
+    public Inventory.InventoryItem objectToDeliver;
     public Inventory.InventoryItem ObjectToDeliver
     {
         get { return objectToDeliver; }
@@ -23,14 +23,19 @@ public class DeliveryNPC : NPC
 
     public override void Interact()
     {
-        Debug.Log("Gave " + objectToDeliverName + " to player");
-        Player.Instance.GetComponent<Inventory>().inventory.Add(objectToDeliver);
-        hasDelivered = true;
-        currentScheduler.TriggerEventEnd();
+        Player.Instance.TogglePlayerIsEngaged();
+        DialogueUI.Instance.LoadJsonConversationToUI(dialogueFile, this);
+        DialogueUI.Instance.gameObject.SetActive(true);
     }
 
     public override bool CanInteract()
     {
         return !hasDelivered && _door.isOpen;
+    }
+
+    public override void NPCCoreAction()
+    {
+        Player.Instance.GetComponent<Inventory>().inventory.Add(objectToDeliver);
+        hasDelivered = true;
     }
 }

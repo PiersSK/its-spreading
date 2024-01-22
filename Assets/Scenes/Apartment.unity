@@ -54303,6 +54303,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: eeafab71ea39ecb4bbb08f79aebf995d, type: 3}
+    - target: {fileID: 7504817494909251674, guid: 531529b4f07d30544b7c82d5e549e89c, type: 3}
+      propertyPath: npcNameplate
+      value: 
+      objectReference: {fileID: 954129349}
     - target: {fileID: 8943474812248183472, guid: 531529b4f07d30544b7c82d5e549e89c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -59480,6 +59484,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942559735}
   m_CullTransparentMesh: 1
+--- !u!114 &954129349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8085116869513636973, guid: 531529b4f07d30544b7c82d5e549e89c, type: 3}
+  m_PrefabInstance: {fileID: 817016530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &955950699
 GameObject:
   m_ObjectHideFlags: 0
@@ -114495,6 +114510,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptText: 
   priority: 0
+  currentScheduler: {fileID: 0}
+  primaryColor: {r: 0, g: 0, b: 0, a: 0}
+  secondaryColor: {r: 0, g: 0, b: 0, a: 0}
   humClip: {fileID: 8300000, guid: f80f8dd76bc31433c8ac74fb21a693db, type: 3}
   whistleClip: {fileID: 8300000, guid: 927fbd85848f8404b8c61f876a21a244, type: 3}
   currentClip: {fileID: 0}
@@ -125755,9 +125773,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4900000, guid: dfa1f18f1acc6d14992bc7ef9d782732, type: 3}
     - target: {fileID: 8495633330359274507, guid: 8b152c1a945542944b864df06cfa8c98, type: 3}
+      propertyPath: primaryColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495633330359274507, guid: 8b152c1a945542944b864df06cfa8c98, type: 3}
+      propertyPath: primaryColor.b
+      value: 0.7283019
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495633330359274507, guid: 8b152c1a945542944b864df06cfa8c98, type: 3}
+      propertyPath: primaryColor.g
+      value: 0.52313745
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495633330359274507, guid: 8b152c1a945542944b864df06cfa8c98, type: 3}
+      propertyPath: primaryColor.r
+      value: 0.17451759
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495633330359274507, guid: 8b152c1a945542944b864df06cfa8c98, type: 3}
       propertyPath: currentScheduler
       value: 
       objectReference: {fileID: 1011893294}
+    - target: {fileID: 8495633330359274507, guid: 8b152c1a945542944b864df06cfa8c98, type: 3}
+      propertyPath: secondaryColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495633330359274507, guid: 8b152c1a945542944b864df06cfa8c98, type: 3}
+      propertyPath: secondaryColor.b
+      value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495633330359274507, guid: 8b152c1a945542944b864df06cfa8c98, type: 3}
+      propertyPath: secondaryColor.g
+      value: 0.6507828
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495633330359274507, guid: 8b152c1a945542944b864df06cfa8c98, type: 3}
+      propertyPath: secondaryColor.r
+      value: 0.3842292
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -129408,8 +129458,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptText: 
   priority: 1
-  _door: {fileID: 1782588272}
   currentScheduler: {fileID: 0}
+  primaryColor: {r: 0, g: 0, b: 0, a: 0}
+  secondaryColor: {r: 0, g: 0, b: 0, a: 0}
+  _door: {fileID: 1782588272}
   hasDelivered: 0
 --- !u!1 &2110182021
 GameObject:

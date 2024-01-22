@@ -5,7 +5,6 @@ using UnityEngine;
 public class Missionary : NPC
 {
     [SerializeField] private Door _door;
-    [SerializeField] private TextAsset dialogueFile;
 
 
     protected override void Start()

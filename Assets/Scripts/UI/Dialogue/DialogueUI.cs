@@ -12,6 +12,7 @@ public class DialogueUI : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private Image npcPortrait;
+    [SerializeField] private Image npcNameplate;
     [SerializeField] private TextMeshProUGUI npcName;
     [SerializeField] private TextMeshProUGUI npcDialoguePrompt;
     [SerializeField] private List<DialogueOptionUI> dialogueOptions;
@@ -35,6 +36,8 @@ public class DialogueUI : MonoBehaviour
     public void LoadJsonConversationToUI(TextAsset dialogueFile, NPC npcTalking, int conversationIndex = 0)
     {
         currentNPC = npcTalking;
+        npcNameplate.color = currentNPC.primaryColor;
+        foreach (DialogueOptionUI option in dialogueOptions) option.GetComponent<Image>().color = currentNPC.secondaryColor;
 
         loadedNPCDialogue = JsonConvert.DeserializeObject<NPCDialogue>(dialogueFile.text);
         npcPortrait.sprite = Resources.Load<Sprite>(PORTRAITFOLDER + loadedNPCDialogue.picture);
@@ -53,12 +56,26 @@ public class DialogueUI : MonoBehaviour
 
         for (int i = 0; i < dialogueOptions.Count; i++)
         {
-            dialogueOptions[i].gameObject.SetActive(i < dialogue.responses.Length);
             if (i < dialogue.responses.Length)
             {
+                bool requirementsMet = true;
                 var type = Type.GetType(loadedNPCDialogue.responseClass);
-                dialogueOptions[i].responseClass = (DialogueResponse)Activator.CreateInstance(type);
+                DialogueResponse responseClass = (DialogueResponse)Activator.CreateInstance(type);
+
+                if (dialogue.responses[i].requirement != null)
+                {
+                    var requirementMethod = type.GetMethod(dialogue.responses[i].requirement);
+                    requirementsMet = (bool)requirementMethod.Invoke(responseClass, null);
+                }
+
+                dialogueOptions[i].gameObject.SetActive(requirementsMet);
+
+                dialogueOptions[i].responseClass = responseClass;
                 dialogueOptions[i].UpdateOption(dialogue.responses[i]);
+
+            } else
+            {
+                dialogueOptions[i].gameObject.SetActive(false);
             }
         }
     }
