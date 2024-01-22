@@ -21,7 +21,8 @@ public class Missionary : NPC
 
     public override void Interact()
     {
-        currentScheduler.TriggerEventEnd();
+        //currentScheduler.TriggerEventEnd();
+        Player.Instance.TogglePlayerIsEngaged();
     }
 
     public override bool CanInteract()
