@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {

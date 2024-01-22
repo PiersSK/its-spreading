@@ -9,6 +9,11 @@ using System;
 public class DialogueUI : MonoBehaviour
 {
     public static DialogueUI Instance { get; private set; }
+    [Header("UI Settings")]
+    [Range(1000, 1920)]
+    [SerializeField] private float maxResponseUIWidth;
+    [Range(0,1)]
+    [SerializeField] private float responseUIPadding;
 
     [Header("UI References")]
     [SerializeField] private Image npcPortrait;
@@ -77,6 +82,39 @@ public class DialogueUI : MonoBehaviour
             {
                 dialogueOptions[i].gameObject.SetActive(false);
             }
+        }
+
+        ArrangeResponseOptions();
+    }
+
+    private void ArrangeResponseOptions()
+    {
+        int optionsVisible = 0;
+        List<RectTransform> optionsToSet = new();
+
+        foreach (DialogueOptionUI response in dialogueOptions)
+        {
+            if (response.gameObject.activeSelf)
+            {
+                optionsToSet.Add(response.GetComponent<RectTransform>());
+                optionsVisible++;
+            }
+        }
+
+        float spacePerElement = maxResponseUIWidth / optionsVisible;
+        float actualElementWidth = spacePerElement / (1 + 2 * responseUIPadding);
+        float actualPadding = actualElementWidth * responseUIPadding;
+
+        float xPos = -maxResponseUIWidth / 2;
+
+        foreach (RectTransform option in optionsToSet)
+        {
+            float xPosShift = actualElementWidth / 2 + actualPadding;
+            if (optionsToSet.IndexOf(option) != 0) xPosShift *= 2;
+
+            xPos += xPosShift;
+            option.sizeDelta = new Vector2(actualElementWidth, option.sizeDelta.y);
+            option.anchoredPosition = new Vector2(xPos, option.anchoredPosition.y);
         }
     }
 }
