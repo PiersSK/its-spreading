@@ -6,15 +6,16 @@ public class Bread : Interactable
 {
     public bool isSpreading = false;
 
-    private const string BUTTER = "Butter";
+    private const string JAM = "Jam";
     private AudioSource _audioSource;
     [SerializeField] AudioClip _audioClip;
 
     // Start is called before the first frame update
     void Start()
     {
-        promptText = BUTTER;
+        promptText = JAM;
         _audioSource = GetComponent<AudioSource>();
+        _audioClip = GetComponent<AudioClip>();
     }
 
     // Update is called once per frame
@@ -23,13 +24,13 @@ public class Bread : Interactable
         if(!isSpreading)
         {
             isSpreading = true;
+            transform.Rotate(0, 180, 0, Space.Self);
             _audioSource.PlayOneShot(_audioClip);
-            this.transform.Rotate(0,180,0, Space.Self);
         }
     }
 
     public override bool CanInteract()
     {
-        return !isSpreading;
+        return !isSpreading && !TimeController.Instance.TimeHasPassed(10, 0);
     }
 }

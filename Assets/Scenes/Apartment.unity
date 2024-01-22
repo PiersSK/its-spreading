@@ -54676,6 +54676,7 @@ MonoBehaviour:
   promptText: 
   priority: 0
   isSpreading: 0
+  _audioClip: {fileID: 8300000, guid: 52d980d71cac512479105a04a4d97bfe, type: 3}
 --- !u!1 &870800147
 GameObject:
   m_ObjectHideFlags: 0
