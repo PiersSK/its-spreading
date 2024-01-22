@@ -88810,7 +88810,7 @@ MonoBehaviour:
   gravity: -9.8
   _animator: {fileID: 0}
   _inventory: {fileID: 0}
-  isEngaged: 1
+  isUnengaged: 1
   idleAnimTime: 10
   idleCooldown: 5
   idleTimer: 0
@@ -111079,6 +111079,7 @@ MonoBehaviour:
   doorKnockAnim: {fileID: 644416185}
   knockSource: {fileID: 1782588271}
   doorSource: {fileID: 1782588274}
+  distanceTillClose: 8
   isOpen: 0
 --- !u!95 &1782588273
 Animator:
