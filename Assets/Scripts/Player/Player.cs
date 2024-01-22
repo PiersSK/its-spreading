@@ -67,13 +67,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
         // Control basic animations
         if (canMove) _animator.SetBool(ANIMWALKING, isMoving);
-        if (isDancing && isMoving)
-        {
-            _animator.SetBool("isDancing", false);
-            isDancing = false;
-            CameraController.Instance.SetCameraZoom(9f, 0.5f);
-
-        }
+        if (isDancing && isMoving) ResetEmotes();
 
         if (!isMoving && !isDancing && canMove)
         {
@@ -129,7 +123,7 @@ public class Player : MonoBehaviour, IDataPersistence
         if(isDancing)
             CameraController.Instance.SetCameraZoom(5f, 10f);
         else
-            CameraController.Instance.SetCameraZoom(9f, 0.5f);
+            CameraController.Instance.SetCameraZoom(9f, 0.2f);
 
         idleTimer = 0f;
     }
@@ -164,6 +158,15 @@ public class Player : MonoBehaviour, IDataPersistence
             controlActions.ToggleInteract.Disable();
         else
             controlActions.ToggleInteract.Enable();
+        ResetEmotes();
+        _animator.SetTrigger("interruptIdle");
 
+    }
+
+    private void ResetEmotes()
+    {
+        isDancing = false;
+        _animator.SetBool("isDancing", isDancing);
+        CameraController.Instance.SetCameraZoom(9f, 0.2f);
     }
 }

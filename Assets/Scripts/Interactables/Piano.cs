@@ -45,6 +45,7 @@ public class Piano : LockinInteractable
         noteAnim.Play();
 
         Player.Instance._animator.SetBool("isPlayingPiano", true);
+
     }
 
     private void ResetPianoTrack(object sender, System.EventArgs e)
