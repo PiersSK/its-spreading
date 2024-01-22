@@ -15,7 +15,7 @@ public class TuneSpreadingEvent : SpreadingEvent
     {
         base.Update(); // Needed to keep event check
 
-        if (piano.isPlaying && neighbourAppearance.neighbourIsOut && !eventComplete)
+        if (piano.isLockedIn && neighbourAppearance.neighbourIsOut && !eventComplete)
         {
             tuneSpreadTime += Time.deltaTime;
             if (!neighbourNPC.audioIsPlaying) { 

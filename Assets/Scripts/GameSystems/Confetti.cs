@@ -21,7 +21,6 @@ public class Confetti : MonoBehaviour
     [Header("Resources")]
     [SerializeField] private List<Material> confettiMaterials;
     [SerializeField] private AudioClip partyBlowerSound;
-    [SerializeField] private AudioClip yaySound;
 
     private AudioSource audioSource;
 
@@ -35,11 +34,11 @@ public class Confetti : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void ConfettiExplosion()
+    public void ConfettiExplosion(AudioClip spreadingVoice)
     {
         // Show title. TODO: Add our voice effect to this instead of "Yay"
         ConfettiUI.Instance.ShowItsSpreading();
-        audioSource.PlayOneShot(yaySound);
+        audioSource.PlayOneShot(spreadingVoice);
         audioSource.PlayOneShot(partyBlowerSound);
 
         // Spawn confetti
@@ -74,11 +73,6 @@ public class Confetti : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            ConfettiExplosion();
-        }
-
         // Despawn oldest confetti if total amount is above the limit
         if (transform.childCount > confettiGlobalLimit)
         {

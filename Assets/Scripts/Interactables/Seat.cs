@@ -11,16 +11,16 @@ public class Seat : LockinInteractable
 
     protected override void FreeInteract()
     {
+        base.FreeInteract();
         Player.Instance.GetComponent<Animator>().SetBool("isSitting", true);
         PlayerHasSat?.Invoke(this, new EventArgs());
-        base.FreeInteract();
     }
 
     protected override void LockedInInteract()
     {
+        base.LockedInInteract();
         Player.Instance.GetComponent<Animator>().SetBool("isSitting", false);
         PlayerHasStood?.Invoke(this, new EventArgs());
-        base.LockedInInteract();
 
     }
 }

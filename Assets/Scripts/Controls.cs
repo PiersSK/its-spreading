@@ -62,6 +62,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Emote2"",
+                    ""type"": ""Button"",
+                    ""id"": ""3baee043-314e-4bf5-bdfb-8bce1192f372"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -238,6 +247,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Emote1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbb952f1-3d06-41b1-bc84-d4f334623dc2"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Emote2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9cdb05a-c904-4a00-9886-4f5b6ae737cb"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Emote2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -768,6 +799,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_ToggleInteract = m_Player.FindAction("ToggleInteract", throwIfNotFound: true);
         m_Player_Emote1 = m_Player.FindAction("Emote1", throwIfNotFound: true);
+        m_Player_Emote2 = m_Player.FindAction("Emote2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -845,6 +877,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_ToggleInteract;
     private readonly InputAction m_Player_Emote1;
+    private readonly InputAction m_Player_Emote2;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -853,6 +886,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @ToggleInteract => m_Wrapper.m_Player_ToggleInteract;
         public InputAction @Emote1 => m_Wrapper.m_Player_Emote1;
+        public InputAction @Emote2 => m_Wrapper.m_Player_Emote2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -874,6 +908,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Emote1.started += instance.OnEmote1;
             @Emote1.performed += instance.OnEmote1;
             @Emote1.canceled += instance.OnEmote1;
+            @Emote2.started += instance.OnEmote2;
+            @Emote2.performed += instance.OnEmote2;
+            @Emote2.canceled += instance.OnEmote2;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -890,6 +927,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Emote1.started -= instance.OnEmote1;
             @Emote1.performed -= instance.OnEmote1;
             @Emote1.canceled -= instance.OnEmote1;
+            @Emote2.started -= instance.OnEmote2;
+            @Emote2.performed -= instance.OnEmote2;
+            @Emote2.canceled -= instance.OnEmote2;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1031,6 +1071,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnToggleInteract(InputAction.CallbackContext context);
         void OnEmote1(InputAction.CallbackContext context);
+        void OnEmote2(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
