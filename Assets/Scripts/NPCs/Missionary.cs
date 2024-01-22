@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missionary : NPC
+public class Missionary : DialogueNPC
 {
     [SerializeField] private Door _door;
 
@@ -18,16 +18,8 @@ public class Missionary : NPC
         _door.KnockAtDoor();
     }
 
-    public override void Interact()
-    {
-        Player.Instance.TogglePlayerIsEngaged();
-        currentScheduler.npcIsEngaged = true;
-        DialogueUI.Instance.LoadJsonConversationToUI(dialogueFile, this);
-        DialogueUI.Instance.gameObject.SetActive(true);
-    }
-
     public override bool CanInteract()
     {
-        return _door.isOpen;
+        return _door.isOpen && !currentScheduler.npcIsEngaged;
     }
 }

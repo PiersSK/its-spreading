@@ -13,7 +13,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private Vector3 direction;
 
     public Controls playerControls;
-    private Controls.PlayerActions controlActions;
+    public Controls.PlayerActions controlActions;
 
     private PlayerInteract _playerInteract;
     public Inventory _inventory;
@@ -152,14 +152,21 @@ public class Player : MonoBehaviour, IDataPersistence
         controlActions.Disable();
     }
 
-    public void TogglePlayerIsEngaged()
+    public void TogglePlayerIsEngaged(bool shouldDisableInteract = false)
     {
         canMove = !canMove;
         _characterController.enabled = !_characterController.enabled;
+
         if (controlActions.ToggleInteract.enabled)
             controlActions.ToggleInteract.Disable();
         else
             controlActions.ToggleInteract.Enable();
+
+        if (shouldDisableInteract && controlActions.Interact.enabled)
+            controlActions.Interact.Disable();
+        else if (!controlActions.Interact.enabled)
+            controlActions.Interact.Enable(); //Always reactivate if toggled off
+
         ResetEmotes();
         _animator.SetTrigger("interruptIdle");
 

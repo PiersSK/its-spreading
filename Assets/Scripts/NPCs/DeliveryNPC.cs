@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryNPC : NPC
+public class DeliveryNPC : DialogueNPC
 {
     [SerializeField] private Door _door;
 
@@ -20,14 +20,6 @@ public class DeliveryNPC : NPC
     }
 
     public bool hasDelivered = false;
-
-    public override void Interact()
-    {
-        Player.Instance.TogglePlayerIsEngaged();
-        currentScheduler.npcIsEngaged = true;
-        DialogueUI.Instance.LoadJsonConversationToUI(dialogueFile, this);
-        DialogueUI.Instance.gameObject.SetActive(true);
-    }
 
     public override bool CanInteract()
     {

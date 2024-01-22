@@ -8,8 +8,6 @@ public class NPC : Interactable
     protected AudioSource npcAudio;
     protected Animation npcAnim;
     public NeighbourAppearance currentScheduler;
-    [SerializeField] protected TextAsset dialogueFile;
-
 
     public Color primaryColor;
     public Color secondaryColor;
