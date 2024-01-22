@@ -21,6 +21,6 @@ public class ReligionSpreadingEvent : SpreadingEvent
 
     protected override bool ShouldEventTrigger()
     {
-        return playerGavePamphlet;
+        return playerGavePamphlet && Player.Instance.isUnengaged;
     }
 }

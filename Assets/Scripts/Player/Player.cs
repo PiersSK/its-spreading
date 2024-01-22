@@ -18,7 +18,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private PlayerInteract _playerInteract;
     public Inventory _inventory;
 
-    public bool canMove = true;
+    public bool isUnengaged = true;
     private bool isMoving = false;
     private bool isDancing = false;
 
@@ -68,10 +68,10 @@ public class Player : MonoBehaviour, IDataPersistence
         isMoving = direction != Vector3.zero;
 
         // Control basic animations
-        if (canMove) _animator.SetBool(ANIMWALKING, isMoving);
+        if (isUnengaged) _animator.SetBool(ANIMWALKING, isMoving);
         if (isDancing && isMoving) ResetEmotes();
 
-        if (!isMoving && !isDancing && canMove)
+        if (!isMoving && !isDancing && isUnengaged)
         {
             idleTimer += Time.deltaTime;
             if(idleTimer >= idleAnimTime)
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
     void FixedUpdate()
     {
-        if (canMove)
+        if (isUnengaged)
         {
             _characterController.Move(direction.normalized * speed * Time.deltaTime);
 
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
     public void TogglePlayerIsEngaged(bool shouldDisableInteract = false)
     {
-        canMove = !canMove;
+        isUnengaged = !isUnengaged;
         _characterController.enabled = !_characterController.enabled;
 
         if (controlActions.ToggleInteract.enabled)
