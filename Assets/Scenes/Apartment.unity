@@ -28346,8 +28346,7 @@ Transform:
   m_LocalPosition: {x: -1.216, y: -0.428, z: 0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1288258305}
+  m_Children: []
   m_Father: {fileID: 213810334}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &382063081
@@ -68360,6 +68359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054dd113c01fe454fa900eb290eac0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 1961758193}
   completedIcon: {fileID: 21300000, guid: fedf6e4aa4697425d8e6354868c8c0f2, type: 3}
 --- !u!1 &1037496519

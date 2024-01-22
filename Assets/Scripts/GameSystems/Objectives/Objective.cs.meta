@@ -3,7 +3,10 @@ guid: 054dd113c01fe454fa900eb290eac0fb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
+  - objectiveUI: {instanceID: 0}
+  - completedIcon: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
