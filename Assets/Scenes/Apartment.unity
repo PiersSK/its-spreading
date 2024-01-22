@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -360,14 +360,14 @@ RectTransform:
   m_GameObject: {fileID: 6847409}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1.5165595, y: 1.9540868, z: 1.5165595}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 211292524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.0000047684, y: 96.193405}
+  m_AnchoredPosition: {x: 3, y: 65.8}
   m_SizeDelta: {x: 224.1096, y: 224.1096}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6847411
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3a7bd4358af024cd59e13b53fceebd31, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14738,7 +14738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+  m_Color: {r: 0.7207546, g: 0.7207546, b: 0.7207546, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -54556,8 +54556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Oh... hello! Thank you for answering the door! Do you have a moment to
-    talk about our lord and saviour, Magic Darren?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a38477cbd8e2b4f909792c7f7af7959c, type: 2}
   m_sharedMaterial: {fileID: -8632851990695780750, guid: a38477cbd8e2b4f909792c7f7af7959c, type: 2}
@@ -54584,7 +54583,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 48
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -55427,7 +55426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Miss Iona Nairy
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 31d79832c3cef44069f088474d41bbf0, type: 2}
   m_sharedMaterial: {fileID: 1904392848084260410, guid: 31d79832c3cef44069f088474d41bbf0, type: 2}
@@ -55454,7 +55453,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.9
+  m_fontSize: 72
   m_fontSizeBase: 650
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -73063,6 +73062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1152367356}
+  - component: {fileID: 1152367357}
   m_Layer: 5
   m_Name: DialogueUI
   m_TagString: Untagged
@@ -73097,6 +73097,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1152367357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152367355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3d5135157bc415585c70fb7d408756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcPortrait: {fileID: 6847411}
+  npcName: {fileID: 856558437}
+  npcDialogue: {fileID: 834474256}
+  dialogueOptions:
+  - {fileID: 1117099086}
+  - {fileID: 1753363322}
+  - {fileID: 549513226}
+  testDialogue: {fileID: 4900000, guid: dfa1f18f1acc6d14992bc7ef9d782732, type: 3}
 --- !u!1 &1154111416
 GameObject:
   m_ObjectHideFlags: 0
