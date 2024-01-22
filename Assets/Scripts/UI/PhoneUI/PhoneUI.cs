@@ -9,8 +9,6 @@ public class PhoneUI : MonoBehaviour
     public static PhoneUI Instance { get; private set; }
     public Image phoneBackground;
     public List<GameObject> notifications;
-    private bool isPhoneDisplayed = false;
-
     private void Awake()
     {
         Instance = this;
