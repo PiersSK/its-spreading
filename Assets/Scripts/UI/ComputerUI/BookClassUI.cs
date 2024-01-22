@@ -13,6 +13,7 @@ public class BookClassUI : MonoBehaviour
     [SerializeField] private List<GameObject> discoLights;
 
     [SerializeField] private AudioSource computerAudio;
+    [SerializeField] private AudioSource boomboxAudio;
     [SerializeField] private AudioSource bgMusicAudio;
 
     [SerializeField] private AudioClip bookingConfirmed;
@@ -43,12 +44,13 @@ public class BookClassUI : MonoBehaviour
         chair.position = chairAwayPos.position;
 
         bgMusicAudio.Pause();
-        computerAudio.clip = remixSong;
-        computerAudio.Play();
+        boomboxAudio.clip = remixSong;
+        boomboxAudio.Play();
 
         TimeController.Instance.TurnOffAllLights();
         foreach(GameObject obj in discoLights) obj.SetActive(true);
         CameraController.Instance.SetCameraZoom(5f, 10f);
+        boomboxAudio.GetComponent<Animator>().SetBool("isPlaying", true);
 
         ComputerUI.Instance.gameObject.SetActive(false);
         Player.Instance._animator.SetBool("isDancing", true);
