@@ -20,6 +20,7 @@ public class BookClassUI : MonoBehaviour
     [SerializeField] private AudioClip remixSong;
 
     [SerializeField] private DanceClassEvent danceClassEvent;
+    [SerializeField] private DanceSpreadingEvent danceSpreadEvent;
 
     private void Start()
     {
@@ -49,7 +50,7 @@ public class BookClassUI : MonoBehaviour
 
         TimeController.Instance.TurnOffAllLights();
         foreach(GameObject obj in discoLights) obj.SetActive(true);
-        CameraController.Instance.SetCameraZoom(5f, 10f);
+        CameraController.Instance.SetCameraZoom(5f, danceSpreadEvent.secondsOfDancingRequired);
         boomboxAudio.GetComponent<Animator>().SetBool("isPlaying", true);
 
         ComputerUI.Instance.gameObject.SetActive(false);
