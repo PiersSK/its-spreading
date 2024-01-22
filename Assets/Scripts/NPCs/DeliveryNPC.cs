@@ -18,7 +18,6 @@ public class DeliveryNPC : NPC
             promptText = "Take " + objectToDeliverName;
         }
     }
-    public NeighbourAppearance currentScheduler;
 
     public bool hasDelivered = false;
 

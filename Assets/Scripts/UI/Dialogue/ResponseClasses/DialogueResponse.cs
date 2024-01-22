@@ -8,7 +8,7 @@ public class DialogueResponse
     {
     }
 
-    public void CloseDialogue()
+    public virtual void CloseDialogue()
     {
         DialogueUI.Instance.gameObject.SetActive(false);
     }

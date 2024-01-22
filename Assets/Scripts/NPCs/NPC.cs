@@ -7,6 +7,7 @@ public class NPC : Interactable
 {
     protected AudioSource npcAudio;
     protected Animation npcAnim;
+    public NeighbourAppearance currentScheduler;
 
     protected virtual void Start()
     {

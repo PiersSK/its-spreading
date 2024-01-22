@@ -5,8 +5,8 @@ using UnityEngine;
 public class Missionary : NPC
 {
     [SerializeField] private Door _door;
+    [SerializeField] private TextAsset dialogueFile;
 
-    [SerializeField] private NeighbourAppearance currentScheduler;
 
     protected override void Start()
     {
@@ -21,8 +21,9 @@ public class Missionary : NPC
 
     public override void Interact()
     {
-        //currentScheduler.TriggerEventEnd();
         Player.Instance.TogglePlayerIsEngaged();
+        DialogueUI.Instance.LoadJsonConversationToUI(dialogueFile, this);
+        DialogueUI.Instance.gameObject.SetActive(true);
     }
 
     public override bool CanInteract()

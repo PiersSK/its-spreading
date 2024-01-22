@@ -10,16 +10,17 @@ public class DialogueUI : MonoBehaviour
 {
     public static DialogueUI Instance { get; private set; }
 
-    public Image npcPortrait;
-    public TextMeshProUGUI npcName;
+    [Header("UI References")]
+    [SerializeField] private Image npcPortrait;
+    [SerializeField] private TextMeshProUGUI npcName;
+    [SerializeField] private TextMeshProUGUI npcDialoguePrompt;
+    [SerializeField] private List<DialogueOptionUI> dialogueOptions;
 
-    public TextMeshProUGUI npcDialoguePrompt;
-    public List<DialogueOptionUI> dialogueOptions;
+    private NPCDialogue loadedNPCDialogue;
+    private int currentConversationIndex = 0;
+    public NPC currentNPC;
 
-    public TextAsset testDialogue;
-
-    public NPCDialogue loadedNPCDialogue;
-    public int currentConversationIndex = 0;
+    private const string PORTRAITFOLDER = "CharacterPortraits/";
 
     private void Awake()
     {
@@ -28,16 +29,19 @@ public class DialogueUI : MonoBehaviour
 
     private void Start()
     {
-        LoadJsonConversationToUI();
+        gameObject.SetActive(false);
     }
 
-    public void LoadJsonConversationToUI()
+    public void LoadJsonConversationToUI(TextAsset dialogueFile, NPC npcTalking, int conversationIndex = 0)
     {
-        loadedNPCDialogue = JsonConvert.DeserializeObject<NPCDialogue>(testDialogue.text);
-        npcPortrait.sprite = Resources.Load<Sprite>("CharacterPortraits/" + loadedNPCDialogue.picture);
+        currentNPC = npcTalking;
+
+        loadedNPCDialogue = JsonConvert.DeserializeObject<NPCDialogue>(dialogueFile.text);
+        npcPortrait.sprite = Resources.Load<Sprite>(PORTRAITFOLDER + loadedNPCDialogue.picture);
         npcName.text = loadedNPCDialogue.name;
 
-        LoadCurrentConversationIndex(0);
+        currentConversationIndex = conversationIndex;
+        LoadCurrentConversationIndex(conversationIndex);
     }
 
     public void LoadCurrentConversationIndex(int index)
