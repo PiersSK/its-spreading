@@ -1,0 +1,108 @@
+{
+    "name": "Miss Iona Nairy",
+    "picture": "missionary",
+    "responseClass": "MissionaryResponse",
+    "conversations": [
+        {
+            "id": 0,
+            "dialogues": [
+                {
+                    "id": 0,
+                    "prompt": "Oh... hello! Thank you for answering the door! Do you have a moment to talk about our lord and saviour, Magic Darren?",
+                    "responses": [
+                        {
+                            "text": "Wow yes that sounds wonderful! i'm ever so lonely!",
+                            "outcomeId": 1,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Magic... Darren?",
+                            "outcomeId": 1,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "No thank you, please go away :)",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "CloseDialogue"
+                        }
+                    ]
+                },
+                {
+                    "id": 1,
+                    "prompt": "Wonderful! So few people are so responsive to the god of tricks and stuff! Now tell, me have you ever felt like the magic has been slowly fading in your life as you've grown older?",
+                    "responses": [
+                        {
+                            "text": "Yes!! I thought that was just me!! Everything is so dull and flat now!",
+                            "outcomeId": 2,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "No, every day is a new gift! I love being alive!",
+                            "outcomeId": 3,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "prompt": "Well, that's because Magic Darren requires constant feeding of ancient gold in order to keep his strength up! For just the low price of £99.99 a month, you can contribute to our cause to find as much as possible for him.",
+                    "responses": [
+                        {
+                            "text": "SIGN! ME! UP! Magic Darren needs my money!",
+                            "outcomeId": 4,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Hmmm that does sound dire but can I have some time to think about it?",
+                            "outcomeId": 5,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "prompt": "Oh okay. Um... I'll just go then...",
+                    "responses": [
+                        {
+                            "text": "Goodbye",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "CloseDialogue"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "prompt": "Brilliant!! You have no idea the value of your contribution. Magic Darren grows ri.. stronger every day. Here's some cookies as a thank you!",
+                    "responses": [
+                        {
+                            "text": "Yummy, thank you and have a good day!",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "LeaveWithCookies"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "prompt": "Not a problem sir. Here's a pamphlet, read it at your leisure. Perhaps you'll find yourself spreading the word of Magic Darren soon too!",
+                    "responses": [
+                        {
+                            "text": "Oh, it's thick. What is this like 500 pages? I guess I'll get reading... good day!",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "LeaveWithPamphlet"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
