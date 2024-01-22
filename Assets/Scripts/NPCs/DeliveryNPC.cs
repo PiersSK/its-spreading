@@ -21,6 +21,12 @@ public class DeliveryNPC : DialogueNPC
 
     public bool hasDelivered = false;
 
+    public override void Interact()
+    {
+        base.Interact();
+        GetComponent<Animator>().SetTrigger("handOver");
+    }
+
     public override bool CanInteract()
     {
         return !hasDelivered && _door.isOpen;

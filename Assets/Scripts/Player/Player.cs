@@ -31,6 +31,8 @@ public class Player : MonoBehaviour, IDataPersistence
     private const string ANIMIDLE = "idle";
     private const string ANIMIDLEINDEX = "idleIndex";
     private const string ANIMWAVE = "wave";
+    private const string ANIMDANCE = "isDancing";
+    private const string ANIMINTERRUPT = "interruptIdle";
 
     public void LoadData(GameData data)
     {
@@ -121,7 +123,7 @@ public class Player : MonoBehaviour, IDataPersistence
     {
         //_animator.SetTrigger(ANIMWAVE);
         isDancing = !isDancing;
-        _animator.SetBool("isDancing", isDancing);
+        _animator.SetBool(ANIMDANCE, isDancing);
         if(isDancing)
             CameraController.Instance.SetCameraZoom(5f, 10f);
         else
@@ -168,14 +170,16 @@ public class Player : MonoBehaviour, IDataPersistence
             controlActions.Interact.Enable(); //Always reactivate if toggled off
 
         ResetEmotes();
-        _animator.SetTrigger("interruptIdle");
+
+        _animator.SetTrigger(ANIMINTERRUPT);
+        _animator.SetBool(ANIMWALKING, false);
 
     }
 
     private void ResetEmotes()
     {
         isDancing = false;
-        _animator.SetBool("isDancing", isDancing);
+        _animator.SetBool(ANIMDANCE, isDancing);
         CameraController.Instance.SetCameraZoom(9f, 0.2f);
     }
 }

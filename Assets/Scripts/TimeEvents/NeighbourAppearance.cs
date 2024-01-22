@@ -8,6 +8,7 @@ public class NeighbourAppearance : LimitedTimedEvent
 {
     public event EventHandler<EventArgs> NPCReachedDestination;
     private bool destinationReachedTriggered = false;
+    private bool hasReturned = false;
 
     public NavMeshAgent neighbour;
     public Transform endPosition;
@@ -36,8 +37,15 @@ public class NeighbourAppearance : LimitedTimedEvent
             {
                 NPCReachedDestination?.Invoke(this, new EventArgs());
                 destinationReachedTriggered = true;
+                SetWalkingAnimationIfPresent(false);
             }
         } 
+
+        if (AtStartPoint() && !hasReturned)
+        {
+            hasReturned = true;
+            SetWalkingAnimationIfPresent(false);
+        }
     }
 
     public override bool ShouldEventEndTrigger()
@@ -46,12 +54,14 @@ public class NeighbourAppearance : LimitedTimedEvent
     }
 
     public override void TriggerEvent() {
+        SetWalkingAnimationIfPresent(true);
         neighbour.SetDestination(endPosition.position);
         neighbourIsOut = true;
     }
 
     public override void TriggerEventEnd()
     {
+        SetWalkingAnimationIfPresent(true);
         neighbour.SetDestination(startPosition);
         neighbourIsOut = false;
         neighbourNPC.FadeNPCAudioOut(5f);
@@ -61,6 +71,20 @@ public class NeighbourAppearance : LimitedTimedEvent
     {
         return neighbour.transform.position.x == endPosition.position.x
             && neighbour.transform.position.z == endPosition.position.z;
+    }
+
+    private bool AtStartPoint()
+    {
+        return neighbour.transform.position.x == startPosition.x
+            && neighbour.transform.position.z == startPosition.z;
+    }
+
+    private void SetWalkingAnimationIfPresent(bool val)
+    {
+        if(neighbour.TryGetComponent<Animator>(out Animator animator))
+        {
+            animator.SetBool("isWalking", val);
+        }
     }
 
 }
