@@ -74555,8 +74555,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6146cb96381b457449a65394a80b5323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  computerUI: {fileID: 0}
-  pauseUI: {fileID: 0}
+  computerUI: {fileID: 147846116}
+  pauseUI: {fileID: 1061140216}
+  phoneUI: {fileID: 43847456}
 --- !u!1 &1167937728
 GameObject:
   m_ObjectHideFlags: 0
