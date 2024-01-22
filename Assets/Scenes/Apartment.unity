@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No thank you, please go away :)
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a38477cbd8e2b4f909792c7f7af7959c, type: 2}
   m_sharedMaterial: {fileID: -8632851990695780750, guid: a38477cbd8e2b4f909792c7f7af7959c, type: 2}
@@ -1237,7 +1237,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.75
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -42378,6 +42378,7 @@ GameObject:
   - component: {fileID: 549513230}
   - component: {fileID: 549513229}
   - component: {fileID: 549513228}
+  - component: {fileID: 549513231}
   m_Layer: 5
   m_Name: Option3
   m_TagString: Untagged
@@ -42487,6 +42488,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549513226}
   m_CullTransparentMesh: 1
+--- !u!114 &549513231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549513226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1b8ccb43214d243b6a6ddfe57ea7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextDialogueIndex: 0
 --- !u!1 &550441377
 GameObject:
   m_ObjectHideFlags: 0
@@ -54587,7 +54601,7 @@ MonoBehaviour:
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 48
+  m_fontSizeMin: 12
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -54690,7 +54704,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Magic... Darren?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a38477cbd8e2b4f909792c7f7af7959c, type: 2}
   m_sharedMaterial: {fileID: -8632851990695780750, guid: a38477cbd8e2b4f909792c7f7af7959c, type: 2}
@@ -54717,7 +54731,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -71106,6 +71120,7 @@ GameObject:
   - component: {fileID: 1117099090}
   - component: {fileID: 1117099089}
   - component: {fileID: 1117099088}
+  - component: {fileID: 1117099092}
   m_Layer: 5
   m_Name: Option1
   m_TagString: Untagged
@@ -71215,6 +71230,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117099086}
   m_CullTransparentMesh: 1
+--- !u!114 &1117099092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117099086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1b8ccb43214d243b6a6ddfe57ea7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextDialogueIndex: 0
 --- !u!1 &1117486137
 GameObject:
   m_ObjectHideFlags: 0
@@ -73111,12 +73139,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcPortrait: {fileID: 6847411}
   npcName: {fileID: 856558437}
-  npcDialogue: {fileID: 834474256}
+  npcDialoguePrompt: {fileID: 834474256}
   dialogueOptions:
-  - {fileID: 1117099086}
-  - {fileID: 1753363322}
-  - {fileID: 549513226}
+  - {fileID: 1117099092}
+  - {fileID: 1753363327}
+  - {fileID: 549513231}
   testDialogue: {fileID: 4900000, guid: dfa1f18f1acc6d14992bc7ef9d782732, type: 3}
+  loadedNPCDialogue:
+    name: 
+    picture: 
+    conversations: []
+  currentConversationIndex: 0
 --- !u!1 &1154111416
 GameObject:
   m_ObjectHideFlags: 0
@@ -104219,7 +104252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wow yes that sounds wonderful! i'm ever so lonely!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a38477cbd8e2b4f909792c7f7af7959c, type: 2}
   m_sharedMaterial: {fileID: -8632851990695780750, guid: a38477cbd8e2b4f909792c7f7af7959c, type: 2}
@@ -104246,7 +104279,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.15
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -106558,6 +106591,7 @@ GameObject:
   - component: {fileID: 1753363326}
   - component: {fileID: 1753363325}
   - component: {fileID: 1753363324}
+  - component: {fileID: 1753363327}
   m_Layer: 5
   m_Name: Option2
   m_TagString: Untagged
@@ -106667,6 +106701,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753363322}
   m_CullTransparentMesh: 1
+--- !u!114 &1753363327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753363322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1b8ccb43214d243b6a6ddfe57ea7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextDialogueIndex: 0
 --- !u!1 &1754349515
 GameObject:
   m_ObjectHideFlags: 0
