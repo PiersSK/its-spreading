@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject computerUI;
     [SerializeField] private GameObject pauseUI;
+    [SerializeField] private GameObject phoneUI;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
     {
         computerUI.SetActive(false);
         pauseUI.SetActive(false);
+        phoneUI.SetActive(false);
     }
 
     public void ToggleComputerUI()
@@ -32,6 +34,11 @@ public class UIManager : MonoBehaviour
         ToggleUIElement(pauseUI);
     }
 
+    public void TogglePhoneUI()
+    {
+        ToggleUIElement(phoneUI);
+    }
+
     private void ToggleUIElement(GameObject uiElement)
     {
         if (currentTopUI != uiElement) currentTopUI = uiElement;
@@ -41,4 +48,15 @@ public class UIManager : MonoBehaviour
         DeactivateAllUI();
         uiElement.SetActive(shouldBeActive);
     }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            phoneUI.SetActive(!phoneUI.activeSelf);
+        }
+
+    }
+
+
 }
