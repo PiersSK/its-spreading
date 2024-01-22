@@ -18,13 +18,13 @@ public class DialogueOptionUI : MonoBehaviour
 
     private void MoveToNextConversation()
     {
-        if(progressesDialogue) DialogueUI.Instance.LoadCurrentConversationIndex(nextDialogueIndex);
         if(outcomeFunction != string.Empty)
         {
             var type = responseClass.GetType();
             var method = type.GetMethod(outcomeFunction);
             method.Invoke(responseClass, null);
         }
+        if(progressesDialogue) DialogueUI.Instance.LoadCurrentConversationIndex(nextDialogueIndex);
     }
 
     public void UpdateOption(NPCDialogue.PlayerResponse response)

@@ -17,6 +17,8 @@ public class NeighbourAppearance : LimitedTimedEvent
     public bool neighbourIsOut;
     private float endRotationTimer = 0f;
 
+    public bool npcIsEngaged = false;
+
     private void Start()
     {
         startPosition = neighbour.transform.position;
@@ -36,6 +38,11 @@ public class NeighbourAppearance : LimitedTimedEvent
                 destinationReachedTriggered = true;
             }
         } 
+    }
+
+    public override bool ShouldEventEndTrigger()
+    {
+        return base.ShouldEventEndTrigger() && !npcIsEngaged;
     }
 
     public override void TriggerEvent() {

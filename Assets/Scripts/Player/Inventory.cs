@@ -1,26 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
-    // TODO: Make this a real system
+    public event EventHandler<OnInventoryChangedEventArgs> OnInventoryChanged;
+    public class OnInventoryChangedEventArgs: EventArgs
+    {
+        public InventoryItem itemAdded;
+        public InventoryItem itemRemoved;
+    }
 
     public enum InventoryItem
     {
         SuperPlantFormula,
         Cookies,
-        DarrenPamphlet
+        DarrenPamphlet,
+
+        None
     }
 
-    public List<string> inventoryItemNames = new()
+    private List<string> inventoryItemNames = new()
     {
         "Super Plant Formula",
         "Cookies",
         "Darren Pamphlet"
     };
 
-    public List<InventoryItem> inventory = new();
+    [SerializeField] private List<InventoryItem> inventory = new();
 
+    public void AddToInventory(InventoryItem item)
+    {
+        inventory.Add(item);
+        OnInventoryChanged?.Invoke(this, new OnInventoryChangedEventArgs() { itemAdded = item, itemRemoved = InventoryItem.None});
+    }
 
+    public void RemoveFromInventory(InventoryItem item)
+    {
+        inventory.Remove(item);
+        OnInventoryChanged?.Invoke(this, new OnInventoryChangedEventArgs() { itemAdded = InventoryItem.None, itemRemoved = item});
+    }
+
+    public string GetItemName(InventoryItem item)
+    {
+        return inventoryItemNames[(int)item];
+    }
+
+    public bool IsItemInInventory(InventoryItem item) {
+        return inventory.Contains(item);
+    }
 }

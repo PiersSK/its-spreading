@@ -16,6 +16,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private Controls.PlayerActions controlActions;
 
     private PlayerInteract _playerInteract;
+    public Inventory _inventory;
 
     public bool canMove = true;
     private bool isMoving = false;
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
         _characterController = GetComponent<CharacterController>();
         _playerInteract = GetComponent<PlayerInteract>();
+        _inventory = GetComponent<Inventory>();
         _animator = GetComponent<Animator>();
 
         controlActions.Interact.performed += ctx => Interact();

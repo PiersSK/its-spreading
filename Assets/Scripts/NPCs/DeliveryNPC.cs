@@ -14,7 +14,7 @@ public class DeliveryNPC : NPC
         set
         { 
             objectToDeliver = value;
-            objectToDeliverName = Player.Instance.GetComponent<Inventory>().inventoryItemNames[(int)value];
+            objectToDeliverName = Player.Instance.GetComponent<Inventory>().GetItemName(value);
             promptText = "Take " + objectToDeliverName;
         }
     }
@@ -24,6 +24,7 @@ public class DeliveryNPC : NPC
     public override void Interact()
     {
         Player.Instance.TogglePlayerIsEngaged();
+        currentScheduler.npcIsEngaged = true;
         DialogueUI.Instance.LoadJsonConversationToUI(dialogueFile, this);
         DialogueUI.Instance.gameObject.SetActive(true);
     }
@@ -35,7 +36,7 @@ public class DeliveryNPC : NPC
 
     public override void NPCCoreAction()
     {
-        Player.Instance.GetComponent<Inventory>().inventory.Add(objectToDeliver);
+        Player.Instance._inventory.AddToInventory(objectToDeliver);
         hasDelivered = true;
     }
 }

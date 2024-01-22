@@ -21,6 +21,7 @@ public class Missionary : NPC
     public override void Interact()
     {
         Player.Instance.TogglePlayerIsEngaged();
+        currentScheduler.npcIsEngaged = true;
         DialogueUI.Instance.LoadJsonConversationToUI(dialogueFile, this);
         DialogueUI.Instance.gameObject.SetActive(true);
     }

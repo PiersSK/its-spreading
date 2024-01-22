@@ -24,11 +24,11 @@ public class DeliveryResponse : DialogueResponse
 
     public void RemovePamphlet()
     {
-        Player.Instance.GetComponent<Inventory>().inventory.Remove(Inventory.InventoryItem.DarrenPamphlet);
+        Player.Instance._inventory.RemoveFromInventory(Inventory.InventoryItem.DarrenPamphlet);
     }
 
     public bool HasPamphlet()
     {
-        return Player.Instance.GetComponent<Inventory>().inventory.Contains(Inventory.InventoryItem.DarrenPamphlet);
+        return Player.Instance._inventory.IsItemInInventory(Inventory.InventoryItem.DarrenPamphlet);
     }
 }
