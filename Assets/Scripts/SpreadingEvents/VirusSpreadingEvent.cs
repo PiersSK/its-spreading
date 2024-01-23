@@ -10,6 +10,8 @@ public class VirusSpreadingEvent : SpreadingEvent
     [SerializeField] private int minOfBroadcastStart = 0;
     [SerializeField] private int hourOfBroadcastEnd = 18;
     [SerializeField] private int minOfBroadcastEnd = 30;
+    private bool isComplete = false;
+
     protected override void Update()
     {
         base.Update();
@@ -18,6 +20,12 @@ public class VirusSpreadingEvent : SpreadingEvent
 
     protected override bool ShouldEventTrigger()
     {
-        return (TimeController.Instance.IsInTimeSpan(hourOfBroadcastStart, minOfBroadcastStart, hourOfBroadcastEnd, minOfBroadcastEnd) && sofa.isLockedIn);
+        return (TimeController.Instance.IsInTimeSpan(hourOfBroadcastStart, minOfBroadcastStart, hourOfBroadcastEnd, minOfBroadcastEnd) && sofa.isLockedIn && !isComplete);
+    }
+
+    protected override void EventImpact()
+    {
+        isComplete = true;
+        base.EventImpact();
     }
 }
