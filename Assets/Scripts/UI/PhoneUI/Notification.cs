@@ -33,7 +33,7 @@ public class Notification : MonoBehaviour
         {
             case PhoneUI.PhoneApp.Messages:
                 //PhoneUI.Instance.notificationPage.SetActive(false);
-                //PhoneUI.Instance.messagePage.SetActive(true);
+                PhoneUI.Instance.messagePage.SetActive(true);
                 break;
             default:
                 break;

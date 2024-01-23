@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            phoneUI.SetActive(!phoneUI.activeSelf);
+            PhoneUI.Instance.TogglePhone();
         }
         if (Input.GetKeyDown(KeyCode.N))
         {

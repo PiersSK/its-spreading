@@ -22,7 +22,7 @@ public class PhoneUI : MonoBehaviour
     [SerializeField] private AudioSource playerAudio;
 
     [Header("Clock")]
-    [SerializeField] private TextMeshProUGUI phoneClock;
+    [SerializeField] private List<TextMeshProUGUI> phoneClocks;
     [SerializeField] private TextMeshProUGUI worldClock;
 
     [Header("Phone Pages")]
@@ -50,8 +50,16 @@ public class PhoneUI : MonoBehaviour
     private void Update()
     {
         
-        phoneClock.text = worldClock.text;
+        foreach(TextMeshProUGUI clock in phoneClocks) clock.text = worldClock.text;
         if (notificationPage.activeSelf) UpdateNotificationScreen();
+    }
+
+    public void TogglePhone()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+        notificationPage.SetActive(true);
+        appsPage.SetActive(false);
+        messagePage.SetActive(false);    
     }
 
     public void UpdateNotificationIcon()
