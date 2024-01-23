@@ -8,6 +8,6 @@ public class FireSpreadingEvent : SpreadingEvent
 
     protected override bool ShouldEventTrigger()
     {
-        return spreadFire.isLit;
+        return spreadFire.isLit && !eventComplete;
     }
 }

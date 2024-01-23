@@ -12,7 +12,8 @@ public class GameData
     public int numCompleteEvents;
     public int currentHour;
     public int currentMinute;
-
+    public bool fireStarted;
+    
     // default values for when the game starts with no data.
     public GameData()
     {
@@ -23,5 +24,6 @@ public class GameData
         this.numCompleteEvents = 0;
         this.currentHour = 8;
         this.currentMinute = 0;
+        this.fireStarted = false;
     }
 }
