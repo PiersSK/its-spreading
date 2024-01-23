@@ -22,7 +22,7 @@ public class DanceSpreadingEvent : SpreadingEvent
         base.Update();
         if(Player.Instance._animator.GetBool("isDancing") && !hasDancedSocksOff)
         {
-            if(Input.GetKeyDown(KeyCode.Alpha2))
+            if(Input.GetKeyDown(KeyCode.Alpha2) && !PauseMenu.isPaused)
             {
                 secondsOfDancing += danceEffort;
             }

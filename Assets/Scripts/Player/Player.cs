@@ -138,14 +138,20 @@ public class Player : MonoBehaviour, IDataPersistence
 
     private void Interact()
     {
-        _playerInteract.InteractWithSelected();
-        idleTimer = 0f;
+        if (!PauseMenu.isPaused)
+        {
+            _playerInteract.InteractWithSelected();
+            idleTimer = 0f;
+        }
     }
 
     private void ToggleInteract()
     {
-        _playerInteract.CycleInteractable();
-        idleTimer = 0f;
+        if (!PauseMenu.isPaused)
+        {
+            _playerInteract.CycleInteractable();
+            idleTimer = 0f;
+        }
     }
 
     private void OnEnable()
