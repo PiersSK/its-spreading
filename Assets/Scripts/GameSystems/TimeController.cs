@@ -117,6 +117,22 @@ public class TimeController : MonoBehaviour, IDataPersistence
         }
     }
 
+    public void TurnOffAllLights()
+    {
+        foreach(GameObject light in roomLights)
+        {
+            light.GetComponent<Light>().intensity = 0f;
+        }
+    }
+
+    public void TurnOnAllLights()
+    {
+        foreach (GameObject light in roomLights)
+        {
+            light.GetComponent<Light>().intensity = 3f;
+        }
+    }
+
     private void UpdateLights()
     {
         float envLighting = 1f;
