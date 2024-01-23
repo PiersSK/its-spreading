@@ -22,9 +22,13 @@ public class OrderItemUI : MonoBehaviour
     [SerializeField] private GameObject purchaseConfirmed;
     [SerializeField] private TextMeshProUGUI purchaseConfirmedTime;
 
+    private string notifcationMessage;
+    private string arrivalTime;
+
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OrderItem);
+        notifcationMessage = "Order Confirmed! Your " + objectBeingPurchased + " will arrive at ";
     }
 
     private void OrderItem()
@@ -55,10 +59,18 @@ public class OrderItemUI : MonoBehaviour
         GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
 
         scrollWindow.enabled = false;
-        purchaseConfirmedTime.text = TimeController.Instance.TimeSpanToClock(startTime);
+        arrivalTime = TimeController.Instance.TimeSpanToClock(startTime);
+        purchaseConfirmedTime.text = arrivalTime;
         purchaseConfirmed.SetActive(true);
 
+        Invoke(nameof(SendNotification), 5f);
+
         ComputerUI.Instance.computerAudio.PlayOneShot(purchaseConfirmSound);
+    }
+
+    private void SendNotification()
+    {
+        PhoneUI.Instance.AddNotification(PhoneUI.PhoneApp.Spreadshop, notifcationMessage + arrivalTime);
     }
 
     private void NpcArrival_NPCReachedDestination(object sender, EventArgs e)
