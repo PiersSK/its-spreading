@@ -65,13 +65,15 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private void Awake()
     {
         Instance = this;
+
+        timeMultiplier = REALDAYLENGTHMINS / realtimeDayLengthMins;
     }
 
     private void Update()
     {
         if(!isTimeSet)
         {
-            timeMultiplier = REALDAYLENGTHMINS / realtimeDayLengthMins;
+            
             time = (currentHour * REALHOURLENGTHSECONDS) + (currentMinute * REALMINUTELENGTHSECONDS);
             isTimeSet = true;
         }
