@@ -37,9 +37,11 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
     {
         historicStatDisplay.text = HISTSTATPREFIX + data.spreadEventsTriggered;
         objectivesCompleteAllTime = data.spreadEventsTriggered;
+        ObjectivesComplete = data.numCompleteEvents;
     }
     public void SaveData(ref GameData data)
     {
         data.spreadEventsTriggered += objectivesComplete;
+        data.numCompleteEvents = ObjectivesComplete;
     }
 }
