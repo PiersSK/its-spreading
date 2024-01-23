@@ -9,7 +9,7 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
 
     [SerializeField] private TextMeshProUGUI scoreDisplay;
     [SerializeField] private TextMeshProUGUI historicStatDisplay;
-    [SerializeField] private int totalObjectives = 10;
+    [SerializeField] private int totalObjectives = 11;
 
     private int objectivesComplete = 0;
     private int objectivesCompleteAllTime = 0;
