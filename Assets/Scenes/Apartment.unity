@@ -26479,7 +26479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc09c7d7b61d4139a2b8b31222f0f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeHours: 19
+  startTimeHours: 8
   realtimeDayLengthMins: 20
   clockUI: {fileID: 1225046512}
   sunPivot: {fileID: 105033155}
