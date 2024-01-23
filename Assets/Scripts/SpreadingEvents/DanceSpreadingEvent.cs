@@ -20,7 +20,6 @@ public class DanceSpreadingEvent : SpreadingEvent
     protected override void Update()
     {
         base.Update();
-        Debug.Log(Player.Instance._animator.GetBool("isDancing"));
         if(Player.Instance._animator.GetBool("isDancing") && !hasDancedSocksOff)
         {
             if(Input.GetKeyDown(KeyCode.Alpha2))
@@ -78,5 +77,10 @@ public class DanceSpreadingEvent : SpreadingEvent
     protected override bool ShouldEventTrigger()
     {
         return hasDancedSocksOff;
+    }
+
+    protected override void EventImpact()
+    {
+        Player.Instance.playerHasLearedToDance = true;
     }
 }
