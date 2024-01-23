@@ -34,6 +34,8 @@ public class Player : MonoBehaviour, IDataPersistence
     private const string ANIMDANCE = "isDancing";
     private const string ANIMINTERRUPT = "interruptIdle";
 
+    public bool playerHasLearedToDance = false;
+
     public void LoadData(GameData data)
     {
         _characterController.enabled = false;
@@ -121,15 +123,17 @@ public class Player : MonoBehaviour, IDataPersistence
 
     private void Dance()
     {
-        //_animator.SetTrigger(ANIMWAVE);
-        isDancing = !isDancing;
-        _animator.SetBool(ANIMDANCE, isDancing);
-        if(isDancing)
-            CameraController.Instance.SetCameraZoom(5f, 10f);
-        else
-            CameraController.Instance.SetCameraZoom(9f, 0.2f);
+        if (playerHasLearedToDance)
+        {
+            isDancing = !isDancing;
+            _animator.SetBool(ANIMDANCE, isDancing);
+            if (isDancing)
+                CameraController.Instance.SetCameraZoom(5f, 10f);
+            else
+                CameraController.Instance.SetCameraZoom(9f, 0.2f);
 
-        idleTimer = 0f;
+            idleTimer = 0f;
+        }
     }
 
     private void Interact()
