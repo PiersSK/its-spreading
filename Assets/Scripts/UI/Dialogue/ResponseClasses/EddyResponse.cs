@@ -26,4 +26,10 @@ public class EddyResponse : DialogueResponse
         Player.Instance.TogglePlayerIsEngaged();
         GossipSpreadingEvent.Instance.hasSpreadGossip = true;
     }
+
+    public void CloseWithFailure()
+    {
+        base.CloseDialogue();
+        Player.Instance.TogglePlayerIsEngaged();
+    }
 }
