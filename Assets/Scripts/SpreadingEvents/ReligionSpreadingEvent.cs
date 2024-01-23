@@ -23,4 +23,9 @@ public class ReligionSpreadingEvent : SpreadingEvent
     {
         return playerGavePamphlet && Player.Instance.isUnengaged;
     }
+
+    protected override void EventImpact()
+    {
+        GossipSpreadingEvent.Instance.hasMetDarren = true;
+    }
 }
