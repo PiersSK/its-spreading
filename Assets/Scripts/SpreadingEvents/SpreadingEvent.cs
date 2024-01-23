@@ -34,6 +34,7 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
         {
             if(_objective.gameObject.name == name)
             {
+                eventComplete = true;
                 _objective.CompleteObjective();
                 EventImpact();
             }
