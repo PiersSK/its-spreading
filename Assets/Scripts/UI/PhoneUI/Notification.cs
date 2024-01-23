@@ -32,8 +32,10 @@ public class Notification : MonoBehaviour
         switch (appsource)
         {
             case PhoneUI.PhoneApp.Messages:
-                //PhoneUI.Instance.notificationPage.SetActive(false);
                 PhoneUI.Instance.messagePage.SetActive(true);
+                break;
+            case PhoneUI.PhoneApp.Bedheads:
+                PhoneUI.Instance.eddybeddyPage.SetActive(true);
                 break;
             default:
                 break;

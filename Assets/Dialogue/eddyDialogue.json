@@ -1,0 +1,115 @@
+{
+    "name": "Eddy Beddy",
+    "picture": "eddybeddy",
+    "responseClass": "EddyResponse",
+    "conversations": [
+        {
+            "id": 0,
+            "dialogues": [
+                {
+                    "id": 0,
+                    "prompt": "Hellooooooo caller! Heard you got some important information for the other truth searching bedheads out there is that right?",
+                    "responses": [
+                        {
+                            "text": "You betcha Eddy!",
+                            "outcomeId": 1,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Wooooo I'm on the Eddy Beddy Bedtime Cast!!!! Life is complete!!!",
+                            "outcomeId": 1,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 1,
+                    "prompt": "Love the enthusiasm fella! Now what you got to tell the people out there?",
+                    "responses": [
+                        {
+                            "text": "I met THE Magic Darren in person!",
+                            "outcomeId": 2,
+                            "requirement": "CompletedReligionEvent",
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "This is gonna be a lot. Some among us... are actually horses trying to get us to eat more sugar",
+                            "outcomeId": 5,
+                            "requirement": "HasReadHorsespiracy",
+                            "outcomeFunction": null
+                        }
+                        ,
+                        {
+                            "text": "Ummm.. I think I heard Milly Pead stays up past her bedtime...",
+                            "outcomeId": 5,
+                            "requirement": "HasReadMillyPead",
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "prompt": "THE Magic Darren! That's incredible! Tell me more about that, what was he like?",
+                    "responses": [
+                        {
+                            "text": "He smelt a lot like batteries",
+                            "outcomeId": 3,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "He gave me some magic plant juice. I think it's holy?",
+                            "outcomeId": 3,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "He gave me a little peck on my cheeks and told me we are all special and to keep ordering from Spreadshop",
+                            "outcomeId": 3,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "prompt": "Wow. That really makes you think. Producer, pull up that video we have of Magic Darren doing a kickflip over me for the folks on stream",
+                    "responses": [
+                        {
+                            "text": "Wow, I bet that would be a really special video to watch but one that is really hard to animate in a short space of time",
+                            "outcomeId": 4,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "prompt": "Well thanks for sharing the important word friend. Listeners, make sure to tell everyone you know this vital information. And caller, thanks for your time, and remember...",
+                    "responses": [
+                        {
+                            "text": "WE SNOOZE BUT WE DON'T LOOSE!!!",
+                            "outcomeId": 5,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "prompt": "Hahaha that's right fella. Thanks for calling, keep listening",
+                    "responses": [
+                        {
+                            "text": "Goodbye!",
+                            "outcomeId": 4,
+                            "requirement": null,
+                            "outcomeFunction": "CloseDialogue"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

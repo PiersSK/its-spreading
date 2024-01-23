@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueNPC : NPC
 {
-    [SerializeField] protected TextAsset dialogueFile;
+    public TextAsset dialogueFile;
 
     public override void Interact()
     {

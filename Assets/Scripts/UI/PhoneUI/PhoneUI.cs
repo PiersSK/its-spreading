@@ -15,7 +15,8 @@ public class PhoneUI : MonoBehaviour
         Messages,
         Spreadshop,
         Spreadipedia,
-        TVGuide
+        TVGuide,
+        Bedheads
     }
 
     [SerializeField] private AudioClip notificationSound;
@@ -30,6 +31,7 @@ public class PhoneUI : MonoBehaviour
     public GameObject notificationPage;
     public GameObject appsPage;
     public GameObject messagePage;
+    public GameObject eddybeddyPage;
 
     [Header("Notifications")]
     public List<Notification> notifications;
@@ -59,7 +61,8 @@ public class PhoneUI : MonoBehaviour
         gameObject.SetActive(!gameObject.activeSelf);
         notificationPage.SetActive(true);
         appsPage.SetActive(false);
-        messagePage.SetActive(false);    
+        messagePage.SetActive(false);
+        eddybeddyPage.SetActive(false);
     }
 
     public void UpdateNotificationIcon()
