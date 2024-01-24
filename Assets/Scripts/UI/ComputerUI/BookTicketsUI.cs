@@ -28,8 +28,12 @@ public class BookTicketsUI : MonoBehaviour
         callSisButton.onClick.RemoveAllListeners();
         callSisButton.onClick.AddListener(CallSis);
 
-        // stop the sold out notification
-        // send a confirmation notification
+        Invoke(nameof(SendBookingConfirmation), 5f);
+    }
+
+    private void SendBookingConfirmation()
+    {
+        PhoneUI.Instance.AddNotification(PhoneUI.PhoneApp.NeverTooLate, "Booking confirmed for \"As Easy As 1, You, Me\" x2");
     }
 
     private void CallSis()
