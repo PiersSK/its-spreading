@@ -21,6 +21,7 @@ public class OrderItemUI : MonoBehaviour
     [SerializeField] private ScrollRect scrollWindow;
     [SerializeField] private GameObject purchaseConfirmed;
     [SerializeField] private TextMeshProUGUI purchaseConfirmedTime;
+    private bool isUiUpdated = false;
 
     private string notifcationMessage;
     private string arrivalTime;
@@ -33,12 +34,15 @@ public class OrderItemUI : MonoBehaviour
 
     private void Update()
     {
-        if(deliveryNPC.hasDelivered)
+
+        if(!isUiUpdated && deliveryNPC.hasDelivered)
         {
             GetComponent<Button>().interactable = false;
             GetComponent<Image>().color = new Color(0.55f, 0.55f, 0.55f);
             GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
+            isUiUpdated = true;
         }
+
     }
     
 
