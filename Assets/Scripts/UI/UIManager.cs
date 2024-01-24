@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PhoneUI;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +16,20 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PhoneUI.Instance.TogglePhone();
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            PhoneUI.Instance.AddNotification(PhoneApp.Messages, "Test");
+        }
+
+        PhoneUI.Instance.UpdateNotificationIcon();
     }
 
     private void DeactivateAllUI()
@@ -49,14 +64,7 @@ public class UIManager : MonoBehaviour
         uiElement.SetActive(shouldBeActive);
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            phoneUI.SetActive(!phoneUI.activeSelf);
-        }
-
-    }
+   
 
 
 }
