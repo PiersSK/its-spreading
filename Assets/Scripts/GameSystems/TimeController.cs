@@ -93,6 +93,22 @@ public class TimeController : MonoBehaviour, IDataPersistence
         }
     }
 
+    public void TurnOffAllLights()
+    {
+        foreach(GameObject light in roomLights)
+        {
+            light.GetComponent<Light>().intensity = 0f;
+        }
+    }
+
+    public void TurnOnAllLights()
+    {
+        foreach (GameObject light in roomLights)
+        {
+            light.GetComponent<Light>().intensity = 3f;
+        }
+    }
+
     private void UpdateLights()
     {
         float envLighting = 1f;
@@ -159,5 +175,10 @@ public class TimeController : MonoBehaviour, IDataPersistence
         int amPmHours = ts.Hours % 12 == 0 ? 12 : ts.Hours % 12;
 
         return string.Format("{0}:{1:00} {2}", amPmHours, ts.Minutes, timeSuffix);
+    }
+
+    public bool IsInTimeSpan(int hour1, int min1, int hour2, int min2)
+    {
+        return TimeHasPassed(hour1, min1) && !TimeHasPassed(hour2, min2);
     }
 }

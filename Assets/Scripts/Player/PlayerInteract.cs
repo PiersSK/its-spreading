@@ -83,7 +83,9 @@ public class PlayerInteract : MonoBehaviour
             if (distance < interactRange
                 && angleToPlayer >= -interactMaxAngle
                 && angleToPlayer <= interactMaxAngle
-                && interactable.CanInteract()) // ...and it's currently interactable...
+                && interactable.CanInteract()
+                && Player.Instance.controlActions.Interact.enabled
+                ) // ...and it's currently interactable...
             {
 
                 Ray ray = new(playerPos, direction);

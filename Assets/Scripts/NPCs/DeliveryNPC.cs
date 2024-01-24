@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryNPC : NPC
+public class DeliveryNPC : DialogueNPC
 {
     [SerializeField] private Door _door;
 
@@ -18,20 +18,23 @@ public class DeliveryNPC : NPC
             promptText = "Take " + objectToDeliverName;
         }
     }
-    public NeighbourAppearance currentScheduler;
 
     public bool hasDelivered = false;
 
     public override void Interact()
     {
-        Debug.Log("Gave " + objectToDeliverName + " to player");
-        Player.Instance.GetComponent<InventorySystem>().AddItem(objectToDeliver);
-        hasDelivered = true;
-        currentScheduler.TriggerEventEnd();
+        base.Interact();
+        GetComponent<Animator>().SetTrigger("handOver");
     }
 
     public override bool CanInteract()
     {
         return !hasDelivered && _door.isOpen;
+    }
+
+    public override void NPCCoreAction()
+    {
+        Player.Instance.GetComponent<InventorySystem>().AddItem(objectToDeliver);
+        hasDelivered = true;
     }
 }

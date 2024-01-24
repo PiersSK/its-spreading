@@ -9,6 +9,7 @@ public class DownstairsNeighbour : NPC
     [SerializeField] private AudioClip currentClip;
 
     private BackgroundMusicLayer npcAudioLayer;
+    public Animator _animator;
 
     private float humAnimTimer = 0f;
     private float humAnimMinSpace = 1f;
@@ -19,6 +20,7 @@ public class DownstairsNeighbour : NPC
     {
         base.Start();
         npcAudioLayer = new BackgroundMusicLayer(npcAudio);
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -36,6 +38,7 @@ public class DownstairsNeighbour : NPC
 
     public void SetTrackToHum()
     {
+        _animator.SetBool("isHumming", true);
         currentClip = humClip;
         npcAnim.wrapMode = WrapMode.Once;
 
@@ -43,12 +46,14 @@ public class DownstairsNeighbour : NPC
 
     public void SetTrackToWhistle()
     {
+        _animator.SetBool("isHumming", true);
         currentClip = whistleClip;
         npcAnim.wrapMode = WrapMode.Loop;
     }
 
     public override void PauseNPCAudio()
     {
+        _animator.SetBool("isHumming", false);
         npcAudioLayer.PauseLayer();
         npcAnim.wrapMode = WrapMode.Once;
         audioIsPlaying = false;
@@ -56,7 +61,7 @@ public class DownstairsNeighbour : NPC
 
     public override void PlayNPCAudio()
     {
-
+        _animator.SetBool("isHumming", true);
         npcAudio.clip = currentClip;
         npcAudioLayer.PlayLayer();
         npcAnim.Play();
@@ -65,6 +70,7 @@ public class DownstairsNeighbour : NPC
 
     public override void FadeNPCAudioOut(float fadeDuration)
     {
+        _animator.SetBool("isHumming", false);
         StartCoroutine(FadeLayerOut(fadeDuration));
         npcAnim.wrapMode = WrapMode.Once;
         audioIsPlaying = false;

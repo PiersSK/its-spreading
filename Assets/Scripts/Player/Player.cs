@@ -13,11 +13,12 @@ public class Player : MonoBehaviour, IDataPersistence
     private Vector3 direction;
 
     public Controls playerControls;
-    private Controls.PlayerActions controlActions;
+    public Controls.PlayerActions controlActions;
 
     private PlayerInteract _playerInteract;
+    public Inventory _inventory;
 
-    public bool canMove = true;
+    public bool isUnengaged = true;
     private bool isMoving = false;
     private bool isDancing = false;
 
@@ -30,6 +31,10 @@ public class Player : MonoBehaviour, IDataPersistence
     private const string ANIMIDLE = "idle";
     private const string ANIMIDLEINDEX = "idleIndex";
     private const string ANIMWAVE = "wave";
+    private const string ANIMDANCE = "isDancing";
+    private const string ANIMINTERRUPT = "interruptIdle";
+
+    public bool playerHasLearedToDance = false;
 
     public void LoadData(GameData data)
     {
@@ -52,6 +57,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
         _characterController = GetComponent<CharacterController>();
         _playerInteract = GetComponent<PlayerInteract>();
+        _inventory = GetComponent<Inventory>();
         _animator = GetComponent<Animator>();
 
         controlActions.Interact.performed += ctx => Interact();
@@ -66,10 +72,10 @@ public class Player : MonoBehaviour, IDataPersistence
         isMoving = direction != Vector3.zero;
 
         // Control basic animations
-        if (canMove) _animator.SetBool(ANIMWALKING, isMoving);
+        if (isUnengaged) _animator.SetBool(ANIMWALKING, isMoving);
         if (isDancing && isMoving) ResetEmotes();
 
-        if (!isMoving && !isDancing && canMove)
+        if (!isMoving && !isDancing && isUnengaged)
         {
             idleTimer += Time.deltaTime;
             if(idleTimer >= idleAnimTime)
@@ -86,7 +92,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
     void FixedUpdate()
     {
-        if (canMove)
+        if (isUnengaged)
         {
             _characterController.Move(direction.normalized * speed * Time.deltaTime);
 
@@ -117,27 +123,35 @@ public class Player : MonoBehaviour, IDataPersistence
 
     private void Dance()
     {
-        //_animator.SetTrigger(ANIMWAVE);
-        isDancing = !isDancing;
-        _animator.SetBool("isDancing", isDancing);
-        if(isDancing)
-            CameraController.Instance.SetCameraZoom(5f, 10f);
-        else
-            CameraController.Instance.SetCameraZoom(9f, 0.2f);
+        if (playerHasLearedToDance)
+        {
+            isDancing = !isDancing;
+            _animator.SetBool(ANIMDANCE, isDancing);
+            if (isDancing)
+                CameraController.Instance.SetCameraZoom(5f, 10f);
+            else
+                CameraController.Instance.SetCameraZoom(9f, 0.2f);
 
-        idleTimer = 0f;
+            idleTimer = 0f;
+        }
     }
 
     private void Interact()
     {
-        _playerInteract.InteractWithSelected();
-        idleTimer = 0f;
+        if (!PauseMenu.isPaused)
+        {
+            _playerInteract.InteractWithSelected();
+            idleTimer = 0f;
+        }
     }
 
     private void ToggleInteract()
     {
-        _playerInteract.CycleInteractable();
-        idleTimer = 0f;
+        if (!PauseMenu.isPaused)
+        {
+            _playerInteract.CycleInteractable();
+            idleTimer = 0f;
+        }
     }
 
     private void OnEnable()
@@ -150,23 +164,32 @@ public class Player : MonoBehaviour, IDataPersistence
         controlActions.Disable();
     }
 
-    public void TogglePlayerIsEngaged()
+    public void TogglePlayerIsEngaged(bool shouldDisableInteract = false)
     {
-        canMove = !canMove;
+        isUnengaged = !isUnengaged;
         _characterController.enabled = !_characterController.enabled;
+
         if (controlActions.ToggleInteract.enabled)
             controlActions.ToggleInteract.Disable();
         else
             controlActions.ToggleInteract.Enable();
+
+        if (shouldDisableInteract && controlActions.Interact.enabled)
+            controlActions.Interact.Disable();
+        else if (!controlActions.Interact.enabled)
+            controlActions.Interact.Enable(); //Always reactivate if toggled off
+
         ResetEmotes();
-        _animator.SetTrigger("interruptIdle");
+
+        _animator.SetTrigger(ANIMINTERRUPT);
+        _animator.SetBool(ANIMWALKING, false);
 
     }
 
     private void ResetEmotes()
     {
         isDancing = false;
-        _animator.SetBool("isDancing", isDancing);
+        _animator.SetBool(ANIMDANCE, isDancing);
         CameraController.Instance.SetCameraZoom(9f, 0.2f);
     }
 }

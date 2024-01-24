@@ -34,10 +34,9 @@ public class Confetti : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void ConfettiExplosion(AudioClip spreadingVoice)
+    public void ConfettiExplosion(AudioClip spreadingVoice, bool showUISplash = true)
     {
-        // Show title. TODO: Add our voice effect to this instead of "Yay"
-        ConfettiUI.Instance.ShowItsSpreading();
+        if(showUISplash) ConfettiUI.Instance.ShowItsSpreading();
         audioSource.PlayOneShot(spreadingVoice);
         audioSource.PlayOneShot(partyBlowerSound);
 

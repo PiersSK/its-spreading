@@ -7,12 +7,18 @@ public class NPC : Interactable
 {
     protected AudioSource npcAudio;
     protected Animation npcAnim;
+    public NeighbourAppearance currentScheduler;
+
+    public Color primaryColor;
+    public Color secondaryColor;
 
     protected virtual void Start()
     {
         npcAudio = GetComponent<AudioSource>();
         npcAnim = GetComponent<Animation>();
     }
+
+    public virtual void NPCCoreAction() { }
 
     public virtual void PauseNPCAudio()
     {

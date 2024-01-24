@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4904748838219002004}
   - component: {fileID: -1303100703382446330}
   - component: {fileID: 1822926496340228857}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ConfettiPiece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
