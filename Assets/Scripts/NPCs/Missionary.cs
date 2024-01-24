@@ -18,6 +18,12 @@ public class Missionary : DialogueNPC
         _door.KnockAtDoor();
     }
 
+    public override void Interact()
+    {
+        base.Interact();
+        GetComponent<Animator>().SetTrigger("adjustGlasses");
+    }
+
     public override bool CanInteract()
     {
         return _door.isOpen && !currentScheduler.npcIsEngaged;
