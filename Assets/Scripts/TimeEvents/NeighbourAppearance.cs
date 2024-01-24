@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NeighbourAppearance : LimitedTimedEvent
+public class NeighbourAppearance : LimitedTimedEvent, IDataPersistence
 {
     public event EventHandler<EventArgs> NPCReachedDestination;
     private bool destinationReachedTriggered = false;
@@ -19,6 +19,16 @@ public class NeighbourAppearance : LimitedTimedEvent
     private float endRotationTimer = 0f;
 
     public bool npcIsEngaged = false;
+
+    public void LoadData(GameData data)
+    {
+        destinationReachedTriggered = data.hasNeighbourEventTriggered;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.hasNeighbourEventTriggered = destinationReachedTriggered;
+    }
 
     private void Start()
     {
