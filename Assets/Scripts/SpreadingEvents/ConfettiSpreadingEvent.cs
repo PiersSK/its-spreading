@@ -8,6 +8,8 @@ public class ConfettiSpreadingEvent : SpreadingEvent
     private bool requirementMet = false;
     private bool triggerEvent = false;
 
+    private const string CONFETTITHOUGHT = "God, the confetti is really getting everywhere It's... Oh";
+
     protected override void Update()
     {
         base.Update();
@@ -23,6 +25,7 @@ public class ConfettiSpreadingEvent : SpreadingEvent
             if(confettiRooms == rooms.Count)
             {
                 requirementMet = true;
+                ThoughtBubble.Instance.ShowThought(CONFETTITHOUGHT);
                 Invoke(nameof(SetTriggerEvent), 5f);
             }
         }
