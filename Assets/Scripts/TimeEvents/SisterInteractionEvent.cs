@@ -74,6 +74,7 @@ public class SisterInteractionEvent : LimitedTimedEvent
 
     private void CallSis()
     {
+        TimeController.Instance.ToggleTimePause();
         Player.Instance.TogglePlayerIsEngaged(true);
         DialogueUI.Instance.LoadJsonConversationToUI(sisNPC.dialogueFile, sisNPC);
         DialogueUI.Instance.gameObject.SetActive(true);

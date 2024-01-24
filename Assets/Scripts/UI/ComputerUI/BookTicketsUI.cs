@@ -38,6 +38,7 @@ public class BookTicketsUI : MonoBehaviour
 
     private void CallSis()
     {
+        TimeController.Instance.ToggleTimePause();
         Player.Instance.TogglePlayerIsEngaged(true);
         DialogueUI.Instance.LoadJsonConversationToUI(sisNPC.dialogueFile, sisNPC, 1);
         DialogueUI.Instance.gameObject.SetActive(true);
