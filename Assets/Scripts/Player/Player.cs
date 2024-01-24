@@ -1,7 +1,11 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 public class Player : MonoBehaviour, IDataPersistence
 {
     public static Player Instance { get; private set; }
+
+    public event EventHandler<EventArgs> PlayerWaved;
 
     [SerializeField] private float speed = 5;
     [SerializeField] private float gravity = -9.8f;
@@ -34,7 +38,9 @@ public class Player : MonoBehaviour, IDataPersistence
     private const string ANIMDANCE = "isDancing";
     private const string ANIMINTERRUPT = "interruptIdle";
 
-    public bool playerHasLearedToDance = false;
+    public bool playerHasLearnedToDance = false;
+
+    public Room currentRoom;
 
     public void LoadData(GameData data)
     {
@@ -118,12 +124,13 @@ public class Player : MonoBehaviour, IDataPersistence
     private void Wave()
     {
         _animator.SetTrigger(ANIMWAVE);
+        PlayerWaved?.Invoke(this, new EventArgs());
     }
 
 
     private void Dance()
     {
-        if (playerHasLearedToDance)
+        if (playerHasLearnedToDance)
         {
             isDancing = !isDancing;
             _animator.SetBool(ANIMDANCE, isDancing);
