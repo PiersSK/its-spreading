@@ -23,13 +23,23 @@ public class BookClassUI : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(BookClass);
+       if(!danceClassEvent.playerSignedUp)
+       {
+            GetComponent<Button>().onClick.AddListener(BookClass);
+       }
+       else
+       {
+            GetComponentInChildren<TextMeshProUGUI>().text = "Booked! See you at 8pm";
+            GetComponent<Button>().interactable = false;
+            GetComponent<Button>().onClick.RemoveAllListeners();
+            GetComponent<Button>().onClick.AddListener(JoinClass);
+       }
     }
 
     private void BookClass()
     {
         GetComponentInChildren<TextMeshProUGUI>().text = "Booked! See you at 8pm";
-        danceClassEvent.playerSignedUp = true;
+        danceClassEvent.playerSignedUp = true; 
 
         computerAudio.PlayOneShot(bookingConfirmed);
 

@@ -4,11 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DanceClassEvent : LimitedTimedEvent
+public class DanceClassEvent : LimitedTimedEvent, IDataPersistence
 {
     [SerializeField] private Button classButton;
     [SerializeField] private TextMeshProUGUI classButtonText;
-    public bool playerSignedUp = false;
+    public bool playerSignedUp;
+
+    public void LoadData(GameData data)
+    {
+        playerSignedUp = data.isSignedUpToDanceClass;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.isSignedUpToDanceClass = playerSignedUp;
+    }
     
     public override void TriggerEvent()
     {

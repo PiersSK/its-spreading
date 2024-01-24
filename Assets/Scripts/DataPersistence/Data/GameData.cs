@@ -13,6 +13,7 @@ public class GameData
     public int currentHour;
     public int currentMinute;
     public bool fireStarted;
+    public bool isSignedUpToDanceClass;
     
     // default values for when the game starts with no data.
     public GameData()
@@ -25,5 +26,6 @@ public class GameData
         this.currentHour = 8;
         this.currentMinute = 0;
         this.fireStarted = false;
+        this.isSignedUpToDanceClass = false;
     }
 }
