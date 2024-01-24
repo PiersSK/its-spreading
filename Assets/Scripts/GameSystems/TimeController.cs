@@ -37,6 +37,8 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private float time = 0f;
     private float maxNaturalLight = 1.5f;
 
+    private bool timeIsPaused = false;
+
     private void Awake()
     {
         Instance = this;
@@ -56,7 +58,8 @@ public class TimeController : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-        // Update Time
+        if (timeIsPaused) return;
+
         time += Time.deltaTime * timeMultiplier * tempMultiplier;
         if (time > REALDAYLENGTHSECONDS)
         {
@@ -180,5 +183,10 @@ public class TimeController : MonoBehaviour, IDataPersistence
     public bool IsInTimeSpan(int hour1, int min1, int hour2, int min2)
     {
         return TimeHasPassed(hour1, min1) && !TimeHasPassed(hour2, min2);
+    }
+
+    public void ToggleTimePause()
+    {
+        timeIsPaused = !timeIsPaused;
     }
 }

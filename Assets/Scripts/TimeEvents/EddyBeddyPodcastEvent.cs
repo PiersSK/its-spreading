@@ -44,6 +44,7 @@ public class EddyBeddyPodcastEvent : LimitedTimedEvent
 
     private void TalkToEddy()
     {
+        TimeController.Instance.ToggleTimePause();
         Player.Instance.TogglePlayerIsEngaged(true);
         DialogueUI.Instance.LoadJsonConversationToUI(eddyBeddy.dialogueFile, eddyBeddy);
         DialogueUI.Instance.gameObject.SetActive(true);
