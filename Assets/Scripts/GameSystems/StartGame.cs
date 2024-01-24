@@ -13,6 +13,10 @@ public class StartGame : MonoBehaviour
     private bool isLoadingFromResume = false;
     private int spreadEventsFound = 0;
 
+    private const string WAKEUPTHOUGHT = "Mmmm finally a day off, let's start the day with some lovely jam on toast";
+    private const string FIRSTSPREADTHOUGHT = "Oh my! That shouldn't happen here... I should spread again to be sure...";
+    private const string SECONDSPREADTHOUGHT = "Oh bother that confirms it. I got doused with too many spreadheads at work. I guess I need to get spreading, otherwise that's gonna be a nuisance";
+
     private void Start()
     {
         _thoughtBubble = ThoughtBubble.Instance;
@@ -24,7 +28,7 @@ public class StartGame : MonoBehaviour
             Player.Instance.TogglePlayerIsEngaged(true);
             Player.Instance._animator.SetTrigger("stretch");
             CameraController.Instance.SetCameraZoom(5f, 0.5f);
-            Invoke(nameof(TutorialThought), 4f);
+            Invoke(nameof(WakeupThought), 4f);
 
             foreach(SpreadingEvent spreadingEvent in spreadingEvents)
             {
@@ -36,9 +40,9 @@ public class StartGame : MonoBehaviour
     private void TutorialThoughts(object sender, System.EventArgs e)
     {
         if (spreadEventsFound == 0)
-            _thoughtBubble.ShowThought("Oh god! That shouldn't happen here... I should spread again to be sure...");
+            _thoughtBubble.ShowThought(FIRSTSPREADTHOUGHT);
         else if (spreadEventsFound == 1)
-            _thoughtBubble.ShowThought("Oh bother that confirms it. I got hit with too many spreadheads at work. I guess I need to get spreading, otherwise that's gonna be a nuisance", 7f);
+            _thoughtBubble.ShowThought(SECONDSPREADTHOUGHT, 7f);
         else
         {
             foreach (SpreadingEvent spreadingEvent in spreadingEvents)
@@ -50,10 +54,10 @@ public class StartGame : MonoBehaviour
         spreadEventsFound++;
     }
 
-    private void TutorialThought()
+    private void WakeupThought()
     {
         CameraController.Instance.SetCameraZoom(9f, 0.2f);
         Player.Instance.TogglePlayerIsEngaged();
-        _thoughtBubble.ShowThought("Mmmm finally a day off, let's start the day with some lovely jam on toast");
+        _thoughtBubble.ShowThought(WAKEUPTHOUGHT);
     }
 }
