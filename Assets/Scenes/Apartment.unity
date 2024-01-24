@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1037,6 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 856644747}
+  requiredItem: {fileID: 0}
   sofa: {fileID: 794544534}
   manspreadAnimationLength: 3.958
   minsTillManspread: 30
@@ -15513,7 +15514,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 409374896}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17232,6 +17233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 84467326}
+  requiredItem: {fileID: 0}
   rooms:
   - {fileID: 1348445670}
   - {fileID: 1190751994}
@@ -17576,6 +17578,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c44841d59dee9104cb1e8725a4a2e793, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1366553982}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c44841d59dee9104cb1e8725a4a2e793, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1366553983}
   m_SourcePrefab: {fileID: 100100000, guid: c44841d59dee9104cb1e8725a4a2e793, type: 3}
 --- !u!1 &235447186
 GameObject:
@@ -43795,6 +43800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 1481422445}
+  requiredItem: {fileID: 11400000, guid: e99427fbacc575740809de7e50280f7c, type: 2}
   playerReceivedPamphlet: 0
   playerGavePamphlet: 0
 --- !u!1 &504310729
@@ -45159,7 +45165,6 @@ MonoBehaviour:
   secondaryColor: {r: 0.6830188, g: 0.47543362, b: 0.27191874, a: 1}
   dialogueFile: {fileID: 4900000, guid: e6b4913811e58b346bc080594e4d3c9e, type: 3}
   _door: {fileID: 1782588272}
-  objectToDeliver: 0
   hasDelivered: 0
 --- !u!195 &536467700
 NavMeshAgent:
@@ -57532,6 +57537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 1466152698}
+  requiredItem: {fileID: 0}
   piano: {fileID: 213810335}
   neighbourAppearance: {fileID: 919095457}
   neighbourNPC: {fileID: 904322598}
@@ -61060,6 +61066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 940208240}
+  requiredItem: {fileID: 11400000, guid: 1e3a577334ecf10458e60c11ac995b65, type: 2}
   _vines: {fileID: 1790287877}
 --- !u!1 &856644745
 GameObject:
@@ -61515,6 +61522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 1003411237}
+  requiredItem: {fileID: 0}
   secondsOfDancingRequired: 60
   confidenceMeter: {fileID: 299250703}
   confidenceLevel: {fileID: 1154965158}
@@ -80486,6 +80494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 1031922668}
+  requiredItem: {fileID: 0}
   bread: {fileID: 870272876}
   breadSpreadTimeRequired: 10
 --- !u!1 &1151695436
@@ -96496,7 +96505,7 @@ MonoBehaviour:
   speed: 5
   gravity: -9.8
   _animator: {fileID: 0}
-  _inventory: {fileID: 0}
+  newInventory: {fileID: 0}
   isUnengaged: 1
   idleAnimTime: 10
   idleCooldown: 5
@@ -96604,6 +96613,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1366553983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366553975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65b61de1b4d63d458808a8b3fd38138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1370950990
 GameObject:
   m_ObjectHideFlags: 0
@@ -111156,6 +111177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 1236613998}
+  requiredItem: {fileID: 0}
   sofa: {fileID: 794544534}
   hourOfBroadcastStart: 18
   minOfBroadcastStart: 0
@@ -121036,7 +121058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptText: Try Super Plant Formula
   priority: 0
-  requiredItem: 0
+  requiredItem: {fileID: 0}
   coolDownInGameMins: 30
   sparkle: {fileID: 281070362}
   sparkleSound: {fileID: 8300000, guid: 4293e29850ed94dc5a6b54e13a4a91aa, type: 3}
@@ -123210,6 +123232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 1043301718}
+  requiredItem: {fileID: 0}
   horsespiracyButton: {fileID: 2066826451}
   millyPeadButton: {fileID: 613755641}
   hasMetDarren: 0
@@ -142362,6 +142385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 1605863606}
+  requiredItem: {fileID: 0}
   spreadFire: {fileID: 1835473163}
 --- !u!1 &2140883141
 GameObject:

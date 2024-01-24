@@ -1,13 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Inventory;
 
 public class InventorySystem : MonoBehaviour
 {
     public List<InventoryItemData> inventory { get; private set; }
 
-    public delegate void inventoryChangeDelegate();
-    public inventoryChangeDelegate onInventoryChangeEvent;
+    public event EventHandler<OnInventoryChangedEventArgs> OnInventoryChanged;
+    public class OnInventoryChangedEventArgs : EventArgs
+    {
+        public InventoryItemData itemAdded;
+        public InventoryItemData itemRemoved;
+    }
 
     public void Awake()
     {
@@ -16,10 +22,10 @@ public class InventorySystem : MonoBehaviour
 
     public void AddItem(InventoryItemData itemData)
     {
-        if(!inventory.Contains(itemData))
+        if (!inventory.Contains(itemData))
         {
             inventory.Add(itemData);
-            if (onInventoryChangeEvent != null) onInventoryChangeEvent();
+            if (OnInventoryChanged != null) OnInventoryChanged.Invoke(this, new OnInventoryChangedEventArgs() { itemAdded = itemData, itemRemoved = new InventoryItemData() });
         }
     }
 
@@ -28,7 +34,7 @@ public class InventorySystem : MonoBehaviour
         if (inventory.Contains(itemData))
         {
             inventory.Remove(itemData);
-            if (onInventoryChangeEvent != null) onInventoryChangeEvent();
+            if (OnInventoryChanged != null) OnInventoryChanged.Invoke(this, new OnInventoryChangedEventArgs() { itemAdded = new InventoryItemData(), itemRemoved = itemData });
         }
     }
 

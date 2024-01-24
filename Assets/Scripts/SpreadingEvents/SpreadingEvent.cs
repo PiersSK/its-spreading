@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpreadingEvent : MonoBehaviour
 {
     [SerializeField] Objective _objective;
+    [SerializeField] public InventoryItemData requiredItem;
     protected bool eventComplete = false;
 
     protected virtual void Update()

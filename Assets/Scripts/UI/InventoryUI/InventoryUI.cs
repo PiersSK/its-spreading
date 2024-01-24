@@ -7,10 +7,10 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject itemSlotPrefab;
     void Start()
     {
-        Player.Instance.GetComponent<InventorySystem>().onInventoryChangeEvent += OnUpdateInventory;
+        Player.Instance.newInventory.OnInventoryChanged += OnUpdateInventory;
     }
 
-    private void OnUpdateInventory()
+    private void OnUpdateInventory(object sender, InventorySystem.OnInventoryChangedEventArgs e)
     {
         foreach(Transform t in transform)
         {
@@ -22,7 +22,7 @@ public class InventoryUI : MonoBehaviour
 
     public void DrawInventory()
     {
-        foreach(InventoryItemData item in Player.Instance.GetComponent<InventorySystem>().inventory)
+        foreach(InventoryItemData item in Player.Instance.newInventory.inventory)
         {
             AddInventorySlot(item);
         }
