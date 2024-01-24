@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeliveryResponse : DialogueResponse
 {
+    [SerializeField] private InventoryItemData itemToReceive;
     public override void CloseDialogue()
     {
         Player.Instance.TogglePlayerIsEngaged();
@@ -24,11 +25,11 @@ public class DeliveryResponse : DialogueResponse
 
     public void RemovePamphlet()
     {
-        Player.Instance._inventory.RemoveFromInventory(Inventory.InventoryItem.DarrenPamphlet);
+        Player.Instance.inventory.RemoveItem(itemToReceive);
     }
 
     public bool HasPamphlet()
     {
-        return Player.Instance._inventory.IsItemInInventory(Inventory.InventoryItem.DarrenPamphlet);
+        return Player.Instance.inventory.HasItem(itemToReceive);
     }
 }

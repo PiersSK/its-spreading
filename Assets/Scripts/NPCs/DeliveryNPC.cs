@@ -34,7 +34,7 @@ public class DeliveryNPC : DialogueNPC
 
     public override void NPCCoreAction()
     {
-        Player.Instance.GetComponent<InventorySystem>().AddItem(objectToDeliver);
+        Player.Instance.inventory.AddItem(objectToDeliver);
         hasDelivered = true;
     }
 }

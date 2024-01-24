@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class MissionaryResponse : DialogueResponse
 {
-    public MissionaryResponse() { }
+    [SerializeField] public MissionaryResponse() { }
+
+    [SerializeField] private InventoryItemData cookies;
+    [SerializeField] private InventoryItemData religiousPamphlet;
 
     public void LeaveWithCookies()
     {
-        Player.Instance._inventory.AddToInventory(Inventory.InventoryItem.Cookies);
+        Player.Instance.inventory.AddItem(cookies);
         CloseDialogue();
     }
 
     public void LeaveWithPamphlet()
     {
-        Player.Instance._inventory.AddToInventory(Inventory.InventoryItem.DarrenPamphlet);
+        Player.Instance.inventory.AddItem(religiousPamphlet);
         CloseDialogue();
     }
 

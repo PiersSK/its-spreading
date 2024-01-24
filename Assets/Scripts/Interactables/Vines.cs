@@ -60,7 +60,10 @@ public class Vines : Interactable
 
     public override bool CanInteract()
     {
-        return Player.Instance.GetComponent<InventorySystem>().HasItem(requiredItem)
+
+        if (currentState == PlantState.Overgrown) Player.Instance.inventory.RemoveItem(requiredItem);
+
+        return Player.Instance.inventory.HasItem(requiredItem)
             && currentState != PlantState.Overgrown
             && !onCooldown;
     }

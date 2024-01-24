@@ -22,7 +22,7 @@ public class InventoryUI : MonoBehaviour
 
     public void DrawInventory()
     {
-        foreach(InventoryItemData item in Player.Instance.GetComponent<InventorySystem>().inventory)
+        foreach(InventoryItemData item in Player.Instance.inventory.itemDict.Values)
         {
             AddInventorySlot(item);
         }

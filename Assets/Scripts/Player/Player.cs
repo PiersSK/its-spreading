@@ -16,7 +16,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public Controls.PlayerActions controlActions;
 
     private PlayerInteract _playerInteract;
-    public Inventory _inventory;
+    public InventorySystem inventory;
 
     public bool isUnengaged = true;
     private bool isMoving = false;
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
         _characterController = GetComponent<CharacterController>();
         _playerInteract = GetComponent<PlayerInteract>();
-        _inventory = GetComponent<Inventory>();
+        inventory = GetComponent<InventorySystem>();
         _animator = GetComponent<Animator>();
 
         controlActions.Interact.performed += ctx => Interact();
