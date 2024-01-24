@@ -19,4 +19,18 @@ public class Computer : LockinInteractable
         base.LockedInInteract();
 
     }
+
+    public void ExitComputerManually()
+    {
+        ComputerUI.Instance.gameObject.SetActive(false);
+
+        Player.Instance.transform.position = resetPosition;
+        Player.Instance.transform.rotation = resetRotation;
+
+        Player.Instance.TogglePlayerIsEngaged();
+        Player.Instance.GetComponent<PlayerInteract>().persistSelectedInteractable = false;
+        promptText = freePrompt;
+
+        isLockedIn = false;
+    }
 }

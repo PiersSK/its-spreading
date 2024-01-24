@@ -81,6 +81,6 @@ public class DanceSpreadingEvent : SpreadingEvent
 
     protected override void EventImpact()
     {
-        Player.Instance.playerHasLearedToDance = true;
+        Player.Instance.playerHasLearnedToDance = true;
     }
 }

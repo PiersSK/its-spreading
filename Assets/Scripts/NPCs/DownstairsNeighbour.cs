@@ -8,6 +8,8 @@ public class DownstairsNeighbour : NPC
     [SerializeField] private AudioClip whistleClip;
     [SerializeField] private AudioClip currentClip;
 
+    [SerializeField] private Room adjacentRoom;
+
     private BackgroundMusicLayer npcAudioLayer;
     public Animator _animator;
 
@@ -21,6 +23,14 @@ public class DownstairsNeighbour : NPC
         base.Start();
         npcAudioLayer = new BackgroundMusicLayer(npcAudio);
         _animator = GetComponent<Animator>();
+        Player.Instance.PlayerWaved += WaveBack;
+    }
+
+    private void WaveBack(object sender, System.EventArgs e)
+    {
+        if (Player.Instance.currentRoom == adjacentRoom)
+            _animator.SetTrigger("wave");
+
     }
 
     private void Update()

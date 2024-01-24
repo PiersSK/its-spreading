@@ -21,6 +21,8 @@ public class PhoneUI : MonoBehaviour
 
     [SerializeField] private AudioClip notificationSound;
     [SerializeField] private AudioSource playerAudio;
+    [SerializeField] private GameObject phoneModel;
+    [SerializeField] private GameObject phoneUIIcon;
 
     [Header("Clock")]
     [SerializeField] private List<TextMeshProUGUI> phoneClocks;
@@ -58,11 +60,19 @@ public class PhoneUI : MonoBehaviour
 
     public void TogglePhone()
     {
+        // Show phone
         gameObject.SetActive(!gameObject.activeSelf);
+        phoneModel.SetActive(!phoneModel.activeSelf);
+        phoneUIIcon.SetActive(!phoneUIIcon.activeSelf);
+
+        // Reset to lock screen
         notificationPage.SetActive(true);
         appsPage.SetActive(false);
         messagePage.SetActive(false);
         eddybeddyPage.SetActive(false);
+
+        // Play animation
+        Player.Instance._animator.SetBool("isOnPhone", gameObject.activeSelf);
     }
 
     public void UpdateNotificationIcon()

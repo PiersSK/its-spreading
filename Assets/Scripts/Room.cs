@@ -13,6 +13,11 @@ public class Room : MonoBehaviour
             confetti.roomSettled = this;
             confettiInRoom++;
         }
+
+        if (other.TryGetComponent(out Player player))
+        {
+            player.currentRoom = this;
+        }
     }
 
     private void OnTriggerExit(Collider other)
