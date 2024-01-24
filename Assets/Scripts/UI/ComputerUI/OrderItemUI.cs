@@ -27,9 +27,20 @@ public class OrderItemUI : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(OrderItem);
-        notifcationMessage = "Order Confirmed! Your " + objectBeingPurchased + " will arrive at ";
+            GetComponent<Button>().onClick.AddListener(OrderItem);
+            notifcationMessage = "Order Confirmed! Your " + objectBeingPurchased + " will arrive at ";
     }
+
+    private void Update()
+    {
+        if(deliveryNPC.hasDelivered)
+        {
+            GetComponent<Button>().interactable = false;
+            GetComponent<Image>().color = new Color(0.55f, 0.55f, 0.55f);
+            GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
+        }
+    }
+    
 
     private void OrderItem()
     {

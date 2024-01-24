@@ -16,6 +16,7 @@ public class GameData
     public bool isSignedUpToDanceClass;
     public List<Inventory.InventoryItem> inventory;
     public bool hasNeighbourEventTriggered;
+    public bool hasReceivedDelivery;
     
     // default values for when the game starts with no data.
     public GameData()
@@ -30,5 +31,6 @@ public class GameData
         this.fireStarted = false;
         this.isSignedUpToDanceClass = false;
         this.hasNeighbourEventTriggered = false;
+        this.hasReceivedDelivery = false;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryNPC : DialogueNPC
+public class DeliveryNPC : DialogueNPC, IDataPersistence
 {
     [SerializeField] private Door _door;
 
@@ -19,7 +19,17 @@ public class DeliveryNPC : DialogueNPC
         }
     }
 
-    public bool hasDelivered = false;
+    public bool hasDelivered;
+
+    public void LoadData(GameData data)
+    {
+        hasDelivered = data.hasReceivedDelivery;
+    }
+    
+    public void SaveData(ref GameData data)
+    {
+        data.hasReceivedDelivery = hasDelivered;
+    }
 
     public override void Interact()
     {
