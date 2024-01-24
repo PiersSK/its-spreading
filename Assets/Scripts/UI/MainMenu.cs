@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Button newGame;
     [SerializeField] private Button settings;
+    [SerializeField] private Button exit;
 
     [SerializeField] private GameObject settingsObject;
 
@@ -25,6 +26,7 @@ public class MainMenu : MonoBehaviour
     {
         newGame.onClick.AddListener(StartGame);
         settings.onClick.AddListener(ToggleSettings);
+        exit.onClick.AddListener(() => { Application.Quit(); });
 
         leftOrigin = curtainLeft.anchoredPosition;
         rightOrigin = curtainRight.anchoredPosition;
