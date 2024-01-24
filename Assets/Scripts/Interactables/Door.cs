@@ -10,11 +10,22 @@ public class Door : Interactable
     [SerializeField] private AudioSource knockSource;
     [SerializeField] private AudioSource doorSource;
 
+    [Range(1,10)]
+    [SerializeField] private float distanceTillClose;
+
     private Animator doorAnimation;
     public bool isOpen = false;
 
     private const string OPENPROMPT = "Open Door";
     private const string CLOSEPROMPT = "Close Door";
+
+    private void Update()
+    {
+        if (Vector3.Distance(transform.position, Player.Instance.transform.position) > distanceTillClose && isOpen)
+        {
+            ToggleDoorOpenState();
+        }
+    }
 
     private void Start()
     {
@@ -24,12 +35,17 @@ public class Door : Interactable
 
     public override void Interact()
     {
+        ToggleDoorOpenState();
+    }
+
+    private void ToggleDoorOpenState()
+    {
         isOpen = !isOpen;
         doorAnimation.SetBool("isOpen", isOpen);
         promptText = isOpen ? CLOSEPROMPT : OPENPROMPT;
         doorSource.PlayOneShot(doorOpenSound);
 
-        if(isOpen)
+        if (isOpen)
         {
             knockSource.Pause();
             doorKnockAnim.Stop();
