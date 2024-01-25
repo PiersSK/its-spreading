@@ -6,6 +6,7 @@ using UnityEngine;
 public class TimeController : MonoBehaviour, IDataPersistence
 {
     public static TimeController Instance { get; private set; }
+    public event EventHandler<EventArgs> DayOver;
 
     private const float REALDAYLENGTHMINS = 1440f;
     private const float REALDAYLENGTHSECONDS = 86400f;
@@ -160,6 +161,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private void OnDayComplete()
     {
         daysComplete++;
+        DayOver?.Invoke(this, EventArgs.Empty);
     }
 
     public TimeSpan CurrentTime()
