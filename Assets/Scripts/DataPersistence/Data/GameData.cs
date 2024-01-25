@@ -18,6 +18,9 @@ public class GameData
     public bool hasNeighbourEventTriggered;
     public bool hasReceivedDelivery;
     public Vines.PlantState plantState;
+    public bool hasDarrenGossip;
+    public bool hasReadHorsepiracy;
+    public bool hasReadMillyPead;
     
     // default values for when the game starts with no data.
     public GameData()
@@ -33,5 +36,8 @@ public class GameData
         this.isSignedUpToDanceClass = false;
         this.hasNeighbourEventTriggered = false;
         this.hasReceivedDelivery = false;
+        this.hasDarrenGossip = false;
+        this.hasReadHorsepiracy = false;
+        this.hasReadMillyPead = false;
     }
 }

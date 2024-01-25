@@ -11,11 +11,17 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         this.completeEvents = data.completeEvents;
+        GossipSpreadingEvent.Instance.hasMetDarren = data.hasDarrenGossip;
+        GossipSpreadingEvent.Instance.hasReadHorsespiracy = data.hasReadHorsepiracy;
+        GossipSpreadingEvent.Instance.hasReadMillyPead = data.hasReadMillyPead;
     }
 
     public void SaveData(ref GameData data)
     {
         data.completeEvents = this.completeEvents;
+        data.hasDarrenGossip = GossipSpreadingEvent.Instance.hasMetDarren;
+        data.hasReadHorsepiracy = GossipSpreadingEvent.Instance.hasReadHorsespiracy;
+        data.hasReadMillyPead = GossipSpreadingEvent.Instance.hasReadMillyPead;
     }
 
 
