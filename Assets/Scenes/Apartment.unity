@@ -45246,7 +45246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 1481422445}
-  requiredItemName: 
+  requiredItemName: pamphlet
   pamphletObject: {fileID: 343858332}
 --- !u!1 &504310729
 GameObject:
