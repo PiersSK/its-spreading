@@ -7,16 +7,17 @@ public class ReligionSpreadingEvent : SpreadingEvent
 
     [SerializeField] private bool playerReceivedPamphlet = false;
     [SerializeField] private bool playerGavePamphlet = false;
+  
 
     private void Start()
     {
-        Player.Instance._inventory.OnInventoryChanged += CheckPamphletState;
+        Player.Instance.newInventory.OnInventoryChanged += CheckPamphletState;
     }
 
-    private void CheckPamphletState(object sender, Inventory.OnInventoryChangedEventArgs e)
+    private void CheckPamphletState(object sender, InventorySystem.OnInventoryChangedEventArgs e)
     {
-        if (!playerReceivedPamphlet && e.itemAdded == Inventory.InventoryItem.DarrenPamphlet) playerReceivedPamphlet = true;
-        if (playerReceivedPamphlet && !playerGavePamphlet && e.itemRemoved == Inventory.InventoryItem.DarrenPamphlet) playerGavePamphlet = true;
+        if (!playerReceivedPamphlet && e.itemAdded == requiredItemName) playerReceivedPamphlet = true;
+        if (playerReceivedPamphlet && !playerGavePamphlet && e.itemRemoved == requiredItemName) playerGavePamphlet = true;
     }
 
     protected override bool ShouldEventTrigger()
