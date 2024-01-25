@@ -15,7 +15,8 @@ public class Objective : MonoBehaviour
 
     [Header("Flare")]
     [SerializeField] private string completionThought;
-    
+    public string spreadingSubtitle;
+
     private const float TIMETILLTHOUGHT = 3f;
 
     public void CompleteObjective()
