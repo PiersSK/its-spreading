@@ -1,0 +1,47 @@
+{
+    "name": "Spreadwina",
+    "picture": "spreadward",
+    "responseClass": "SisResponse",
+    "conversations": [
+        {
+            "id": 0,
+            "dialogues": [
+                {
+                    "id": 0,
+                    "prompt": "Hey bro, thanks for calling",
+                    "responses": [
+                        {
+                            "text": "RESOLVE CONVERSATION",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "CloseWithSuccess"
+                        },
+                        {
+                            "text": "FAIL CONVERSATION",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "CloseDialogue"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "dialogues": [
+                {
+                    "id": 0,
+                    "prompt": "Hey bro, 2 calls in one day that's mad",
+                    "responses": [
+                        {
+                            "text": "I GOT YOU TICKETS I LOVE YOU",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "CloseWithSpread"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

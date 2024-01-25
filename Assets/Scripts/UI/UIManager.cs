@@ -24,12 +24,9 @@ public class UIManager : MonoBehaviour
         {
             PhoneUI.Instance.TogglePhone();
         }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            PhoneUI.Instance.AddNotification(PhoneApp.Messages, "Test");
-        }
 
         PhoneUI.Instance.UpdateNotificationIcon();
+        ThoughtBubble.Instance.UpdateThoughtQueue();
     }
 
     private void DeactivateAllUI()

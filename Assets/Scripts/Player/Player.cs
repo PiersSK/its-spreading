@@ -45,9 +45,11 @@ public class Player : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        _characterController.enabled = false;
-        this.transform.position = data.playerPosition;
-        _characterController.enabled = true;
+        //TODO: Re-enable but only if player has selected resume game
+
+        //_characterController.enabled = false;
+        //this.transform.position = data.playerPosition;
+        //_characterController.enabled = true;
     }
 
     public void SaveData(ref GameData data)
@@ -199,5 +201,12 @@ public class Player : MonoBehaviour, IDataPersistence
         isDancing = false;
         _animator.SetBool(ANIMDANCE, isDancing);
         CameraController.Instance.SetCameraZoom(9f, 0.2f);
+    }
+
+    public void ForcePlayerToPosition(Vector3 pos)
+    {
+        _characterController.enabled = false;
+        transform.position = pos;
+        _characterController.enabled = true;
     }
 }

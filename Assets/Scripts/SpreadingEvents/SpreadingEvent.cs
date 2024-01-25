@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpreadingEvent : MonoBehaviour
 {
+    public event EventHandler<EventArgs> SpreadEventComplete;
+
     [SerializeField] Objective _objective;
     [SerializeField] public string requiredItemName;
     protected bool eventComplete = false;
@@ -17,6 +20,7 @@ public class SpreadingEvent : MonoBehaviour
             _objective.CompleteObjective();
             ObjectiveController.Instance.ObjectivesComplete++;
             EventImpact();
+            SpreadEventComplete?.Invoke(this, EventArgs.Empty);
         }
     }
 
