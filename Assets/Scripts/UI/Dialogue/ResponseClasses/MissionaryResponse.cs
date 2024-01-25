@@ -8,13 +8,13 @@ public class MissionaryResponse : DialogueResponse
 
     public void LeaveWithCookies()
     {
-        Player.Instance._inventory.AddToInventory(Inventory.InventoryItem.Cookies);
+        Player.Instance.newInventory.AddItem("cookie");
         CloseDialogue();
     }
 
     public void LeaveWithPamphlet()
     {
-        Player.Instance._inventory.AddToInventory(Inventory.InventoryItem.DarrenPamphlet);
+        Player.Instance.newInventory.AddItem("pamphlet");
         CloseDialogue();
     }
 

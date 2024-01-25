@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vines : Interactable
 {
-    [SerializeField] private Inventory.InventoryItem requiredItem;
+    [SerializeField] private string requiredItem;
 
     [Range(0,120)]
     [SerializeField] private int coolDownInGameMins;
@@ -54,7 +54,7 @@ public class Vines : Interactable
                 onCooldown = false;
         }
 
-        if(promptText != WATERPROMPT && Player.Instance._inventory.IsItemInInventory(requiredItem))
+        if(promptText != WATERPROMPT && Player.Instance.newInventory.HasItem(requiredItem))
         {
             promptText = WATERPROMPT;
         }
@@ -62,7 +62,7 @@ public class Vines : Interactable
 
     public override void Interact()
     {
-        if (currentState == PlantState.Dead && !Player.Instance._inventory.IsItemInInventory(requiredItem))
+        if (currentState == PlantState.Dead && !Player.Instance.newInventory.HasItem(requiredItem))
         {
             ThoughtBubble.Instance.ShowThought(EXAMINETHOUGHT);
             hasExamined = true;
@@ -80,13 +80,18 @@ public class Vines : Interactable
         }
         _animator.SetInteger("plantGrowthIndex", (int)currentState);
 
+        if(currentState == PlantState.Overgrown)
+        {
+            Player.Instance.newInventory.RemoveItem(requiredItem);
+        }
+
         onCooldown = true;
         cooldownTimer = 0f;
     }
 
     public override bool CanInteract()
     {
-        return (Player.Instance._inventory.IsItemInInventory(requiredItem) || !hasExamined)
+        return (Player.Instance.newInventory.HasItem(requiredItem) || !hasExamined)
             && currentState != PlantState.Overgrown
             && !onCooldown;
     }

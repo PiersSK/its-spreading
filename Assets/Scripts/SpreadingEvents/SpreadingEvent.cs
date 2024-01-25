@@ -8,6 +8,7 @@ public class SpreadingEvent : MonoBehaviour
     public event EventHandler<EventArgs> SpreadEventComplete;
 
     [SerializeField] Objective _objective;
+    [SerializeField] public string requiredItemName;
     protected bool eventComplete = false;
 
     protected virtual void Update()
