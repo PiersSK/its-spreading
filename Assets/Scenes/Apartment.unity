@@ -2942,6 +2942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objective: {fileID: 171141748}
+  requiredItemName: 
   calledSis: 0
   bookedTickets: 0
   gaveTicketsToSis: 0
@@ -46212,7 +46213,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 423913261}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -48924,7 +48925,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1053015920}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -64582,7 +64583,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 859834961}
   m_HandleRect: {fileID: 859834960}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000002
   m_Size: 0.7549231
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -92845,7 +92846,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2491079435654995417, guid: 5b3a534e5c9f59446ad3f5ed7c1233fa, type: 3}
       propertyPath: eventHour
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2491079435654995417, guid: 5b3a534e5c9f59446ad3f5ed7c1233fa, type: 3}
       propertyPath: neighbour
@@ -92857,7 +92858,7 @@ PrefabInstance:
       objectReference: {fileID: 959279656}
     - target: {fileID: 2491079435654995417, guid: 5b3a534e5c9f59446ad3f5ed7c1233fa, type: 3}
       propertyPath: eventMinute
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2491079435654995417, guid: 5b3a534e5c9f59446ad3f5ed7c1233fa, type: 3}
       propertyPath: eventEndHour
