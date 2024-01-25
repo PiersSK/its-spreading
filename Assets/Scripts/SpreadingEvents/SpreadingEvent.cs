@@ -8,6 +8,7 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
     public event EventHandler<EventArgs> SpreadEventComplete;
 
     [SerializeField] Objective _objective;
+    [SerializeField] public string requiredItemName;
     protected bool eventComplete = false;
     public List<string> completeEvents = new();
 
@@ -54,7 +55,7 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
         if (ShouldEventTrigger() && !eventComplete)
         {
             eventComplete = true;
-            Confetti.Instance.ConfettiExplosion(_objective.spreadingVoiceLine);
+            Confetti.Instance.ConfettiExplosion(_objective.spreadingVoiceLine, _objective.spreadingSubtitle);
             _objective.CompleteObjective();
             ObjectiveController.Instance.ObjectivesComplete++;
             completeEvents.Add(_objective.gameObject.name);

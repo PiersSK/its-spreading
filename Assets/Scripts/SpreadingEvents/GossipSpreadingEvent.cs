@@ -13,8 +13,12 @@ public class GossipSpreadingEvent : SpreadingEvent
     public bool hasMetDarren = false;
     public bool hasReadHorsespiracy = false;
     public bool hasReadMillyPead = false;
+    private int gossipReactedTo = 0;
 
     public bool hasSpreadGossip = false;
+
+    private const string FIRSTTHOUGHT = "Hmm, juicy goss, wonder who I could tell about this.";
+    private const string SECONDTHOUGHT = "More juicy goss.";
 
     private void Awake()
     {
@@ -23,8 +27,32 @@ public class GossipSpreadingEvent : SpreadingEvent
 
     private void Start()
     {
-        horsespiracyButton.onClick.AddListener(() => { hasReadHorsespiracy = true; });
-        millyPeadButton.onClick.AddListener(() => { hasReadMillyPead = true; });
+        horsespiracyButton.onClick.AddListener(HasSeenHorsespiracy);
+        millyPeadButton.onClick.AddListener(HasSeenMillyPead);
+    }
+
+    private void HasSeenHorsespiracy()
+    {
+        hasReadHorsespiracy = true;
+        AcknowledgeGossip();
+        horsespiracyButton.onClick.RemoveListener(HasSeenHorsespiracy);
+    }
+
+    private void HasSeenMillyPead()
+    {
+        hasReadMillyPead = true;
+        AcknowledgeGossip();
+        millyPeadButton.onClick.RemoveListener(HasSeenMillyPead);
+    }
+
+    private void AcknowledgeGossip()
+    {
+        if (gossipReactedTo == 0)
+            ThoughtBubble.Instance.ShowThought(FIRSTTHOUGHT);
+        else if (gossipReactedTo == 1)
+            ThoughtBubble.Instance.ShowThought(SECONDTHOUGHT);
+
+        gossipReactedTo++;
     }
 
     protected override bool ShouldEventTrigger()

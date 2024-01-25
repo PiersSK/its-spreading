@@ -21,6 +21,8 @@ public class BookClassUI : MonoBehaviour
 
     [SerializeField] private DanceClassEvent danceClassEvent;
 
+    private const string BOOKINGTHOUGHT = "I've always wanted to try this since it became legal again, but it's so scary...";
+
     private void Start()
     {
        if(!danceClassEvent.playerSignedUp)
@@ -42,6 +44,8 @@ public class BookClassUI : MonoBehaviour
         danceClassEvent.playerSignedUp = true; 
 
         computerAudio.PlayOneShot(bookingConfirmed);
+
+        ThoughtBubble.Instance.ShowThought(BOOKINGTHOUGHT);
 
         GetComponent<Button>().interactable = false;
         GetComponent<Button>().onClick.RemoveAllListeners();

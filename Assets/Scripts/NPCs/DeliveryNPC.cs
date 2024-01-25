@@ -7,14 +7,15 @@ public class DeliveryNPC : DialogueNPC, IDataPersistence
     [SerializeField] private Door _door;
 
     private string objectToDeliverName;
-    public Inventory.InventoryItem objectToDeliver;
-    public Inventory.InventoryItem ObjectToDeliver
+
+    private string objectToDeliver;
+    public string ObjectToDeliver
     {
         get { return objectToDeliver; }
         set
         { 
             objectToDeliver = value;
-            objectToDeliverName = Player.Instance.GetComponent<Inventory>().GetItemName(value);
+            objectToDeliverName = Player.Instance.newInventory.availableItemDict[objectToDeliver].displayName;
             promptText = "Take " + objectToDeliverName;
         }
     }
@@ -44,7 +45,8 @@ public class DeliveryNPC : DialogueNPC, IDataPersistence
 
     public override void NPCCoreAction()
     {
-        Player.Instance._inventory.AddToInventory(objectToDeliver);
+        Debug.Log($"Given {objectToDeliverName}");
+        Player.Instance.newInventory.AddItem(objectToDeliver);
         hasDelivered = true;
     }
 }

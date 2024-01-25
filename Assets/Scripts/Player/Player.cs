@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 public class Player : MonoBehaviour, IDataPersistence
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public Controls.PlayerActions controlActions;
 
     private PlayerInteract _playerInteract;
-    public Inventory _inventory;
+    public InventorySystem newInventory;
 
     public bool isUnengaged = true;
     private bool isMoving = false;
@@ -65,13 +66,14 @@ public class Player : MonoBehaviour, IDataPersistence
 
         _characterController = GetComponent<CharacterController>();
         _playerInteract = GetComponent<PlayerInteract>();
-        _inventory = GetComponent<Inventory>();
+        newInventory = GetComponent<InventorySystem>();
         _animator = GetComponent<Animator>();
 
         controlActions.Interact.performed += ctx => Interact();
         controlActions.ToggleInteract.performed += ctx => ToggleInteract();
         controlActions.Emote1.performed += ctx => Wave();
         controlActions.Emote2.performed += ctx => Dance();
+        controlActions.Inventory.performed += ctx => InventoryUI.ToggleInventoryUI();
     }
 
     private void Update()

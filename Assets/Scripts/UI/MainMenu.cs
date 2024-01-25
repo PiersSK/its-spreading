@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour
         } else if (!curtainPulled)
         {
             curtainSlider.gameObject.SetActive(false);
-            Confetti.Instance.ConfettiExplosion(spreadingVoice, false);
+            Confetti.Instance.ConfettiExplosion(spreadingVoice, string.Empty, false);
             curtainPulled = true;
         }
     }

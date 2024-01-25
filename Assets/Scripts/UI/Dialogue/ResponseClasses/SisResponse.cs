@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class SisResponse : DialogueResponse
 {
+    private const string FIRSTTHOUGHT = "Those tickets sounded important to her, she shouldn't miss out.";
     public void CloseWithSuccess()
     {
         LoveSpreadingEvent.Instance.calledSis = true;
         LoveSpreadingEvent.Instance.calledSisNoSuccess = false;
         Player.Instance.TogglePlayerIsEngaged();
         CloseDialogue();
+        ThoughtBubble.Instance.ShowThought(FIRSTTHOUGHT);
     }
 
     public void CloseWithSpread()
