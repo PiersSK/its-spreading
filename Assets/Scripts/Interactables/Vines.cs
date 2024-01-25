@@ -11,6 +11,8 @@ public class Vines : Interactable
     private float cooldownTimer = 0f;
     private bool onCooldown;
 
+    private bool hasExamined = false;
+
     [SerializeField] private ParticleSystem sparkle;
     [SerializeField] private AudioClip sparkleSound;
 
@@ -29,10 +31,18 @@ public class Vines : Interactable
 
     private Animator _animator;
     private AudioSource _audioSource;
+
+    private const string EXAMINEPROMPT = "Examine";
+    private const string WATERPROMPT = "Try Super Plant Formula";
+
+    private const string EXAMINETHOUGHT = "These vines used to be spread all over the bathroom, now look at them...";
+    private const string FIRSTWATERTHOUGHT = "Well, I'll give you some more in a while, hang in there.";
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        promptText = EXAMINEPROMPT;
     }
 
     private void Update()
@@ -43,15 +53,31 @@ public class Vines : Interactable
             if(cooldownTimer >= TimeController.Instance.InGameMinsToRealSeconds(coolDownInGameMins))
                 onCooldown = false;
         }
+
+        if(promptText != WATERPROMPT && Player.Instance._inventory.IsItemInInventory(requiredItem))
+        {
+            promptText = WATERPROMPT;
+        }
     }
 
     public override void Interact()
     {
+        if (currentState == PlantState.Dead && !Player.Instance._inventory.IsItemInInventory(requiredItem))
+        {
+            ThoughtBubble.Instance.ShowThought(EXAMINETHOUGHT);
+            hasExamined = true;
+            promptText = WATERPROMPT;
+            return;
+        }
+
         sparkle.Play();
         _audioSource.PlayOneShot(sparkleSound);
         currentState++;
         if (currentState == PlantState.Alive)
+        {
             foreach (Renderer renderer in startingLeaves) renderer.material = aliveMaterial;
+            ThoughtBubble.Instance.ShowThought(FIRSTWATERTHOUGHT);
+        }
         _animator.SetInteger("plantGrowthIndex", (int)currentState);
 
         onCooldown = true;
@@ -60,7 +86,7 @@ public class Vines : Interactable
 
     public override bool CanInteract()
     {
-        return Player.Instance._inventory.IsItemInInventory(requiredItem)
+        return (Player.Instance._inventory.IsItemInInventory(requiredItem) || !hasExamined)
             && currentState != PlantState.Overgrown
             && !onCooldown;
     }

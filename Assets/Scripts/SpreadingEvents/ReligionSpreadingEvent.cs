@@ -5,9 +5,10 @@ using UnityEngine;
 public class ReligionSpreadingEvent : SpreadingEvent
 {
 
-    [SerializeField] private bool playerReceivedPamphlet = false;
-    [SerializeField] private bool playerGavePamphlet = false;
+    [SerializeField] private GameObject pamphletObject;
 
+    private bool playerReceivedPamphlet = false;
+    private bool playerGavePamphlet = false;
     private bool hasReadPamphlet = false;
 
     private const float TIMETILLREAD = 10f;
@@ -19,13 +20,21 @@ public class ReligionSpreadingEvent : SpreadingEvent
         if(!hasReadPamphlet && playerReceivedPamphlet)
         {
             hasReadPamphlet = true;
-            Invoke(nameof(ReadPamhplet), TIMETILLREAD);
+            Invoke(nameof(ReadPamphlet), TIMETILLREAD);
         }
     }
 
-    private void ReadPamhplet()
+    private void ReadPamphlet()
     {
+        TogglePamplet();
         ThoughtBubble.Instance.ShowThought(READINGREACTION);
+        Invoke(nameof(TogglePamplet), 4f);
+    }
+
+    private void TogglePamplet()
+    {
+        Player.Instance._animator.SetBool("readingBook", !pamphletObject.activeSelf);
+        pamphletObject.SetActive(!pamphletObject.activeSelf);
     }
 
     private void Start()
