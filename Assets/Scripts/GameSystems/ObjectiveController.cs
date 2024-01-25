@@ -11,7 +11,7 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
     [SerializeField] private TextMeshProUGUI historicStatDisplay;
     [SerializeField] private int totalObjectives = 10;
 
-    private int objectivesComplete = 0;
+    public static int objectivesComplete = 0;
     private int objectivesCompleteAllTime = 0;
 
     private const string HISTSTATPREFIX = "Total spreads found ever: ";
