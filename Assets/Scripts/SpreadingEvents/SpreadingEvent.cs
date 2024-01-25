@@ -16,7 +16,7 @@ public class SpreadingEvent : MonoBehaviour
         if (ShouldEventTrigger() && !eventComplete)
         {
             eventComplete = true;
-            Confetti.Instance.ConfettiExplosion(_objective.spreadingVoiceLine);
+            Confetti.Instance.ConfettiExplosion(_objective.spreadingVoiceLine, _objective.spreadingSubtitle);
             _objective.CompleteObjective();
             ObjectiveController.Instance.ObjectivesComplete++;
             EventImpact();

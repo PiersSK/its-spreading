@@ -34,9 +34,9 @@ public class Confetti : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void ConfettiExplosion(AudioClip spreadingVoice, bool showUISplash = true)
+    public void ConfettiExplosion(AudioClip spreadingVoice, string subtitle, bool showUISplash = true)
     {
-        if(showUISplash) ConfettiUI.Instance.ShowItsSpreading();
+        if(showUISplash) ConfettiUI.Instance.ShowItsSpreading(subtitle);
         audioSource.PlayOneShot(spreadingVoice);
         audioSource.PlayOneShot(partyBlowerSound);
 
