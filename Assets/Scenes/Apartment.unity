@@ -16091,8 +16091,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 409374897}
   m_HandleRect: {fileID: 409374896}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -26970,6 +26970,7 @@ Transform:
   - {fileID: 1762738772}
   - {fileID: 991221492}
   - {fileID: 991935798}
+  - {fileID: 465499131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &307569290
@@ -28168,7 +28169,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 649579025}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28451,8 +28452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc09c7d7b61d4139a2b8b31222f0f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeHours: 8
-  realtimeDayLengthMins: 20
+  startTimeHours: 17
+  realtimeDayLengthMins: 5
   clockUI: {fileID: 1225046512}
   sunPivot: {fileID: 105033155}
   sun: {fileID: 1709949431}
@@ -43070,6 +43071,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1808558502}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &465499130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 465499131}
+  - component: {fileID: 465499132}
+  m_Layer: 0
+  m_Name: TV Broadcast On
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &465499131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465499130}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 306180224}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &465499132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465499130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50bea5ad90e88c945a22edbd617d0135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventHour: 18
+  eventMinute: 0
+  hasBeenTriggered: 0
+  eventEndHour: 18
+  eventEndMinute: 30
+  eventHasEnded: 0
+  tvLight: {fileID: 705507994}
+  originalColour: {r: 0.5137255, g: 0.9607843, b: 1, a: 1}
 --- !u!1 &465975644
 GameObject:
   m_ObjectHideFlags: 0
@@ -65581,7 +65634,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 859834960}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.7549231
+  m_Size: 0.75492305
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -117998,7 +118051,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2132392075}
   m_Direction: 2
   m_Value: 0.9999996
-  m_Size: 0.69882065
+  m_Size: 0.6988206
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
