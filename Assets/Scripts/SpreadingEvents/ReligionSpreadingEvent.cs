@@ -8,6 +8,26 @@ public class ReligionSpreadingEvent : SpreadingEvent
     [SerializeField] private bool playerReceivedPamphlet = false;
     [SerializeField] private bool playerGavePamphlet = false;
 
+    private bool hasReadPamphlet = false;
+
+    private const float TIMETILLREAD = 10f;
+    private const string READINGREACTION = "This book is interesting, Magic Darren is quite impressive. Maybe I should tell someone else.";
+
+    protected override void Update()
+    {
+        base.Update();
+        if(!hasReadPamphlet && playerReceivedPamphlet)
+        {
+            hasReadPamphlet = true;
+            Invoke(nameof(ReadPamhplet), TIMETILLREAD);
+        }
+    }
+
+    private void ReadPamhplet()
+    {
+        ThoughtBubble.Instance.ShowThought(READINGREACTION);
+    }
+
     private void Start()
     {
         Player.Instance._inventory.OnInventoryChanged += CheckPamphletState;
