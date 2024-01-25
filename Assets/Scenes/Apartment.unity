@@ -5266,6 +5266,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 1295035597}
   completedIcon: {fileID: 21300000, guid: 65884802fd58442daa66994fa8768c49, type: 3}
+  completionThought: ACK
 --- !u!1 &86086865
 GameObject:
   m_ObjectHideFlags: 0
@@ -14904,6 +14905,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 1632270904}
   completedIcon: {fileID: 21300000, guid: f9e23c48613a743308796e02841bb459, type: 3}
+  completionThought: I'm glad she liked it.
 --- !u!1 &172979506
 GameObject:
   m_ObjectHideFlags: 0
@@ -61320,16 +61322,16 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1466152697}
-  - {fileID: 1003411236}
-  - {fileID: 1481422444}
-  - {fileID: 856644746}
-  - {fileID: 1605863605}
-  - {fileID: 940208239}
   - {fileID: 1031922667}
   - {fileID: 1236613997}
-  - {fileID: 1043301717}
+  - {fileID: 1605863605}
+  - {fileID: 1481422444}
+  - {fileID: 940208239}
+  - {fileID: 856644746}
+  - {fileID: 1466152697}
   - {fileID: 84467325}
+  - {fileID: 1043301717}
+  - {fileID: 1003411236}
   - {fileID: 171141747}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -62281,6 +62283,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 0fc8beb77dcc7f549be9a44dfec924de, type: 3}
   objectiveUI: {fileID: 1222697719}
   completedIcon: {fileID: 21300000, guid: 8727708fd7c2b47fa9d82882404eb251, type: 3}
+  completionThought: So much room for activities.
 --- !u!1 &858861197
 GameObject:
   m_ObjectHideFlags: 0
@@ -66483,6 +66486,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 245929868}
   completedIcon: {fileID: 21300000, guid: 46b02cb5696ef498eb5c6834cac1ff8b, type: 3}
+  completionThought: I'm literally so good at plants.
 --- !u!1 &940428435
 GameObject:
   m_ObjectHideFlags: 0
@@ -75077,6 +75081,8 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 1478654925}
   completedIcon: {fileID: 21300000, guid: b803b6089100641cfb9c4264ca5d0a56, type: 3}
+  completionThought: I'm going to dance any time I want (by pressing 2, whatever
+    that means).
 --- !u!1 &1004116226
 GameObject:
   m_ObjectHideFlags: 0
@@ -76354,6 +76360,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 1961758193}
   completedIcon: {fileID: 21300000, guid: fedf6e4aa4697425d8e6354868c8c0f2, type: 3}
+  completionThought: I should spread something else, just to check.
 --- !u!1 &1037496519
 GameObject:
   m_ObjectHideFlags: 0
@@ -76865,6 +76872,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 2057555094}
   completedIcon: {fileID: 21300000, guid: b27e2bc0b14d940d2bf4de786988e60a, type: 3}
+  completionThought: I wonder if that was true. Ah well.
 --- !u!1 &1044939132
 GameObject:
   m_ObjectHideFlags: 0
@@ -86530,6 +86538,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 1051777398}
   completedIcon: {fileID: 21300000, guid: 0c1aa4900e8d74c99a15811005fc8c58, type: 3}
+  completionThought: I'm sure this'll blow over soon.
 --- !u!1 &1241277951
 GameObject:
   m_ObjectHideFlags: 0
@@ -103745,6 +103754,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 1779118389}
   completedIcon: {fileID: 21300000, guid: 49570d37cf0244c73835b6813bbbd625, type: 3}
+  completionThought: Must be a fan, I never knew.
 --- !u!1 &1467042602
 GameObject:
   m_ObjectHideFlags: 0
@@ -104629,6 +104639,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 1177957474}
   completedIcon: {fileID: 21300000, guid: 26a0a531eeeaf45fdb4c0683c3115504, type: 3}
+  completionThought: I can't remember the last 2 hours.
 --- !u!1 &1481835117
 GameObject:
   m_ObjectHideFlags: 0
@@ -112027,6 +112038,7 @@ MonoBehaviour:
   spreadingVoiceLine: {fileID: 8300000, guid: 57c15ad55e0fa644a8f189408cc9b082, type: 3}
   objectiveUI: {fileID: 218231632}
   completedIcon: {fileID: 21300000, guid: 3a7bd4358af024cd59e13b53fceebd31, type: 3}
+  completionThought: My soul feels lighter now.
 --- !u!1 &1605931426
 GameObject:
   m_ObjectHideFlags: 0

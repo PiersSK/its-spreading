@@ -11,14 +11,25 @@ public class Objective : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private Image objectiveUI;
-    //[SerializeField] private Sprite silhouetteIcon;
     [SerializeField] private Sprite completedIcon;
+
+    [Header("Flare")]
+    [SerializeField] private string completionThought;
+    
+    private const float TIMETILLTHOUGHT = 3f;
 
     public void CompleteObjective()
     {
         objectiveUI.sprite = completedIcon;
         objectiveUI.color = Color.white;
         isComplete = true;
+        if(completionThought != string.Empty) 
+            Invoke(nameof(FollowUpThought), TIMETILLTHOUGHT);
+    }
+
+    private void FollowUpThought()
+    {
+        ThoughtBubble.Instance.ShowThought(completionThought);
     }
 
 }
