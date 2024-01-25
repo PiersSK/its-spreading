@@ -40,6 +40,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private const string ANIMINTERRUPT = "interruptIdle";
 
     public bool playerHasLearnedToDance = false;
+    public bool playerBelievesInDarren = false;
 
     public Room currentRoom;
 
