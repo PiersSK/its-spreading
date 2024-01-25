@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ReligionPamphlet
   m_EditorClassIdentifier: 
   id: pamphlet
-  displayName: Religion Pamphlet
+  displayName: Pamphlet
   icon: {fileID: 21300000, guid: 26a0a531eeeaf45fdb4c0683c3115504, type: 3}
   prefab: {fileID: 0}
