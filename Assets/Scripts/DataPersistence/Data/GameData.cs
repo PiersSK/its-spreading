@@ -21,6 +21,8 @@ public class GameData
     public bool hasDarrenGossip;
     public bool hasReadHorsepiracy;
     public bool hasReadMillyPead;
+
+    public List<string> roomsWithConfetti;
     
     // default values for when the game starts with no data.
     public GameData()
@@ -39,5 +41,6 @@ public class GameData
         this.hasDarrenGossip = false;
         this.hasReadHorsepiracy = false;
         this.hasReadMillyPead = false;
+        roomsWithConfetti = new();
     }
 }

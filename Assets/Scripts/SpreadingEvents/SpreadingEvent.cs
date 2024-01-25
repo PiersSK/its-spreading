@@ -6,7 +6,9 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
 {
     [SerializeField] Objective _objective;
     protected bool eventComplete = false;
-    public List<string> completeEvents = new List<string>();
+    public List<string> completeEvents = new();
+
+    public List<string> roomsWithConfetti = new();
 
     public void LoadData(GameData data)
     {
@@ -14,6 +16,8 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
         GossipSpreadingEvent.Instance.hasMetDarren = data.hasDarrenGossip;
         GossipSpreadingEvent.Instance.hasReadHorsespiracy = data.hasReadHorsepiracy;
         GossipSpreadingEvent.Instance.hasReadMillyPead = data.hasReadMillyPead;
+        roomsWithConfetti = data.roomsWithConfetti;
+
     }
 
     public void SaveData(ref GameData data)
@@ -22,6 +26,7 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
         data.hasDarrenGossip = GossipSpreadingEvent.Instance.hasMetDarren;
         data.hasReadHorsepiracy = GossipSpreadingEvent.Instance.hasReadHorsespiracy;
         data.hasReadMillyPead = GossipSpreadingEvent.Instance.hasReadMillyPead;
+        data.roomsWithConfetti = roomsWithConfetti;
     }
 
 
