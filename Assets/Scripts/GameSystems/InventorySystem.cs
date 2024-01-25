@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using static Inventory;
 
-public class InventorySystem : MonoBehaviour
+public class InventorySystem : MonoBehaviour, IDataPersistence
 {
     [SerializeField] public List<InventoryItemData> availableItems;
     public Dictionary<string, InventoryItemData> availableItemDict { get;  private set; }
@@ -13,19 +13,31 @@ public class InventorySystem : MonoBehaviour
     public Dictionary<string, InventoryItemData> inventory { get; private set; }
 
     public event EventHandler<OnInventoryChangedEventArgs> OnInventoryChanged;
+
+    public List<string> invIds = new();
     public class OnInventoryChangedEventArgs : EventArgs
     {
         public string itemAdded;
         public string itemRemoved;
     }
 
+    public void LoadData (GameData data)
+    {
+        foreach(string item in data.inventory)
+        {
+            AddItem(item);
+        }
+        
+    }
+
+    public void SaveData (ref GameData data)
+    {
+        data.inventory = invIds;
+    }
+
     public void Awake()
     {
         availableItemDict = availableItems.ToDictionary(x => x.id, x => x);
-        foreach (string item in availableItemDict.Keys)
-        {
-            Debug.Log($"available item contains: {item}");
-        }
         inventory = new Dictionary<string, InventoryItemData>();
     }
 
@@ -34,7 +46,7 @@ public class InventorySystem : MonoBehaviour
         if (!inventory.ContainsValue(availableItemDict[itemName]))
         {
             inventory.Add(itemName, availableItemDict[itemName]);
-            Debug.Log($"{itemName} added to inventory");
+            invIds.Add(itemName);
             if (OnInventoryChanged != null) OnInventoryChanged.Invoke(this, new OnInventoryChangedEventArgs() { itemAdded = itemName, itemRemoved = ""});
         }
     }
@@ -55,11 +67,6 @@ public class InventorySystem : MonoBehaviour
     
     public bool HasItem(string itemName)
     {
-        foreach(string item in inventory.Keys)
-        {
-            Debug.Log($"{item} in inventory");
-        }
-        Debug.Log($"Items in inventory: {inventory.Keys}");
         return inventory.ContainsKey(itemName);
     }
 

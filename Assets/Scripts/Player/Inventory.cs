@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour, IDataPersistence
+public class Inventory : MonoBehaviour
 {
     public event EventHandler<OnInventoryChangedEventArgs> OnInventoryChanged;
     public class OnInventoryChangedEventArgs: EventArgs
@@ -28,16 +28,6 @@ public class Inventory : MonoBehaviour, IDataPersistence
     };
 
     [SerializeField] private List<InventoryItem> inventory = new();
-
-    public void LoadData(GameData data)
-    {
-        inventory = data.inventory;
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        data.inventory = inventory;
-    }
 
     public void AddToInventory(InventoryItem item)
     {

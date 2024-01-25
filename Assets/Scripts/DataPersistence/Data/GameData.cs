@@ -14,7 +14,7 @@ public class GameData
     public int currentMinute;
     public bool fireStarted;
     public bool isSignedUpToDanceClass;
-    public List<Inventory.InventoryItem> inventory;
+    public List<string> inventory;
     public bool hasNeighbourEventTriggered;
     public bool hasReceivedDelivery;
     public Vines.PlantState plantState;
@@ -50,5 +50,6 @@ public class GameData
         bookedTickets = false;
         gaveTicketsToSis = false;
         calledSisNoSuccess = false;
+        inventory = new();
     }
 }
