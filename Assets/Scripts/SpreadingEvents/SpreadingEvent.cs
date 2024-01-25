@@ -20,7 +20,10 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
         GossipSpreadingEvent.Instance.hasReadHorsespiracy = data.hasReadHorsepiracy;
         GossipSpreadingEvent.Instance.hasReadMillyPead = data.hasReadMillyPead;
         roomsWithConfetti = data.roomsWithConfetti;
-
+        LoveSpreadingEvent.Instance.calledSis = data.calledSis;
+        LoveSpreadingEvent.Instance.bookedTickets = data.bookedTickets;
+        LoveSpreadingEvent.Instance.gaveTicketsToSis = data.gaveTicketsToSis;
+        LoveSpreadingEvent.Instance.calledSisNoSuccess = data.calledSisNoSuccess;
     }
 
     public void SaveData(ref GameData data)
@@ -30,6 +33,10 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
         data.hasReadHorsepiracy = GossipSpreadingEvent.Instance.hasReadHorsespiracy;
         data.hasReadMillyPead = GossipSpreadingEvent.Instance.hasReadMillyPead;
         data.roomsWithConfetti = roomsWithConfetti;
+        data.calledSis = LoveSpreadingEvent.Instance.calledSis;
+        data.bookedTickets = LoveSpreadingEvent.Instance.bookedTickets;
+        data.gaveTicketsToSis = LoveSpreadingEvent.Instance.gaveTicketsToSis;
+        data.calledSisNoSuccess = LoveSpreadingEvent.Instance.calledSisNoSuccess;
     }
 
 

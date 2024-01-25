@@ -14,11 +14,7 @@ public class ConfettiSpreadingEvent : SpreadingEvent
     private int confettiRooms;
     private void Start()
     {
-    }
-
-    private void Start()
-    {
-        ThoughtBubble.Instance.ThoughtBubbleDisplayed += StartConffettiCountdown;
+         ThoughtBubble.Instance.ThoughtBubbleDisplayed += StartConffettiCountdown;
     }
 
     private void StartConffettiCountdown(object sender, ThoughtBubble.ThoughBubbleDisplayedEventArgs e)
