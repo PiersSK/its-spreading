@@ -17,6 +17,7 @@ public class GameData
     public List<Inventory.InventoryItem> inventory;
     public bool hasNeighbourEventTriggered;
     public bool hasReceivedDelivery;
+    public Vines.PlantState plantState;
     
     // default values for when the game starts with no data.
     public GameData()

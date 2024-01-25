@@ -21,15 +21,6 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
 
     protected virtual void Update()
     {
-        if (ShouldEventTrigger() && !eventComplete)
-        {
-            eventComplete = true;
-            Confetti.Instance.ConfettiExplosion(_objective.spreadingVoiceLine);
-            _objective.CompleteObjective();
-            ObjectiveController.Instance.ObjectivesComplete++;
-            completeEvents.Add(_objective.gameObject.name);
-            EventImpact();
-        }
         foreach(string name  in completeEvents)
         {
             if(_objective.gameObject.name == name)
@@ -39,6 +30,16 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
                 EventImpact();
             }
         }
+        if (ShouldEventTrigger() && !eventComplete)
+        {
+            eventComplete = true;
+            Confetti.Instance.ConfettiExplosion(_objective.spreadingVoiceLine);
+            _objective.CompleteObjective();
+            ObjectiveController.Instance.ObjectivesComplete++;
+            completeEvents.Add(_objective.gameObject.name);
+            EventImpact();
+        }
+
 
     }
 
