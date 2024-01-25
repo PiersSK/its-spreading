@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b977f4c792d1775488d65c75fc5352dc, type: 3}
   m_Name: PlantGrowth
   m_EditorClassIdentifier: 
-  id: inventoryItem_PlantGrowth
+  id: plantGrowth
   displayName: Plant Growth
   icon: {fileID: 21300000, guid: 46b02cb5696ef498eb5c6834cac1ff8b, type: 3}
   prefab: {fileID: 0}

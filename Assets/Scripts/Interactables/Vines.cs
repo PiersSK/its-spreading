@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vines : Interactable
 {
-    [SerializeField] private InventoryItemData requiredItem;
+    [SerializeField] private string requiredItem;
 
     [Range(0,120)]
     [SerializeField] private int coolDownInGameMins;
@@ -54,13 +54,18 @@ public class Vines : Interactable
             foreach (Renderer renderer in startingLeaves) renderer.material = aliveMaterial;
         _animator.SetInteger("plantGrowthIndex", (int)currentState);
 
+        if(currentState == PlantState.Overgrown)
+        {
+            Player.Instance.newInventory.RemoveItem(requiredItem);
+        }
+
         onCooldown = true;
         cooldownTimer = 0f;
     }
 
     public override bool CanInteract()
     {
-        return Player.Instance.GetComponent<InventorySystem>().HasItem(requiredItem)
+        return Player.Instance.newInventory.HasItem(requiredItem)
             && currentState != PlantState.Overgrown
             && !onCooldown;
     }

@@ -8,14 +8,14 @@ public class DeliveryNPC : DialogueNPC
 
     private string objectToDeliverName;
 
-    private InventoryItemData objectToDeliver;
-    public InventoryItemData ObjectToDeliver
+    private string objectToDeliver;
+    public string ObjectToDeliver
     {
         get { return objectToDeliver; }
         set
         { 
             objectToDeliver = value;
-            objectToDeliverName = objectToDeliver.displayName;
+            objectToDeliverName = Player.Instance.newInventory.availableItemDict[objectToDeliver].displayName;
             promptText = "Take " + objectToDeliverName;
         }
     }
@@ -25,7 +25,6 @@ public class DeliveryNPC : DialogueNPC
     public override void Interact()
     {
         base.Interact();
-        Player.Instance.GetComponent<InventorySystem>().AddItem(objectToDeliver);
         GetComponent<Animator>().SetTrigger("handOver");
     }
 
@@ -36,6 +35,7 @@ public class DeliveryNPC : DialogueNPC
 
     public override void NPCCoreAction()
     {
+        Debug.Log($"Given {objectToDeliverName}");
         Player.Instance.newInventory.AddItem(objectToDeliver);
         hasDelivered = true;
     }

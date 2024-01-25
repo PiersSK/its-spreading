@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b977f4c792d1775488d65c75fc5352dc, type: 3}
-  m_Name: ReligionPamphlet
+  m_Name: Cookie
   m_EditorClassIdentifier: 
-  id: pamphlet
-  displayName: Religion Pamphlet
-  icon: {fileID: 21300000, guid: 26a0a531eeeaf45fdb4c0683c3115504, type: 3}
+  id: cookie
+  displayName: Cookie
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   prefab: {fileID: 0}

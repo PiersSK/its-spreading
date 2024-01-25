@@ -5,18 +5,16 @@ using UnityEngine;
 public class MissionaryResponse : DialogueResponse
 {
     public MissionaryResponse() { }
-    [SerializeField] private InventoryItemData cookies;
-    [SerializeField] private InventoryItemData darrenPamphlet;
 
     public void LeaveWithCookies()
     {
-        Player.Instance.newInventory.AddItem(cookies);
+        Player.Instance.newInventory.AddItem("cookie");
         CloseDialogue();
     }
 
     public void LeaveWithPamphlet()
     {
-        Player.Instance.newInventory.AddItem(darrenPamphlet);
+        Player.Instance.newInventory.AddItem("pamphlet");
         CloseDialogue();
     }
 

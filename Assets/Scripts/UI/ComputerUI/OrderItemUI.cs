@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class OrderItemUI : MonoBehaviour
 {
 
-    [SerializeField] private InventoryItemData objectBeingPurchased;
+    [SerializeField] private string objectBeingPurchased;
     [SerializeField] private AudioClip purchaseConfirmSound;
 
 

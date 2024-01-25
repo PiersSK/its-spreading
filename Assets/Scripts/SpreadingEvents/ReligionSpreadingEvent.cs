@@ -16,8 +16,8 @@ public class ReligionSpreadingEvent : SpreadingEvent
 
     private void CheckPamphletState(object sender, InventorySystem.OnInventoryChangedEventArgs e)
     {
-        if (!playerReceivedPamphlet && e.itemAdded == requiredItem) playerReceivedPamphlet = true;
-        if (playerReceivedPamphlet && !playerGavePamphlet && e.itemRemoved == requiredItem) playerGavePamphlet = true;
+        if (!playerReceivedPamphlet && e.itemAdded == requiredItemName) playerReceivedPamphlet = true;
+        if (playerReceivedPamphlet && !playerGavePamphlet && e.itemRemoved == requiredItemName) playerGavePamphlet = true;
     }
 
     protected override bool ShouldEventTrigger()
