@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpreadingEvent : MonoBehaviour, IDataPersistence
 {
+    public event EventHandler<EventArgs> SpreadEventComplete;
+
     [SerializeField] Objective _objective;
     protected bool eventComplete = false;
     public List<string> completeEvents = new();
@@ -49,6 +52,7 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
             ObjectiveController.Instance.ObjectivesComplete++;
             completeEvents.Add(_objective.gameObject.name);
             EventImpact();
+            SpreadEventComplete?.Invoke(this, EventArgs.Empty);
         }
 
 

@@ -16,6 +16,19 @@ public class ConfettiSpreadingEvent : SpreadingEvent
     {
     }
 
+    private void Start()
+    {
+        ThoughtBubble.Instance.ThoughtBubbleDisplayed += StartConffettiCountdown;
+    }
+
+    private void StartConffettiCountdown(object sender, ThoughtBubble.ThoughBubbleDisplayedEventArgs e)
+    {
+        if (e.thoughtText == CONFETTITHOUGHT)
+        {
+            Invoke(nameof(SetTriggerEvent), 3f);
+        }
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -35,8 +48,7 @@ public class ConfettiSpreadingEvent : SpreadingEvent
             if(confettiRooms == rooms.Count && !eventComplete)
             {
                 requirementMet = true;
-                ThoughtBubble.Instance.ShowThought(CONFETTITHOUGHT);
-                Invoke(nameof(SetTriggerEvent), 5f);
+                ThoughtBubble.Instance.ShowThought(CONFETTITHOUGHT, 3f);
             }
         }
     }

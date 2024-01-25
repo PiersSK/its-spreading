@@ -6,6 +6,7 @@ using UnityEngine;
 public class TimeController : MonoBehaviour, IDataPersistence
 {
     public static TimeController Instance { get; private set; }
+    public event EventHandler<EventArgs> DayOver;
 
     private const float REALDAYLENGTHMINS = 1440f;
     private const float REALDAYLENGTHSECONDS = 86400f;
@@ -45,6 +46,14 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private int currentMinute;
 
     private bool isTimeSet = false;
+    private bool timeIsPaused = false;
+
+    private void Awake()
+    {
+        Instance = this;
+        timeMultiplier = REALDAYLENGTHMINS / realtimeDayLengthMins;
+        time = startTimeHours * REALHOURLENGTHSECONDS;
+    }
 
     public void LoadData(GameData data)
     {
@@ -61,14 +70,6 @@ public class TimeController : MonoBehaviour, IDataPersistence
         data.currentMinute = currentMinute;
         data.daysComplete = daysComplete;
     }
-
-    private void Awake()
-    {
-        Instance = this;
-
-        timeMultiplier = REALDAYLENGTHMINS / realtimeDayLengthMins;
-    }
-
     private void Update()
     {
         if(!isTimeSet)
@@ -79,6 +80,8 @@ public class TimeController : MonoBehaviour, IDataPersistence
         }
 
         // Update Time
+        if (timeIsPaused) return;
+
         time += Time.deltaTime * timeMultiplier * tempMultiplier;
         if (time > REALDAYLENGTHSECONDS)
         {
@@ -182,6 +185,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     {
         daysComplete++;
         completeEvents.Clear();
+        DayOver?.Invoke(this, EventArgs.Empty);
     }
 
     public TimeSpan CurrentTime()
@@ -217,5 +221,10 @@ public class TimeController : MonoBehaviour, IDataPersistence
     {
         int minutes = ts.Minutes;
         return minutes;
+    }
+    
+    public void ToggleTimePause()
+    {
+        timeIsPaused = !timeIsPaused;
     }
 }

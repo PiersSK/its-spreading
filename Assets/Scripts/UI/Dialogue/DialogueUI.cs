@@ -49,7 +49,7 @@ public class DialogueUI : MonoBehaviour
         npcName.text = loadedNPCDialogue.name;
 
         currentConversationIndex = conversationIndex;
-        LoadCurrentConversationIndex(conversationIndex);
+        LoadCurrentConversationIndex(0);
     }
 
     public void LoadCurrentConversationIndex(int index)

@@ -11,5 +11,6 @@ public class DialogueResponse
     public virtual void CloseDialogue()
     {
         DialogueUI.Instance.gameObject.SetActive(false);
+        TimeController.Instance.ToggleTimePause();
     }
 }

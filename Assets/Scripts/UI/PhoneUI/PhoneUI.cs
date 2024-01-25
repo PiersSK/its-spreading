@@ -16,7 +16,8 @@ public class PhoneUI : MonoBehaviour
         Spreadshop,
         Spreadipedia,
         TVGuide,
-        Bedheads
+        Bedheads,
+        NeverTooLate
     }
 
     [SerializeField] private AudioClip notificationSound;
@@ -105,7 +106,7 @@ public class PhoneUI : MonoBehaviour
         notificationContent.sizeDelta = new Vector2(notificationContent.sizeDelta.x, contentMax);
     }
 
-    public void AddNotification(PhoneApp app, string message)
+    public Notification AddNotification(PhoneApp app, string message)
     {
         Notification notification = Instantiate(notificationPrefab, notificationContent).GetComponent<Notification>();
         notification.appsource = app;
@@ -116,6 +117,7 @@ public class PhoneUI : MonoBehaviour
         notifications.Add(notification);
 
         playerAudio.PlayOneShot(notificationSound);
-    }
 
+        return notification;
+    }
 }
