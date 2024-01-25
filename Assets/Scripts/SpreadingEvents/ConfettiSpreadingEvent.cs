@@ -32,7 +32,7 @@ public class ConfettiSpreadingEvent : SpreadingEvent
                 }
             }
 
-            if(confettiRooms == rooms.Count)
+            if(confettiRooms == rooms.Count && !eventComplete)
             {
                 requirementMet = true;
                 ThoughtBubble.Instance.ShowThought(CONFETTITHOUGHT);
