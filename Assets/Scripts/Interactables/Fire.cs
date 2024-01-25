@@ -20,6 +20,8 @@ public class Fire : Interactable
 
     public bool isLit = false;
 
+    private const string PUTOUTTHOUGHT = "My soul feels lighter now.";
+
     private void Start() // Always start unlit
     {
         _audioSource = GetComponent<AudioSource>();
@@ -65,6 +67,12 @@ public class Fire : Interactable
         SetParticleEmission(fireParticles, 0f);
         SetParticleEmission(smokeParticles, smokeMaxEmission);
         smokeTimer = smokeLife;
+
+        int firesLit = 0;
+        foreach(Fire fire in FindObjectsOfType<Fire>())
+            if(fire.isLit) firesLit++;
+        if (firesLit == 0) // put out last fire
+            ThoughtBubble.Instance.ShowThought(PUTOUTTHOUGHT);
 
     }
 

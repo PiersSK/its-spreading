@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FireSpreadingEvent : SpreadingEvent
 {
-    [SerializeField] Fire firstFire;
-    [SerializeField] Fire spreadFire;
+    [SerializeField] private Fire firstFire;
+    [SerializeField] private Fire spreadFire;
+    [SerializeField] private Room kitchen;
 
     private bool hasReacted = false;
 
@@ -14,7 +15,7 @@ public class FireSpreadingEvent : SpreadingEvent
     protected override void Update()
     {
         base.Update();
-        if(firstFire.isLit && !hasReacted)
+        if(firstFire.isLit && !spreadFire.isLit && !hasReacted && Player.Instance.currentRoom == kitchen)
         {
             ThoughtBubble.Instance.ShowThought(FIRSTFIRETHOUGHT);
             hasReacted = true;
