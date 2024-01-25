@@ -24,7 +24,7 @@ public class Objective : MonoBehaviour
         objectiveUI.sprite = completedIcon;
         objectiveUI.color = Color.white;
         isComplete = true;
-        if(completionThought != string.Empty) 
+        if(completionThought != string.Empty && ObjectiveController.objectivesComplete > 2) 
             Invoke(nameof(FollowUpThought), TIMETILLTHOUGHT);
     }
 
