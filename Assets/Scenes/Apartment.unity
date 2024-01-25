@@ -1038,6 +1038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 856644747}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   sofa: {fileID: 794544534}
   manspreadAnimationLength: 3.958
   minsTillManspread: 30
@@ -2943,6 +2945,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 171141748}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
+  calledSisNoSuccess: 0
   calledSis: 0
   bookedTickets: 0
   gaveTicketsToSis: 0
@@ -15953,8 +15958,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 409374897}
   m_HandleRect: {fileID: 409374896}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17870,6 +17875,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 84467326}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   rooms:
   - {fileID: 1348445670}
   - {fileID: 1190751994}
@@ -28030,7 +28037,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 649579025}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28313,8 +28320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc09c7d7b61d4139a2b8b31222f0f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeHours: 8
-  realtimeDayLengthMins: 20
+  startTimeHours: 12
+  realtimeDayLengthMins: 10
   clockUI: {fileID: 1225046512}
   sunPivot: {fileID: 105033155}
   sun: {fileID: 1709949431}
@@ -28333,6 +28340,7 @@ MonoBehaviour:
   - {fileID: 390143172}
   lowSunColor: {r: 1, g: 0.53873897, b: 0, a: 1}
   scheduledEvents: {fileID: 306180224}
+  completeEvents: []
   tempMultiplier: 1
 --- !u!4 &336765267
 Transform:
@@ -45033,6 +45041,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 1481422445}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   pamphletObject: {fileID: 343858332}
 --- !u!1 &504310729
 GameObject:
@@ -55002,8 +55012,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1577963198}
   m_HandleRect: {fileID: 1577963197}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.84064114
+  m_Value: 0.9999995
+  m_Size: 0.8406411
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -58938,6 +58948,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 1466152698}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   piano: {fileID: 213810335}
   neighbourAppearance: {fileID: 919095457}
   neighbourNPC: {fileID: 904322598}
@@ -62737,6 +62749,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 940208240}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   _vines: {fileID: 1790287877}
 --- !u!1 &856644745
 GameObject:
@@ -63195,6 +63209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 1003411237}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   secondsOfDancingRequired: 60
   confidenceMeter: {fileID: 299250703}
   confidenceLevel: {fileID: 1154965158}
@@ -63530,6 +63546,7 @@ MonoBehaviour:
   promptText: 
   priority: 0
   isSpreading: 0
+  isInteractable: 1
 --- !u!82 &870272877
 AudioSource:
   m_ObjectHideFlags: 0
@@ -65157,7 +65174,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 859834960}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.7549231
+  m_Size: 0.75492305
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -75040,6 +75057,7 @@ MonoBehaviour:
   ignoreMessage: {fileID: 29943062}
   coversationBlock: {fileID: 55005856}
   messagePreview: {fileID: 1291865135}
+  callSisBlock: {fileID: 2046453638}
   callSisButton: {fileID: 634975449}
   sisNPC: {fileID: 1212803535}
   bookTicketsButton: {fileID: 1438148188}
@@ -82431,6 +82449,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 1031922668}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   bread: {fileID: 870272876}
   breadSpreadTimeRequired: 10
 --- !u!1 &1151695436
@@ -99207,6 +99227,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7568cace340b594a877e9f5275d5f23, type: 2}
   - {fileID: 11400000, guid: 1e3a577334ecf10458e60c11ac995b65, type: 2}
   - {fileID: 11400000, guid: e99427fbacc575740809de7e50280f7c, type: 2}
+  invIds: []
 --- !u!1 &1370950990
 GameObject:
   m_ObjectHideFlags: 0
@@ -114698,6 +114719,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 1236613998}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   sofa: {fileID: 794544534}
   hourOfBroadcastStart: 18
   minOfBroadcastStart: 0
@@ -117056,7 +117079,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2132392075}
   m_Direction: 2
   m_Value: 0.9999996
-  m_Size: 0.69882065
+  m_Size: 0.6988206
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -126137,6 +126160,7 @@ MonoBehaviour:
   - {fileID: 665496093}
   - {fileID: 1274194963}
   isLit: 0
+  wasLit: 0
 --- !u!82 &1808558504
 AudioSource:
   m_ObjectHideFlags: 0
@@ -127210,6 +127234,7 @@ MonoBehaviour:
   thingsToBurn:
   - {fileID: 676364016}
   isLit: 0
+  wasLit: 0
 --- !u!82 &1835473164
 AudioSource:
   m_ObjectHideFlags: 0
@@ -127535,6 +127560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 1043301718}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   horsespiracyButton: {fileID: 2066826451}
   millyPeadButton: {fileID: 613755641}
   hasMetDarren: 0
@@ -146826,6 +146853,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objective: {fileID: 1605863606}
   requiredItemName: 
+  completeEvents: []
+  roomsWithConfetti: []
   firstFire: {fileID: 1808558503}
   spreadFire: {fileID: 1835473163}
   kitchen: {fileID: 1348445670}
