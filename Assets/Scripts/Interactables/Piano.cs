@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Piano : LockinInteractable
 {
     private AudioSource pianoAudio;
     private Animation noteAnim;
     private BackgroundMusicLayer pianoLayer;
+
+    private bool hasReacted = false;
+    private const string TUNETHOUGHT = "The show theme always gets stuck in my head.";
 
     private void Start()
     {
@@ -33,6 +37,12 @@ public class Piano : LockinInteractable
     protected override void FreeInteract()
     {
         base.FreeInteract();
+
+        if(!hasReacted)
+        {
+            ThoughtBubble.Instance.ShowThought(TUNETHOUGHT);
+            hasReacted = true;
+        }
 
         // Set background music correctly
         MusicController.Instance.SetMusicIntensity(1);
