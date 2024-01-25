@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: plantGrowth
   displayName: Plant Growth
-  icon: {fileID: 21300000, guid: 04f786b6c4f4e7d43845b388b35d345b, type: 3}
+  icon: {fileID: 21300000, guid: c0908590a611ebc46a25047e96a115e6, type: 3}
   prefab: {fileID: 0}
