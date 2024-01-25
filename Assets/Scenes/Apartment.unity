@@ -28319,7 +28319,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 649579026}
   m_HandleRect: {fileID: 649579025}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -28603,7 +28603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc09c7d7b61d4139a2b8b31222f0f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeHours: 23
+  startTimeHours: 8
   realtimeDayLengthMins: 20
   clockUI: {fileID: 1225046512}
   sunPivot: {fileID: 105033155}
@@ -38271,7 +38271,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0/10
+  m_text: 0/11
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 31d79832c3cef44069f088474d41bbf0, type: 2}
   m_sharedMaterial: {fileID: 1904392848084260410, guid: 31d79832c3cef44069f088474d41bbf0, type: 2}
@@ -64023,7 +64023,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00015258789, y: 295.70096}
+  m_AnchoredPosition: {x: -0.00000808063, y: 0}
   m_SizeDelta: {x: 0, y: 981.8101}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &859834959
@@ -66571,7 +66571,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 859834960}
   m_Direction: 2
   m_Value: -0.00000027094302
-  m_Size: 0.7549231
+  m_Size: 0.7545231
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -108491,7 +108491,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 62.0656, y: 20}
+  m_AnchoredPosition: {x: 62.06555, y: 20}
   m_SizeDelta: {x: 240, y: 682}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1475558684
@@ -119950,7 +119950,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2132392076}
   m_HandleRect: {fileID: 2132392075}
   m_Direction: 2
-  m_Value: -0.0000002064084
+  m_Value: 1
   m_Size: 0.69882065
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -132705,9 +132705,9 @@ RectTransform:
   - {fileID: 1173819102}
   m_Father: {fileID: 1322463418}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -183, y: 50}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 777, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1875663295
@@ -144925,8 +144925,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.2, y: -13.6}
-  m_SizeDelta: {x: 425.8872, y: 200.8998}
+  m_AnchoredPosition: {x: -37.4746, y: 7.4885}
+  m_SizeDelta: {x: 436.938, y: 205.9228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019604739
 MonoBehaviour:
@@ -144948,7 +144948,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: God, the confetti is really getting everywhere It's... Oh
+  m_text: Here is a long test message Here is a long test message Here is a long
+    test message Here is a long test message Here is a long test message Here is
+    a long test message Here is a long test message Here is a long test message Here
+    is a long test message Here is a long test message
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 31d79832c3cef44069f088474d41bbf0, type: 2}
   m_sharedMaterial: {fileID: 1904392848084260410, guid: 31d79832c3cef44069f088474d41bbf0, type: 2}
@@ -144975,7 +144978,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 23.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

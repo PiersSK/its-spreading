@@ -69,11 +69,16 @@ public class EndGame : MonoBehaviour
     {
         TimeController.Instance.ToggleTimePause();
         Player.Instance.TogglePlayerIsEngaged();
-        //if (ObjectiveController.objectivesComplete == ObjectiveController.totalObjectives)
-        //    SuccessEnding();
-        //else 
-        //    FailEnding();
-        SuccessEnding();
+
+        if (ObjectiveController.objectivesComplete == ObjectiveController.totalObjectives)
+        {
+            bgMusic.Pause();
+            Player.Instance._animator.SetTrigger("success");
+            Invoke(nameof(SuccessEnding), 6.2f);
+        }
+        else
+            FailEnding();
+        
     }
 
     private void SuccessEnding()
@@ -94,7 +99,6 @@ public class EndGame : MonoBehaviour
         Player.Instance._animator.SetBool("isDancing", true);
         foreach (Transform npc in npcs) npc.GetComponent<Animator>().SetBool("isDancing", true);
 
-        bgMusic.Pause();
         genericMusicAudio.clip = danceMusic;
         genericMusicAudio.Play();
 
