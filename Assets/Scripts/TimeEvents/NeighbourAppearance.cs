@@ -25,7 +25,7 @@ public class NeighbourAppearance : LimitedTimedEvent, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        destinationReachedTriggered = data.hasNeighbourEventTriggered;
+        //destinationReachedTriggered = data.hasNeighbourEventTriggered;
     }
 
     public void SaveData(ref GameData data)
