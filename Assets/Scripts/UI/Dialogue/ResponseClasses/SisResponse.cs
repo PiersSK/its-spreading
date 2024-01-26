@@ -13,6 +13,12 @@ public class SisResponse : DialogueResponse
         ThoughtBubble.Instance.ShowThought(FIRSTTHOUGHT);
     }
 
+    public void CloseWithFailure()
+    {
+        Player.Instance.TogglePlayerIsEngaged();
+        CloseDialogue();
+    }
+
     public void CloseWithSpread()
     {
         LoveSpreadingEvent.Instance.gaveTicketsToSis = true;

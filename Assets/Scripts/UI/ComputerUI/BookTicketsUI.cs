@@ -23,6 +23,7 @@ public class BookTicketsUI : MonoBehaviour
         GetComponentInChildren<TextMeshProUGUI>().text = "Booked!";
 
         ThoughtBubble.Instance.ShowThought("Sis will love these! I should call her to tell her the good news");
+        // TODO: Allow this only from 6pm
         callSisBlock.SetActive(true);
 
         callSisButton.onClick.RemoveAllListeners();
