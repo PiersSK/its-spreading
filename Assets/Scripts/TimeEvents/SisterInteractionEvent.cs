@@ -13,6 +13,7 @@ public class SisterInteractionEvent : LimitedTimedEvent
     [SerializeField] private GameObject ignoreMessage;
     [SerializeField] private Image coversationBlock;
     [SerializeField] private TextMeshProUGUI messagePreview;
+    [SerializeField] private GameObject callSisBlock;
 
     [Header("Call Info")]
     [SerializeField] private Button callSisButton;
@@ -32,8 +33,13 @@ public class SisterInteractionEvent : LimitedTimedEvent
         firstMessageBlock.SetActive(true);
         messagePreview.text = FIRSTNOTIFMESSAGE;
         coversationBlock.color = new Color(0.32f, 0.55f, 0.32f);
+        callSisBlock.SetActive(false);
+        if(LoveSpreadingEvent.Instance.calledSisNoSuccess == false && LoveSpreadingEvent.Instance.calledSis == false)
+        {
         AddNotificationFromSis(FIRSTNOTIFMESSAGE);
-
+        callSisBlock.SetActive(true);
+        }
+        if(LoveSpreadingEvent.Instance.bookedTickets == false){
         BookTicketsEvent ticketEvent = Instantiate(Resources.Load<BookTicketsEvent>("DynamicEvents/TicketEvent"), TimeController.Instance.scheduledEvents);
 
         ticketEvent.bookButton = bookTicketsButton;
@@ -44,11 +50,12 @@ public class SisterInteractionEvent : LimitedTimedEvent
 
         ticketEvent.SetEventStartTime(startTime.Hours, startTime.Minutes);
         ticketEvent.SetEventEndTime(endTime.Hours, endTime.Minutes);
+        }
     }
 
     public override void TriggerEventEnd()
     {
-        if (!LoveSpreadingEvent.Instance.calledSis)
+        if (LoveSpreadingEvent.Instance.calledSis == false && LoveSpreadingEvent.Instance.calledSisNoSuccess == false)
         {
             responsePrompt.SetActive(false);
             ignoreMessage.SetActive(true);
@@ -79,6 +86,7 @@ public class SisterInteractionEvent : LimitedTimedEvent
         DialogueUI.Instance.LoadJsonConversationToUI(sisNPC.dialogueFile, sisNPC);
         DialogueUI.Instance.gameObject.SetActive(true);
         PhoneUI.Instance.TogglePhone();
+        LoveSpreadingEvent.Instance.calledSisNoSuccess = true;
 
         responsePrompt.SetActive(false);
     }

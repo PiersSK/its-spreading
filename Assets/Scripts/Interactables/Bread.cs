@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bread : Interactable
 {
     public bool isSpreading = false;
+    public bool isInteractable = true;
 
     private const string JAM = "Jam";
     private AudioSource _audioSource;
@@ -24,11 +25,12 @@ public class Bread : Interactable
             isSpreading = true;
             transform.Rotate(0, 180, 0, Space.Self);
             _audioSource.Play();
+            isInteractable = false;
         }
     }
 
     public override bool CanInteract()
     {
-        return !isSpreading && !TimeController.Instance.TimeHasPassed(10, 0);
+        return !isSpreading && !TimeController.Instance.TimeHasPassed(10, 0) && isInteractable;
     }
 }
