@@ -8,7 +8,7 @@
             "dialogues": [
                 {
                     "id": 0,
-                    "prompt": "Hey dude, here's your package",
+                    "prompt": "Hey dude, here's your package.",
                     "responses": [
                         {
                             "text": "Thanks!",
@@ -26,10 +26,10 @@
                 },
                 {
                     "id": 1,
-                    "prompt": "I've dabbled in my fair share of close up magic, but nobodies ever called me that before so I think you've got me mistaken",
+                    "prompt": "I have dabbled in my fair share of close up magic, but nobody's ever called me that before, so I think you've got me mistaken.",
                     "responses": [
                         {
-                            "text": "Oh my god you don't know THE Magic Darren?! I've been reading about him all day, here have this pamphlet",
+                            "text": "Oh my Darren, you don't know THE Magic Darren?! I've been reading about him all day, here have this pamphlet.",
                             "outcomeId": 2,
                             "requirement": null,
                             "outcomeFunction": "RemovePamphlet"
@@ -38,7 +38,7 @@
                 },
                 {
                     "id": 2,
-                    "prompt": "Uhhh, normally I'm not supposed to have things delivered to me... but thanks? I guess",
+                    "prompt": "Uhhh, normally I'm not supposed to have things delivered to me... but thanks? I guess.",
                     "responses": [
                         {
                             "text": "No problem, always happy to spread the word of Magic Darren!",
@@ -50,7 +50,7 @@
                 },
                 {
                     "id": 3,
-                    "prompt": "Yeah uh... okay. Goodbye",
+                    "prompt": "Yeah uh... okay. Goodbye.",
                     "responses": [
                         {
                             "text": "Goodbye",

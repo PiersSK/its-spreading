@@ -11,7 +11,7 @@
                     "prompt": "Oh... hello! Thank you for answering the door! Do you have a moment to talk about our lord and saviour, Magic Darren?",
                     "responses": [
                         {
-                            "text": "Wow yes that sounds wonderful! i'm ever so lonely!",
+                            "text": "Wow yes that sounds wonderful! I'm ever so lonely!",
                             "outcomeId": 1,
                             "requirement": null,
                             "outcomeFunction": null
@@ -32,7 +32,7 @@
                 },
                 {
                     "id": 1,
-                    "prompt": "Wonderful! So few people are so responsive to the god of tricks and stuff! Now tell, me have you ever felt like the magic has been slowly fading in your life as you've grown older?",
+                    "prompt": "Wonderful! So few people are so responsive to the god of tricks and stuff! Now tell me, have you ever felt like the magic has been slowly fading from your life as you've grown older?",
                     "responses": [
                         {
                             "text": "Yes!! I thought that was just me!! Everything is so dull and flat now!",
@@ -50,7 +50,7 @@
                 },
                 {
                     "id": 2,
-                    "prompt": "Well, that's because Magic Darren requires constant feeding of ancient gold in order to keep his strength up! For just the low price of £99.99 a month, you can contribute to our cause to find as much as possible for him.",
+                    "prompt": "Well, that's because Magic Darren requires constant feeding of ancient gold in order to keep his strength up! For just the low price of £99.99 a month, you can contribute to our quest to gather as much as possible for him.",
                     "responses": [
                         {
                             "text": "SIGN! ME! UP! Magic Darren needs my money!",
@@ -59,7 +59,7 @@
                             "outcomeFunction": null
                         },
                         {
-                            "text": "Hmmm that does sound dire but can I have some time to think about it?",
+                            "text": "Hmmm, that does sound dire. Can I have some time to think about it? And maybe some literature?",
                             "outcomeId": 5,
                             "requirement": null,
                             "outcomeFunction": null
@@ -71,7 +71,7 @@
                     "prompt": "Oh okay. Um... I'll just go then...",
                     "responses": [
                         {
-                            "text": "Goodbye",
+                            "text": "Goodbye!",
                             "outcomeId": null,
                             "requirement": null,
                             "outcomeFunction": "CloseDialogue"
@@ -80,7 +80,7 @@
                 },
                 {
                     "id": 4,
-                    "prompt": "Brilliant!! You have no idea the value of your contribution. Magic Darren grows ri.. stronger every day. Here's some cookies as a thank you!",
+                    "prompt": "Brilliant!! You have no idea the value of your contribution. Magic Darren grows richer... uh, more magical, every day. Here's some cookies as a thank you!",
                     "responses": [
                         {
                             "text": "Yummy, thank you and have a good day!",
