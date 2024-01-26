@@ -73,7 +73,7 @@ public class PhoneUI : MonoBehaviour
         eddybeddyPage.SetActive(false);
 
         // Play animation
-        Player.Instance._animator.SetBool("isOnPhone", gameObject.activeSelf);
+        Player.Instance._animator.SetBool("isOnPhone", phoneIsOut);
     }
 
     public void UpdateNotificationIcon()
