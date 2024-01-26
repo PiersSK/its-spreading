@@ -53,6 +53,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         //loads saved data from a file using data handler
         this.gameData = dataHandler.Load();
+        bool doIntroAnimation = gameData.dayIsComplete;
 
         //if no data can be loaded, start a new game
         if (this.gameData == null)
@@ -69,6 +70,14 @@ public class DataPersistenceManager : MonoBehaviour
         foreach (IDataPersistence dataPersistenceObject in dataPersistenceObjects)
         {
             dataPersistenceObject.LoadData(gameData);
+        }
+
+        if (doIntroAnimation)
+        {
+            StartGame.Instance.StartDayFresh();
+        } else
+        {
+            Player.Instance.ForcePlayerToPosition(gameData.playerPosition);
         }
     }
 
