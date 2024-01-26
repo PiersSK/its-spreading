@@ -8,7 +8,8 @@ public class DanceClassEvent : LimitedTimedEvent, IDataPersistence
 {
     [SerializeField] private Button classButton;
     [SerializeField] private TextMeshProUGUI classButtonText;
-    public bool playerSignedUp;
+    public bool playerSignedUp = false;
+    public bool classHasStarted = false;
 
     public void LoadData(GameData data)
     {
@@ -23,7 +24,7 @@ public class DanceClassEvent : LimitedTimedEvent, IDataPersistence
     {
         classButtonText.text = playerSignedUp ? "Join class now!" : "Class in progress, sign up next time!";
         classButton.interactable = playerSignedUp;
-
+        classHasStarted = true;
     }
 
     public override void TriggerEventEnd()
