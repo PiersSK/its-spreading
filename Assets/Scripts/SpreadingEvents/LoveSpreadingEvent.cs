@@ -8,6 +8,7 @@ public class LoveSpreadingEvent : SpreadingEvent
 {
     public static LoveSpreadingEvent Instance { get; private set; }
 
+    public bool calledSisNoSuccess = false;
     public bool calledSis = false;
     public bool wasKindToSis = false;
     public bool bookedTickets = false;
