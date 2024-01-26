@@ -9,9 +9,18 @@ public class SisResponse : DialogueResponse
     {
         LoveSpreadingEvent.Instance.calledSis = true;
         LoveSpreadingEvent.Instance.calledSisNoSuccess = false;
+        LoveSpreadingEvent.Instance.wasKindToSis = true;
         Player.Instance.TogglePlayerIsEngaged();
         CloseDialogue();
         ThoughtBubble.Instance.ShowThought(FIRSTTHOUGHT);
+    }
+
+    public void CloseWithFailure()
+    {
+        LoveSpreadingEvent.Instance.calledSis = true;
+        LoveSpreadingEvent.Instance.wasKindToSis = false;
+        Player.Instance.TogglePlayerIsEngaged();
+        CloseDialogue();
     }
 
     public void CloseWithSpread()
