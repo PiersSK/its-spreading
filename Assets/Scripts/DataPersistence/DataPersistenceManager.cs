@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.ComponentModel.Design;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -29,12 +30,23 @@ public class DataPersistenceManager : MonoBehaviour
     {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        TimeController.Instance.DayOver += OnDayComplete;
         LoadGame();
+    }
+
+    private void OnDayComplete(object sender, System.EventArgs e)
+    {
+        SaveGame();
     }
 
     public void NewGame()
     {
         this.gameData = new GameData();
+    }
+
+    public void NewDay(GameData oldData)
+    {
+        this.gameData = new GameData(oldData.spreadEventsTriggered, oldData.daysComplete);
     }
 
     public void LoadGame()
@@ -47,6 +59,10 @@ public class DataPersistenceManager : MonoBehaviour
         {
             Debug.Log("No save data. Using default values.");
             NewGame();
+        } else if (gameData.dayIsComplete)
+        {
+            Debug.Log("Complete save data loaded, resetting non-historical values");
+            NewDay(gameData);
         }
 
         //push the loaded data to all scripts that require it

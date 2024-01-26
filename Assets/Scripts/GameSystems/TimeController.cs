@@ -17,6 +17,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private const int SUNRISEHOURS = 8;
     private const int SUNSETHOURS = 19;
     private int daysComplete = 0;
+    private bool dayisComplete = false;
 
     [Header("Time Settings")]
     [Range(0, 23)]
@@ -69,6 +70,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
         data.currentHour = currentHour;
         data.currentMinute = currentMinute;
         data.daysComplete = daysComplete;
+        data.dayIsComplete = dayisComplete;
     }
     private void Update()
     {
@@ -183,6 +185,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     
     private void OnDayComplete()
     {
+        dayisComplete = true;
         daysComplete++;
         completeEvents.Clear();
         DayOver?.Invoke(this, EventArgs.Empty);
