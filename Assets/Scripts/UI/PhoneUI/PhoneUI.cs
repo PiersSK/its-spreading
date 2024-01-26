@@ -43,13 +43,11 @@ public class PhoneUI : MonoBehaviour
     private const float NOTIFICATIONOFFSET = -75f;
     private const float NOTIFICATIONSPACING = 120f;
 
+    private bool phoneIsOut = false;
+
     private void Awake()
     {
         Instance = this;
-    }
-    private void Start()
-    {
-        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -61,8 +59,10 @@ public class PhoneUI : MonoBehaviour
 
     public void TogglePhone()
     {
+        string anim = phoneIsOut ? "phoneIn" : "phoneOut";
+        phoneIsOut = !phoneIsOut;
         // Show phone
-        gameObject.SetActive(!gameObject.activeSelf);
+        GetComponent<Animator>().SetTrigger(anim);
         phoneModel.SetActive(!phoneModel.activeSelf);
         phoneUIIcon.SetActive(!phoneUIIcon.activeSelf);
 
