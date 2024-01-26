@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vines : Interactable
+public class Vines : Interactable, IDataPersistence
 {
     [SerializeField] private string requiredItem;
 
@@ -31,17 +31,31 @@ public class Vines : Interactable
 
     private Animator _animator;
     private AudioSource _audioSource;
-
     private const string EXAMINEPROMPT = "Examine";
     private const string WATERPROMPT = "Try Super Plant Formula";
 
     private const string EXAMINETHOUGHT = "These vines used to be spread all over the bathroom, now look at them...";
     private const string FIRSTWATERTHOUGHT = "Well, I'll give you some more in a while, hang in there.";
 
+    public void LoadData(GameData data)
+    {
+        currentState = data.plantState;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.plantState = currentState;
+    }
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        if (1 <= (int)currentState) 
+            foreach (Renderer renderer in startingLeaves) renderer.material = aliveMaterial;
+        _animator.SetInteger("plantGrowthIndex", (int)currentState);
+        if(currentState == PlantState.Overgrown)
+            _animator.Play("plantOvergrown");
         promptText = EXAMINEPROMPT;
     }
 

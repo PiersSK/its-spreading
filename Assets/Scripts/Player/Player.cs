@@ -44,14 +44,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
     public Room currentRoom;
 
-    public void LoadData(GameData data)
-    {
-        //TODO: Re-enable but only if player has selected resume game
-
-        //_characterController.enabled = false;
-        //this.transform.position = data.playerPosition;
-        //_characterController.enabled = true;
-    }
+    public void LoadData(GameData data) { }
 
     public void SaveData(ref GameData data)
     {
@@ -74,6 +67,7 @@ public class Player : MonoBehaviour, IDataPersistence
         controlActions.ToggleInteract.performed += ctx => ToggleInteract();
         controlActions.Emote1.performed += ctx => Wave();
         controlActions.Emote2.performed += ctx => Dance();
+        controlActions.Inventory.performed += ctx => InventoryUI.ToggleInventoryUI();
     }
 
     private void Update()

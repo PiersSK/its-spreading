@@ -21,17 +21,23 @@ public class BookClassUI : MonoBehaviour
 
     [SerializeField] private DanceClassEvent danceClassEvent;
 
+
     private const string BOOKINGTHOUGHT = "I've always wanted to try this since it became legal again, but it's so scary...";
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(BookClass);
+        if(danceClassEvent.playerSignedUp && !danceClassEvent.classHasStarted)
+        {
+            GetComponentInChildren<TextMeshProUGUI>().text = "Booked! See you at 8pm";
+            GetComponent<Button>().interactable = false;
+        }
+       GetComponent<Button>().onClick.AddListener(DanceClass);
     }
 
     private void BookClass()
     {
         GetComponentInChildren<TextMeshProUGUI>().text = "Booked! See you at 8pm";
-        danceClassEvent.playerSignedUp = true;
+        danceClassEvent.playerSignedUp = true; 
 
         computerAudio.PlayOneShot(bookingConfirmed);
 
@@ -58,5 +64,17 @@ public class BookClassUI : MonoBehaviour
 
         ComputerUI.Instance.gameObject.SetActive(false);
         Player.Instance._animator.SetBool("isDancing", true);
+    }
+
+    private void DanceClass()
+    {
+        if(danceClassEvent.playerSignedUp && danceClassEvent.classHasStarted)
+        {
+            JoinClass();
+        }
+        else
+        {
+            BookClass();
+        }
     }
 }

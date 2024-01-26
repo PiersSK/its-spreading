@@ -37,6 +37,11 @@ public class VirusSpreadingEvent : SpreadingEvent
 
     protected override bool ShouldEventTrigger()
     {
-        return hasReacted;
+        return (hasReacted && !eventComplete);
+    }
+
+    protected override void EventImpact()
+    {
+        base.EventImpact();
     }
 }
