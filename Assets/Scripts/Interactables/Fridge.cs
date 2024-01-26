@@ -15,6 +15,7 @@ public class Fridge : Interactable
 
     [SerializeField] public ParticleSystem stinkParticles;
 
+    [SerializeField] private string petriPlacedInFridgeThought = "You chill there and cool new buddy, I'll check on you in a bit";
     [SerializeField] private string checkFriendReminder = "I wonder how my petri friend is doing?";
 
     public TimeSpan petriInFridgeTime;
@@ -44,6 +45,7 @@ public class Fridge : Interactable
             Player.Instance.newInventory.RemoveItem("petriDish");
             petriInFridgeTime = TimeController.Instance.CurrentTime();
             petriInFridge = true;
+            ThoughtBubble.Instance.ShowThought(petriPlacedInFridgeThought);
         } 
         else if (IsFriendRotten())
         {
