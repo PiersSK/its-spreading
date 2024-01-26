@@ -7,11 +7,14 @@ using UnityEngine.UI;
 
 public class EndGame : MonoBehaviour
 {
+    public static EndGame Instance { get; private set; }
+
     [SerializeField] private Transform confettiManPrefab;
 
     [SerializeField] private AudioSource genericSFXAudio;
     [SerializeField] private AudioSource genericMusicAudio;
     [SerializeField] private AudioSource bgMusic;
+    [SerializeField] private AudioSource boombox;
 
     [SerializeField] private AudioClip spreadingVoices;
     [SerializeField] private AudioClip partyBlower;
@@ -45,6 +48,10 @@ public class EndGame : MonoBehaviour
     [SerializeField] private List<Transform> npcLocations;
     [SerializeField] private Transform playerDanceLocation;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -67,18 +74,23 @@ public class EndGame : MonoBehaviour
 
     private void DayIsOver(object sender, System.EventArgs e)
     {
+        DayIsOver();
+    }
+
+    public void DayIsOver()
+    {
         TimeController.Instance.ToggleTimePause();
         Player.Instance.TogglePlayerIsEngaged();
 
-        if (ObjectiveController.objectivesComplete == ObjectiveController.totalObjectives)
+        if (ObjectiveController.HasCompletedAllObjectives())
         {
             bgMusic.Pause();
+            boombox.Pause();
             Player.Instance._animator.SetTrigger("success");
             Invoke(nameof(SuccessEnding), 6.2f);
         }
         else
             FailEnding();
-        
     }
 
     private void SuccessEnding()

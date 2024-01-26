@@ -100613,6 +100613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreDisplay: {fileID: 457159499}
   historicStatDisplay: {fileID: 540017808}
+  objectiveParent: {fileID: 834394576}
 --- !u!1 &1351144414
 GameObject:
   m_ObjectHideFlags: 0
