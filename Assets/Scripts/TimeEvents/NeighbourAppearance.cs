@@ -10,6 +10,9 @@ public class NeighbourAppearance : LimitedTimedEvent
     private bool destinationReachedTriggered = false;
     private bool hasReturned = false;
 
+    public int? cachedEndHour;
+    public int? cachedEndMinute;
+
     public NavMeshAgent neighbour;
     public Transform endPosition;
     private NPC neighbourNPC;
@@ -38,7 +41,6 @@ public class NeighbourAppearance : LimitedTimedEvent
 
         if (AtStartPoint() && destinationReachedTriggered && !hasReturned)
         {
-            Debug.Log("jjjsdkfjhsdjk");
             OnReturn();
         }
     }
@@ -60,6 +62,7 @@ public class NeighbourAppearance : LimitedTimedEvent
         neighbour.SetDestination(startPosition);
         neighbourIsOut = false;
         neighbourNPC.FadeNPCAudioOut(5f);
+        eventHasEnded = true;
     }
 
     protected virtual void OnComplete()
@@ -79,14 +82,14 @@ public class NeighbourAppearance : LimitedTimedEvent
     {
         Vector2 neighbourXZ = new Vector2(neighbour.transform.position.x, neighbour.transform.position.z);
         Vector2 endXZ = new Vector2(endPosition.position.x, endPosition.position.z);
-        return Mathf.Round(Vector2.Distance(neighbourXZ, endXZ) * 10) == 0;
+        return Mathf.Round(Vector2.Distance(neighbourXZ, endXZ)) == 0;
     }
 
     private bool AtStartPoint()
     {
         Vector2 neighbourXZ = new Vector2(neighbour.transform.position.x, neighbour.transform.position.z);
         Vector2 endXZ = new Vector2(startPosition.x, startPosition.z);
-        return Mathf.Round(Vector2.Distance(neighbourXZ, endXZ) * 10) == 0;
+        return Mathf.Round(Vector2.Distance(neighbourXZ, endXZ)) == 0;
     }
     private void SetWalkingAnimationIfPresent(bool val)
     {
@@ -94,6 +97,11 @@ public class NeighbourAppearance : LimitedTimedEvent
         {
             animator.SetBool("isWalking", val);
         }
+    }
+
+    public string GetScheduledStartTime()
+    {
+        return eventHour.ToString() + eventMinute.ToString();
     }
 
 }
