@@ -28,8 +28,8 @@ public class OrderItemUI : MonoBehaviour
 
     private void Start()
     {
-            GetComponent<Button>().onClick.AddListener(OrderItem);
-            notifcationMessage = "Order Confirmed! Your " + objectBeingPurchased + " will arrive at ";
+        GetComponent<Button>().onClick.AddListener(OrderItem);
+        notifcationMessage = "Order Confirmed! Your " + Player.Instance.newInventory.availableItemDict[objectBeingPurchased].displayName + " will arrive at ";
     }
 
     private void Update()
