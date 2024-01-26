@@ -5,9 +5,9 @@ using UnityEngine;
 public class LimitedTimedEvent : TimedEvent
 {
     [Range(0, 23)]
-    [SerializeField] protected int eventEndHour;
+    public int eventEndHour;
     [Range(0, 59)]
-    [SerializeField] protected int eventEndMinute;
+    public int eventEndMinute;
 
     public bool eventHasEnded = false;
 

@@ -33,6 +33,7 @@ public class Inventory : MonoBehaviour
     {
         inventory.Add(item);
         OnInventoryChanged?.Invoke(this, new OnInventoryChangedEventArgs() { itemAdded = item, itemRemoved = InventoryItem.None});
+        Debug.Log(inventory);
     }
 
     public void RemoveFromInventory(InventoryItem item)

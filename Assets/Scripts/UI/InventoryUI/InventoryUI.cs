@@ -11,7 +11,7 @@ public class InventoryUI : MonoBehaviour
     private static Animator _animator;
     private static bool inventoryIsOpen = false;
 
-    void Start()
+    void Awake()
     {
         Player.Instance.newInventory.OnInventoryChanged += OnUpdateInventory;
         _animator = GetComponent<Animator>();

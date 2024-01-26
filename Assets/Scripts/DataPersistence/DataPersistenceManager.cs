@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.ComponentModel.Design;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -29,7 +30,13 @@ public class DataPersistenceManager : MonoBehaviour
     {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        TimeController.Instance.DayOver += OnDayComplete;
         LoadGame();
+    }
+
+    private void OnDayComplete(object sender, System.EventArgs e)
+    {
+        SaveGame();
     }
 
     public void NewGame()
@@ -37,22 +44,42 @@ public class DataPersistenceManager : MonoBehaviour
         this.gameData = new GameData();
     }
 
+    public void NewDay(GameData oldData)
+    {
+        this.gameData = new GameData(oldData.spreadEventsTriggered, oldData.daysComplete);
+    }
+
     public void LoadGame()
     {
         //loads saved data from a file using data handler
         this.gameData = dataHandler.Load();
+        bool doIntroAnimation = false;
 
         //if no data can be loaded, start a new game
         if (this.gameData == null)
         {
             Debug.Log("No save data. Using default values.");
+            doIntroAnimation = true;
             NewGame();
+        } else if (gameData.dayIsComplete)
+        {
+            Debug.Log("Complete save data loaded, resetting non-historical values");
+            doIntroAnimation = true;
+            NewDay(gameData);
         }
 
         //push the loaded data to all scripts that require it
         foreach (IDataPersistence dataPersistenceObject in dataPersistenceObjects)
         {
             dataPersistenceObject.LoadData(gameData);
+        }
+
+        if (doIntroAnimation)
+        {
+            StartGame.Instance.StartDayFresh();
+        } else
+        {
+            Player.Instance.ForcePlayerToPosition(gameData.playerPosition);
         }
     }
 

@@ -8,6 +8,7 @@ public class SisResponse : DialogueResponse
     public void CloseWithSuccess()
     {
         LoveSpreadingEvent.Instance.calledSis = true;
+        LoveSpreadingEvent.Instance.calledSisNoSuccess = false;
         LoveSpreadingEvent.Instance.wasKindToSis = true;
         Player.Instance.TogglePlayerIsEngaged();
         CloseDialogue();

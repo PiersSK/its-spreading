@@ -6,8 +6,13 @@ public class VineSpreadingEvent : SpreadingEvent
 {
     [SerializeField] private Vines _vines;
 
+    protected override void Update()
+    {
+        base.Update();
+    }
+
     protected override bool ShouldEventTrigger()
     {
-        return _vines.currentState == Vines.PlantState.Overgrown;
+        return _vines.currentState == Vines.PlantState.Overgrown && !eventComplete;
     }
 }
