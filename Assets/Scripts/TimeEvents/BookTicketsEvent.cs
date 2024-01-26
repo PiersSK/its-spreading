@@ -18,7 +18,7 @@ public class BookTicketsEvent : LimitedTimedEvent
     public override void TriggerEventEnd()
     {
         bookButton.GetComponentInChildren<TextMeshProUGUI>().text = "0 Tickets Available";
-        bookButton.interactable = true;
+        bookButton.interactable = false;
         if(!LoveSpreadingEvent.Instance.bookedTickets)
             PhoneUI.Instance.AddNotification(PhoneUI.PhoneApp.NeverTooLate, "\"As Easy As 1, You, Me\" is now sold out");
 
