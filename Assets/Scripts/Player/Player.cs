@@ -67,6 +67,7 @@ public class Player : MonoBehaviour, IDataPersistence
         controlActions.Emote1.performed += ctx => Wave();
         controlActions.Emote2.performed += ctx => Dance();
         controlActions.Inventory.performed += ctx => InventoryUI.ToggleInventoryUI();
+        controlActions.Phone.performed += ctx => PhoneUI.Instance.TogglePhone();
     }
 
     private void Update()

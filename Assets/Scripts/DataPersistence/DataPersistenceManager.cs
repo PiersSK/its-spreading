@@ -15,15 +15,15 @@ public class DataPersistenceManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
 
-    public static DataPersistenceManager instance {get; private set;} //Singleton
+    public static DataPersistenceManager Instance {get; private set;} //Singleton
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Debug.LogError("Found more than one Manager in the scene.");
         }
-        instance = this;
+        Instance = this;
     }
 
     private void Start()
@@ -44,7 +44,14 @@ public class DataPersistenceManager : MonoBehaviour
         this.gameData = new GameData();
     }
 
-    public void NewDay(GameData oldData)
+    public void SaveNewDayToFile()
+    {
+        this.gameData = new GameData(gameData.spreadEventsTriggered, gameData.daysComplete);
+        gameData.dayIsComplete = true;
+        dataHandler.Save(gameData);
+    }
+
+    private void NewDay(GameData oldData)
     {
         this.gameData = new GameData(oldData.spreadEventsTriggered, oldData.daysComplete);
     }

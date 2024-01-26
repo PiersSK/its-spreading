@@ -20,11 +20,6 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            PhoneUI.Instance.TogglePhone();
-        }
-
         PhoneUI.Instance.UpdateNotificationIcon();
         ThoughtBubble.Instance.UpdateThoughtQueue();
     }
