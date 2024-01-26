@@ -16091,8 +16091,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 409374897}
   m_HandleRect: {fileID: 409374896}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28169,7 +28169,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 649579025}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28452,8 +28452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc09c7d7b61d4139a2b8b31222f0f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeHours: 17
-  realtimeDayLengthMins: 5
+  startTimeHours: 8
+  realtimeDayLengthMins: 20
   clockUI: {fileID: 1225046512}
   sunPivot: {fileID: 105033155}
   sun: {fileID: 1709949431}
@@ -65635,7 +65635,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 859834960}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.75492305
+  m_Size: 0.7549231
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -118052,7 +118052,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2132392075}
   m_Direction: 2
   m_Value: 0.9999996
-  m_Size: 0.6988206
+  m_Size: 0.69882065
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
