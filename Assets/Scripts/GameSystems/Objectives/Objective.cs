@@ -19,12 +19,12 @@ public class Objective : MonoBehaviour
 
     private const float TIMETILLTHOUGHT = 3f;
 
-    public void CompleteObjective()
+    public void CompleteObjective(bool haveThought = true)
     {
         objectiveUI.sprite = completedIcon;
         objectiveUI.color = Color.white;
         isComplete = true;
-        if(completionThought != string.Empty && ObjectiveController.objectivesComplete > 2) 
+        if(completionThought != string.Empty && haveThought) 
             Invoke(nameof(FollowUpThought), TIMETILLTHOUGHT);
     }
 

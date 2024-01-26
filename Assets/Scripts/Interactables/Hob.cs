@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hob : Interactable
+public class Hob : Interactable, IDataPersistence
 {
     [Header("Hob References")]
     [SerializeField] private Light hobLight;
@@ -29,6 +29,18 @@ public class Hob : Interactable
     private const string TURNON = "Cook Bacon!";
     private const string INCREASEHEAT = "Increase Heat To ";
     private const string TURNOFF = "Turn Off Hob";
+
+
+    public void LoadData(GameData data)
+    {
+        fireStarted = data.fireStarted;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.fireStarted = fireStarted;
+    }
+
 
     private void Start()
     {

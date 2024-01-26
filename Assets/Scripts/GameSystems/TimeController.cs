@@ -12,13 +12,16 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private const float REALDAYLENGTHSECONDS = 86400f;
     private const float REALHOURLENGTHSECONDS = 3600f;
 
+    private const float REALMINUTELENGTHSECONDS = 60f;
+
     private const int SUNRISEHOURS = 8;
     private const int SUNSETHOURS = 19;
     private int daysComplete = 0;
+    private bool dayisComplete = false;
 
     [Header("Time Settings")]
     [Range(0, 23)]
-    [SerializeField] private int startTimeHours = 8;
+    [SerializeField] private int startTimeHours;
     [Range(1, 120)]
     [SerializeField] private int realtimeDayLengthMins = 60;
     [SerializeField] private TextMeshProUGUI clockUI;
@@ -32,12 +35,18 @@ public class TimeController : MonoBehaviour, IDataPersistence
     [Header("Events")]
     public Transform scheduledEvents;
     //[SerializeField] private List<TimedEvent> scheduledEvents;
+    public List<string> completeEvents;
 
     private float timeMultiplier;
     public float tempMultiplier = 1f;
     private float time = 0f;
     private float maxNaturalLight = 1.5f;
 
+    private int currentHour;
+
+    private int currentMinute;
+
+    private bool isTimeSet = false;
     private bool timeIsPaused = false;
 
     private void Awake()
@@ -49,16 +58,30 @@ public class TimeController : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.daysComplete = data.daysComplete;
+        completeEvents = data.completeEvents;
+        currentHour = data.currentHour;
+        currentMinute = data.currentMinute;
+        daysComplete = data.daysComplete;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.daysComplete = this.daysComplete;
+        data.completeEvents = completeEvents;
+        data.currentHour = currentHour;
+        data.currentMinute = currentMinute;
+        data.daysComplete = daysComplete;
+        data.dayIsComplete = dayisComplete;
     }
-
     private void Update()
     {
+        if(!isTimeSet)
+        {
+            
+            time = (currentHour * REALHOURLENGTHSECONDS) + (currentMinute * REALMINUTELENGTHSECONDS);
+            isTimeSet = true;
+        }
+
+        // Update Time
         if (timeIsPaused) return;
 
         time += Time.deltaTime * timeMultiplier * tempMultiplier;
@@ -68,6 +91,8 @@ public class TimeController : MonoBehaviour, IDataPersistence
             OnDayComplete();
         }
 
+        currentHour = TimeSpanToHour(CurrentTime());
+        currentMinute = TimeSpanToMinute(CurrentTime());
         UpdateClockUI();
         UpdateLights();
         TriggerEvents();
@@ -160,7 +185,9 @@ public class TimeController : MonoBehaviour, IDataPersistence
     
     private void OnDayComplete()
     {
+        dayisComplete = true;
         daysComplete++;
+        completeEvents.Clear();
         DayOver?.Invoke(this, EventArgs.Empty);
     }
 
@@ -187,6 +214,18 @@ public class TimeController : MonoBehaviour, IDataPersistence
         return TimeHasPassed(hour1, min1) && !TimeHasPassed(hour2, min2);
     }
 
+    public int TimeSpanToHour(TimeSpan ts)
+    {
+        int hour = ts.Hours;
+        return hour;
+    }
+
+    public int TimeSpanToMinute(TimeSpan ts)
+    {
+        int minutes = ts.Minutes;
+        return minutes;
+    }
+    
     public void ToggleTimePause()
     {
         timeIsPaused = !timeIsPaused;

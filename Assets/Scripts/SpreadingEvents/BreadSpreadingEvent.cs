@@ -18,6 +18,7 @@ public class BreadSpreadingEvent : SpreadingEvent
 
     protected override void EventImpact()
     {
+        bread.isInteractable = false;
         base.EventImpact();
     }
 }

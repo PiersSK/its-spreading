@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : Interactable
+public class Fire : Interactable, IDataPersistence
 {
     [SerializeField] private ParticleSystem fireParticles;
     [SerializeField] private Light fireLight;
@@ -19,6 +19,23 @@ public class Fire : Interactable
     private AudioSource _audioSource;
 
     public bool isLit = false;
+    public bool wasLit;
+
+    public void LoadData(GameData data)
+    {
+        wasLit = data.fireStarted;
+        if(wasLit)
+        {
+            LightFire();
+            Interact();
+        }
+
+    }
+
+    public void SaveData(ref GameData data)
+    {
+
+    }
 
     private const string PUTOUTTHOUGHT = "My soul feels lighter now.";
 
@@ -51,6 +68,7 @@ public class Fire : Interactable
     public void LightFire()
     {
         isLit = true;
+        wasLit = true;
         fireLight.intensity = 4f;
         SetParticleEmission(fireParticles, 20f);
 

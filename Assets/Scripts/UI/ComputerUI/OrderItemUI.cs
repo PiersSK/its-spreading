@@ -21,15 +21,30 @@ public class OrderItemUI : MonoBehaviour
     [SerializeField] private ScrollRect scrollWindow;
     [SerializeField] private GameObject purchaseConfirmed;
     [SerializeField] private TextMeshProUGUI purchaseConfirmedTime;
+    private bool isUiUpdated = false;
 
     private string notifcationMessage;
     private string arrivalTime;
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(OrderItem);
-        notifcationMessage = "Order Confirmed! Your " + objectBeingPurchased + " will arrive at ";
+            GetComponent<Button>().onClick.AddListener(OrderItem);
+            notifcationMessage = "Order Confirmed! Your " + objectBeingPurchased + " will arrive at ";
     }
+
+    private void Update()
+    {
+
+        if(!isUiUpdated && deliveryNPC.hasDelivered)
+        {
+            GetComponent<Button>().interactable = false;
+            GetComponent<Image>().color = new Color(0.55f, 0.55f, 0.55f);
+            GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
+            isUiUpdated = true;
+        }
+
+    }
+    
 
     private void OrderItem()
     {
