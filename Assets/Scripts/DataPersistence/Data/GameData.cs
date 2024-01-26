@@ -29,6 +29,10 @@ public class GameData
     public bool gaveTicketsToSis;
     public bool calledSisNoSuccess;
     public bool wasKindToSis;
+    public bool breadIsFlipped;
+    public bool petriInFridge;
+    public bool petriReminderSent;
+    public bool postRottenInteration;
 
     // default values for when the game starts with no data.
     public GameData()
@@ -55,6 +59,10 @@ public class GameData
         calledSisNoSuccess = false;
         wasKindToSis = false;
         inventory = new();
+        breadIsFlipped = false;
+        petriInFridge = false;
+        petriReminderSent = false;
+        postRottenInteration = false;
     }
 
     public GameData(int spreadEventsTriggered, int daysComplete)

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fridge : Interactable
+public class Fridge : Interactable, IDataPersistence
 {
 
     [SerializeField] public bool petriInFridge = false;
@@ -68,5 +68,24 @@ public class Fridge : Interactable
     private bool IsFriendRotten()
     {
        return petriInFridge && TimeController.Instance.TimeHasPassed(petriInFridgeTime.Hours + rottingTimeSpan, petriInFridgeTime.Minutes);
+    }
+
+    public void LoadData(GameData data)
+    {
+        petriInFridge = data.petriInFridge;
+        reminderSent = data.petriReminderSent;
+        postRottenInteract = data.postRottenInteration;
+
+        if(postRottenInteract)
+        {
+            SetParticleEmission();
+        }
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.petriInFridge = petriInFridge;
+        data.petriReminderSent = reminderSent;
+        data.postRottenInteration = postRottenInteract;
     }
 }
