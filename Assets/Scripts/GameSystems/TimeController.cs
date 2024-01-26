@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -34,6 +35,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
 
     [Header("Events")]
     public Transform scheduledEvents;
+    [SerializeField] Transform doorEventLocation;
     //[SerializeField] private List<TimedEvent> scheduledEvents;
     public List<string> completeEvents;
 
@@ -102,6 +104,43 @@ public class TimeController : MonoBehaviour, IDataPersistence
     {
         foreach (Transform eventTransform in scheduledEvents)
         {
+            // Diff logic for neighbourhood appearences to ensure no conflicts
+            if(eventTransform.TryGetComponent(out NeighbourAppearance ne))
+            {
+                if (doorEventLocation == ne.endPosition)
+                {
+                    if (IsNextInQueue(ne))
+                    {
+                        if (ne.ShouldEventTrigger())
+                        {
+                            ne.TriggerEvent();
+                            ne.hasBeenTriggered = true;
+                        }
+                        else if (ne.ShouldEventEndTrigger())
+                        {
+                            ne.TriggerEventEnd();
+                            ne.eventHasEnded = true;
+                        }
+                    }
+                    else
+                    {
+                        if (ne.ShouldEventTrigger())
+                        {
+                            if (ne.cachedEndHour == null) ne.cachedEndHour = ne.eventEndHour;
+                            if (ne.cachedEndMinute == null) ne.cachedEndMinute = ne.eventEndMinute;
+
+                            TimeSpan eventStartTs = new(ne.eventHour, ne.eventMinute, 0);
+                            TimeSpan newEnd = new(ne.cachedEndHour.Value, ne.cachedEndMinute.Value, 0);
+
+                            newEnd = newEnd.Add(TimeSpan.FromSeconds(time).Subtract(eventStartTs));
+
+                            ne.SetEventEndTime(newEnd.Hours, newEnd.Minutes);
+                        }
+                    }
+                    continue;
+                }
+            }
+
             if (eventTransform.TryGetComponent(out TimedEvent e))
             {
                 if (e.ShouldEventTrigger())
@@ -120,6 +159,27 @@ public class TimeController : MonoBehaviour, IDataPersistence
                 }
             }
         }
+    }
+
+    private bool IsNextInQueue(NeighbourAppearance appearance)
+    {
+        List<NeighbourAppearance> list = new List<NeighbourAppearance>();
+        foreach (Transform eventTransform in scheduledEvents)
+        {
+            if (eventTransform.TryGetComponent(out NeighbourAppearance e))
+            {
+                if (!e.eventHasEnded)
+                {
+                    list.Add(e);
+                }
+            }
+        }
+
+        if (list.Count == 0) return false;
+
+        list = list.OrderBy(o => o.GetScheduledStartTime()).ToList();
+
+        return list[0] == appearance;
     }
 
     public void TurnOffAllLights()
