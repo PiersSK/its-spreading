@@ -60,6 +60,7 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadScene("MainMenu");
     }
@@ -68,6 +69,7 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         DataPersistenceManager.Instance.SaveNewDayToFile();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
