@@ -53,16 +53,18 @@ public class DataPersistenceManager : MonoBehaviour
     {
         //loads saved data from a file using data handler
         this.gameData = dataHandler.Load();
-        bool doIntroAnimation = gameData.dayIsComplete;
+        bool doIntroAnimation = false;
 
         //if no data can be loaded, start a new game
         if (this.gameData == null)
         {
             Debug.Log("No save data. Using default values.");
+            doIntroAnimation = true;
             NewGame();
         } else if (gameData.dayIsComplete)
         {
             Debug.Log("Complete save data loaded, resetting non-historical values");
+            doIntroAnimation = true;
             NewDay(gameData);
         }
 

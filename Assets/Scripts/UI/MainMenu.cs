@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour
 
         fileHandler = new FileDataHandler(Application.persistentDataPath, DEFAULTFILENAME, false);
         gameData = fileHandler.Load();
-        resumeGame.gameObject.SetActive(!gameData.dayIsComplete);
+        if(gameData == null || gameData.dayIsComplete) resumeGame.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -67,8 +67,11 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame()
     {
-        gameData.dayIsComplete = true;
-        fileHandler.Save(gameData);
+        if (gameData != null)
+        {
+            gameData.dayIsComplete = true;
+            fileHandler.Save(gameData);
+        }
         SceneManager.LoadScene(GAMESCENENAME);
     }
 
