@@ -24,6 +24,7 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
         LoveSpreadingEvent.Instance.bookedTickets = data.bookedTickets;
         LoveSpreadingEvent.Instance.gaveTicketsToSis = data.gaveTicketsToSis;
         LoveSpreadingEvent.Instance.calledSisNoSuccess = data.calledSisNoSuccess;
+        LoveSpreadingEvent.Instance.wasKindToSis = data.wasKindToSis;
         foreach(string name  in completeEvents)
         {
             if(_objective.gameObject.name == name)
@@ -46,6 +47,7 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
         data.bookedTickets = LoveSpreadingEvent.Instance.bookedTickets;
         data.gaveTicketsToSis = LoveSpreadingEvent.Instance.gaveTicketsToSis;
         data.calledSisNoSuccess = LoveSpreadingEvent.Instance.calledSisNoSuccess;
+        data.wasKindToSis = LoveSpreadingEvent.Instance.wasKindToSis;
     }
 
 

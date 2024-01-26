@@ -27,6 +27,7 @@ public class GameData
     public bool bookedTickets;
     public bool gaveTicketsToSis;
     public bool calledSisNoSuccess;
+    public bool wasKindToSis;
     
     // default values for when the game starts with no data.
     public GameData()
@@ -50,6 +51,7 @@ public class GameData
         bookedTickets = false;
         gaveTicketsToSis = false;
         calledSisNoSuccess = false;
+        wasKindToSis = false;
         inventory = new();
     }
 }
