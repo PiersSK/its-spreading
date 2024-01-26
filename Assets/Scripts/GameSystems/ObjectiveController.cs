@@ -11,8 +11,8 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
     [SerializeField] private TextMeshProUGUI historicStatDisplay;
     [SerializeField] private Transform objectiveParent;
 
-    public static int totalObjectives = 11;
-    public static int objectivesComplete = 0;
+    public int totalObjectives = 11;
+    public int objectivesComplete = 0;
     private int objectivesCompleteAllTime = 0;
 
     private static bool allObjectivesComplete = false;
