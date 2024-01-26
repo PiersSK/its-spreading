@@ -80,6 +80,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Phone"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f54efcd-0c50-4e32-8d0b-95dd695a87cb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -300,6 +309,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""39e6df63-c2c3-4036-a888-2a321f57b8a3"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Phone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8418c995-4d07-4634-a6ec-b86737e1692f"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Phone"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -832,6 +863,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Emote1 = m_Player.FindAction("Emote1", throwIfNotFound: true);
         m_Player_Emote2 = m_Player.FindAction("Emote2", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+        m_Player_Phone = m_Player.FindAction("Phone", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -911,6 +943,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Emote1;
     private readonly InputAction m_Player_Emote2;
     private readonly InputAction m_Player_Inventory;
+    private readonly InputAction m_Player_Phone;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -921,6 +954,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Emote1 => m_Wrapper.m_Player_Emote1;
         public InputAction @Emote2 => m_Wrapper.m_Player_Emote2;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+        public InputAction @Phone => m_Wrapper.m_Player_Phone;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -948,6 +982,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+            @Phone.started += instance.OnPhone;
+            @Phone.performed += instance.OnPhone;
+            @Phone.canceled += instance.OnPhone;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -970,6 +1007,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+            @Phone.started -= instance.OnPhone;
+            @Phone.performed -= instance.OnPhone;
+            @Phone.canceled -= instance.OnPhone;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1113,6 +1153,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnEmote1(InputAction.CallbackContext context);
         void OnEmote2(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnPhone(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

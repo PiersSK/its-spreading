@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class StartGame : MonoBehaviour
+public class StartGame : MonoBehaviour, IDataPersistence
 {
     public static StartGame Instance { get; private set; }
 
@@ -15,13 +15,19 @@ public class StartGame : MonoBehaviour
     private int spreadEventsFound = 0;
 
     private const string WAKEUPTHOUGHT = "Mmmm finally a day off, let's start the day with some lovely jam on toast";
-    private const string FIRSTSPREADTHOUGHT = "Oh my! That shouldn't happen here... I should spread again to be sure...";
-    private const string SECONDSPREADTHOUGHT = "Oh bother that confirms it. I got doused with too many spreadheads at work. I guess I need to get spreading, otherwise that's gonna be a nuisance";
+    private const string FIRSTSPREADTHOUGHT = "Oh my! That shouldn't happen here... I must've been doused with too many spreadheads at work. I need to spread 11 things by midnight to tire them out";
 
     private void Awake()
     {
         Instance = this;
     }
+
+    public void LoadData(GameData data)
+    {
+        spreadEventsFound = data.numCompleteEvents;
+    }
+
+    public void SaveData(ref GameData data) {}
 
     private void Start()
     {
@@ -47,8 +53,6 @@ public class StartGame : MonoBehaviour
     {
         if (spreadEventsFound == 0)
             _thoughtBubble.ShowThought(FIRSTSPREADTHOUGHT);
-        else if (spreadEventsFound == 1)
-            _thoughtBubble.ShowThought(SECONDSPREADTHOUGHT, 7f);
         else
         {
             foreach (SpreadingEvent spreadingEvent in spreadingEvents)
