@@ -6,7 +6,6 @@ using UnityEngine;
 public class SpreadingEvent : MonoBehaviour, IDataPersistence
 {
     public event EventHandler<EventArgs> SpreadEventComplete;
-
     [SerializeField] Objective _objective;
     [SerializeField] public string requiredItemName;
     protected bool eventComplete = false;
@@ -25,6 +24,15 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
         LoveSpreadingEvent.Instance.bookedTickets = data.bookedTickets;
         LoveSpreadingEvent.Instance.gaveTicketsToSis = data.gaveTicketsToSis;
         LoveSpreadingEvent.Instance.calledSisNoSuccess = data.calledSisNoSuccess;
+        foreach(string name  in completeEvents)
+        {
+            if(_objective.gameObject.name == name)
+            {
+                eventComplete = true;
+                _objective.CompleteObjective(false);
+                EventImpact();
+            }
+        }
     }
 
     public void SaveData(ref GameData data)
@@ -43,15 +51,7 @@ public class SpreadingEvent : MonoBehaviour, IDataPersistence
 
     protected virtual void Update()
     {
-        foreach(string name  in completeEvents)
-        {
-            if(_objective.gameObject.name == name)
-            {
-                eventComplete = true;
-                _objective.CompleteObjective();
-                EventImpact();
-            }
-        }
+        
         if (ShouldEventTrigger() && !eventComplete)
         {
             eventComplete = true;
