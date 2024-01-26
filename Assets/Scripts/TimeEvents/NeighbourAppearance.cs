@@ -109,9 +109,9 @@ public class NeighbourAppearance : LimitedTimedEvent, IDataPersistence
         }
     }
 
-    public string GetScheduledStartTime()
+    public TimeSpan GetScheduledStartTime()
     {
-        return eventHour.ToString() + eventMinute.ToString();
+        return new TimeSpan(eventHour, eventMinute, 0);
     }
 
 }

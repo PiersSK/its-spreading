@@ -168,13 +168,12 @@ public class TimeController : MonoBehaviour, IDataPersistence
         {
             if (eventTransform.TryGetComponent(out NeighbourAppearance e))
             {
-                if (!e.eventHasEnded)
+                if (!e.eventHasEnded && doorEventLocation == e.endPosition)
                 {
                     list.Add(e);
                 }
             }
         }
-
         if (list.Count == 0) return false;
 
         list = list.OrderBy(o => o.GetScheduledStartTime()).ToList();
