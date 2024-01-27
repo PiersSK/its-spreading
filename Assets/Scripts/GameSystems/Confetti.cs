@@ -21,7 +21,6 @@ public class Confetti : MonoBehaviour
     [Header("Resources")]
     [SerializeField] private List<Material> confettiMaterials;
     [SerializeField] private AudioClip partyBlowerSound;
-    [SerializeField] private AudioClip yaySound;
 
     private AudioSource audioSource;
 
@@ -35,11 +34,10 @@ public class Confetti : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void ConfettiExplosion()
+    public void ConfettiExplosion(AudioClip spreadingVoice, string subtitle, bool showUISplash = true)
     {
-        // Show title. TODO: Add our voice effect to this instead of "Yay"
-        ConfettiUI.Instance.ShowItsSpreading();
-        audioSource.PlayOneShot(yaySound);
+        if(showUISplash) ConfettiUI.Instance.ShowItsSpreading(subtitle);
+        audioSource.PlayOneShot(spreadingVoice);
         audioSource.PlayOneShot(partyBlowerSound);
 
         // Spawn confetti

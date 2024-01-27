@@ -1,0 +1,221 @@
+{
+    "name": "Spreadwina",
+    "picture": "spreadwina",
+    "responseClass": "SisResponse",
+    "conversations": [
+        {
+            "id": 0,
+            "dialogues": [
+                {
+                    "id": 0,
+                    "prompt": "Hey Spreaddy, thanks for calling.",
+                    "responses": [
+                        {
+                            "text": "Of course bubs, you doing okay?",
+                            "outcomeId": 1,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Duh, I wanted to ask for a favour.",
+                            "outcomeId": 5,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Oops, sorry, I buttdialed you. I don’t understand the phone UI yet.",
+                            "outcomeId": 7,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 1,
+                    "prompt": "Honestly, I've been exhausted lately. Work's been nonstop parties, my car's jesterdrive has been acting up so it can only fit four people at the moment, and my balloon-dog Bubbles floated off last week. I miss their squeak, y'know?",
+                    "responses": [
+                        {
+                            "text": "Awwh, that's a lot to be dealing with. You got any free time coming up, maybe take the edge off?",
+                            "outcomeId": 2,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Wow, yikers. I don’t know what to say. Your life sounds... kinda bad.",
+                            "outcomeId": 4,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "prompt": "I wanted to go see the final showing of \"Easy As 1, You, Me\" to unwind and feed my parasocial relationship with Milly Pead, but I feel kinda weird going alone... and nobody I knew was free... and then the tickets sold out. I know you hate that kind of thing, or I'd have made you do it with me, heh.",
+                    "responses": [
+                        {
+                            "text": "I would have gone if you wanted me to! I'm sorry they sold out. Maybe some more will get released?",
+                            "outcomeId": 3,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Yeah, I’d rather chug slugs than watch smug bugs hug.",
+                            "outcomeId": 4,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "prompt": "Thanks, Spreaddy. Yeah, they might, but I'm going to be juggling a lot of stuff all day. We've got a mega-jumbo-party starting soon, won't be home until 6. Speaking of, Jiggles is here to teach me how to juggle, so I better jet!",
+                    "responses": [
+                        {
+                            "text": "Give Jiggles my love!",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "CloseWithSuccess"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "prompt": "Yes, well... I thought that, so that's... that's fine. Listen, my boss is staring conkers at me, I should go.",
+                    "responses": [
+                        {
+                            "text": "Give big boss Wiggles my love!",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "CloseWithFailure"
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "prompt": "Oh, uh, of course. What is it?",
+                    "responses": [
+                        {
+                            "text": "Can you ask Jiggles to give me back the front two walls of my apartment? It's really draughty in here.",
+                            "outcomeId": 6,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Can you lend me some spounds? I feel like doing a lot of online shopping today.",
+                            "outcomeId": 6,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Can you sort out mum's birthday present this year? You know, like you did last year. Ooh, and dad's too! You know, like you did last year as well.",
+                            "outcomeId": 6,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 6,
+                    "prompt": "Uh... oh, my boss is squeaking his nose at me, I've got to start getting ready. It's going to be a long day at work, I won't be home until 6, and I'll probably just head to bed, so... speak to you tomorrow, maybe.",
+                    "responses": [
+                        {
+                            "text": "Give big boss Wiggles my love!",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "CloseWithFailure"
+                        }
+                    ]
+                },
+                {
+                    "id": 7,
+                    "prompt": "Oh, I thought you'd seen my message. Are you... free to talk?",
+                    "responses": [
+                        {
+                            "text": "Of course bubs, you doing okay?",
+                            "outcomeId": 1,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "Duh, I wanted to ask for a favour.",
+                            "outcomeId": 5,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "dialogues": [
+                {
+                    "id": 0,
+                    "prompt": "Hey Spreaddy, everything alright?",
+                    "responses": [
+                        {
+                            "text": "I dunno, guess you'll have to ask Milly this weekend...",
+                            "outcomeId": 1,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        },
+                        {
+                            "text": "No, I think I might explode soon!",
+                            "outcomeId": 4,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 1,
+                    "prompt": "Milly...? As in..?",
+                    "responses": [
+                        {
+                            "text": "Milly Pead, yes that's right sis I got us tickets to \"Easy as 1, You Me\"!",
+                            "outcomeId": 2,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "prompt": "You're kidding! Oh my goodness, Spreaddyyy!",
+                    "responses": [
+                        {
+                            "text": "You deserve a break, sis. You've always put your whole heart into everything you do, and sometimes that needs to be looking after yourself!",
+                            "outcomeId": 3,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "prompt": "I'm gonna cry myself to sleep now. With happy tears! I'll see you this weekend. I can't believe you're going to sit through 4 hours of musical theatre for me.",
+                    "responses": [
+                        {
+                            "text": "Don't make me think about it! I love you, sis. Sweet dreams!",
+                            "outcomeId": null,
+                            "requirement": null,
+                            "outcomeFunction": "CloseWithSpread"
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "prompt": "Classic you, you dork. I'm wiped out over here. Call me again tomorrow, m'kay?",
+                    "responses": [
+                        {
+                            "text": "I was just kidding, don't hang up! I was just giving an example of the effortless comedy you'll be seeing from Milly this weekend.",
+                            "outcomeId": 1,
+                            "requirement": null,
+                            "outcomeFunction": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

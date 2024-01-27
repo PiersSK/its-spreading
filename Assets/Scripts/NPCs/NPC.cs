@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 
-public class NPC : MonoBehaviour
+public class NPC : Interactable
 {
     protected AudioSource npcAudio;
     protected Animation npcAnim;
+    public NeighbourAppearance currentScheduler;
+
+    public Color primaryColor;
+    public Color secondaryColor;
 
     protected virtual void Start()
     {
         npcAudio = GetComponent<AudioSource>();
         npcAnim = GetComponent<Animation>();
     }
+
+    public virtual void NPCCoreAction() { }
 
     public virtual void PauseNPCAudio()
     {
@@ -41,5 +47,10 @@ public class NPC : MonoBehaviour
             yield return null;
         }
         yield break;
+    }
+
+    public override bool CanInteract()
+    {
+        return false;
     }
 }

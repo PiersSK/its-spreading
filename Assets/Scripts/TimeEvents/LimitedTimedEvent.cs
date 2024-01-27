@@ -5,9 +5,9 @@ using UnityEngine;
 public class LimitedTimedEvent : TimedEvent
 {
     [Range(0, 23)]
-    [SerializeField] private int eventEndHour;
+    public int eventEndHour;
     [Range(0, 59)]
-    [SerializeField] private int eventEndMinute;
+    public int eventEndMinute;
 
     public bool eventHasEnded = false;
 
@@ -15,5 +15,11 @@ public class LimitedTimedEvent : TimedEvent
     public virtual bool ShouldEventEndTrigger()
     {
         return hasBeenTriggered && !eventHasEnded && TimeController.Instance.TimeHasPassed(eventEndHour, eventEndMinute);
+    }
+
+    public void SetEventEndTime(int hour, int min)
+    {
+        eventEndHour = hour;
+        eventEndMinute = min;
     }
 }

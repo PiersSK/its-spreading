@@ -1,23 +1,28 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class TimeController : MonoBehaviour, IDataPersistence
 {
     public static TimeController Instance { get; private set; }
+    public event EventHandler<EventArgs> DayOver;
 
     private const float REALDAYLENGTHMINS = 1440f;
     private const float REALDAYLENGTHSECONDS = 86400f;
     private const float REALHOURLENGTHSECONDS = 3600f;
 
+    private const float REALMINUTELENGTHSECONDS = 60f;
+
     private const int SUNRISEHOURS = 8;
     private const int SUNSETHOURS = 19;
     private int daysComplete = 0;
+    private bool dayisComplete = false;
 
     [Header("Time Settings")]
     [Range(0, 23)]
-    [SerializeField] private int startTimeHours = 8;
+    [SerializeField] private int startTimeHours;
     [Range(1, 120)]
     [SerializeField] private int realtimeDayLengthMins = 60;
     [SerializeField] private TextMeshProUGUI clockUI;
@@ -29,39 +34,58 @@ public class TimeController : MonoBehaviour, IDataPersistence
     [SerializeField] private Color lowSunColor;
 
     [Header("Events")]
-    [SerializeField] private Transform scheduledEvents;
+    public Transform scheduledEvents;
+    [SerializeField] Transform doorEventLocation;
     //[SerializeField] private List<TimedEvent> scheduledEvents;
+    public List<string> completeEvents;
 
     private float timeMultiplier;
     public float tempMultiplier = 1f;
     private float time = 0f;
     private float maxNaturalLight = 1.5f;
 
+    private int currentHour;
+
+    private int currentMinute;
+
+    private bool isTimeSet = false;
+    private bool timeIsPaused = false;
+
     private void Awake()
     {
         Instance = this;
+        timeMultiplier = REALDAYLENGTHMINS / realtimeDayLengthMins;
+        time = startTimeHours * REALHOURLENGTHSECONDS;
     }
 
     public void LoadData(GameData data)
     {
-        this.daysComplete = data.daysComplete;
+        completeEvents = data.completeEvents;
+        currentHour = data.currentHour;
+        currentMinute = data.currentMinute;
+        daysComplete = data.daysComplete;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.daysComplete = this.daysComplete;
+        data.completeEvents = completeEvents;
+        data.currentHour = currentHour;
+        data.currentMinute = currentMinute;
+        data.daysComplete = daysComplete;
+        data.dayIsComplete = dayisComplete;
     }
-    
-    private void Start()
-    {
-        timeMultiplier = REALDAYLENGTHMINS / realtimeDayLengthMins;
-        time = startTimeHours * REALHOURLENGTHSECONDS;
-
-    }
-
     private void Update()
     {
+        if(!isTimeSet)
+        {
+            
+            time = (currentHour * REALHOURLENGTHSECONDS) + (currentMinute * REALMINUTELENGTHSECONDS);
+            isTimeSet = true;
+        }
+
         // Update Time
+        if (timeIsPaused) return;
+
         time += Time.deltaTime * timeMultiplier * tempMultiplier;
         if (time > REALDAYLENGTHSECONDS)
         {
@@ -69,6 +93,8 @@ public class TimeController : MonoBehaviour, IDataPersistence
             OnDayComplete();
         }
 
+        currentHour = TimeSpanToHour(CurrentTime());
+        currentMinute = TimeSpanToMinute(CurrentTime());
         UpdateClockUI();
         UpdateLights();
         TriggerEvents();
@@ -78,6 +104,43 @@ public class TimeController : MonoBehaviour, IDataPersistence
     {
         foreach (Transform eventTransform in scheduledEvents)
         {
+            // Diff logic for neighbourhood appearences to ensure no conflicts
+            if(eventTransform.TryGetComponent(out NeighbourAppearance ne))
+            {
+                if (doorEventLocation == ne.endPosition)
+                {
+                    if (IsNextInQueue(ne))
+                    {
+                        if (ne.ShouldEventTrigger())
+                        {
+                            ne.TriggerEvent();
+                            ne.hasBeenTriggered = true;
+                        }
+                        else if (ne.ShouldEventEndTrigger())
+                        {
+                            ne.TriggerEventEnd();
+                            ne.eventHasEnded = true;
+                        }
+                    }
+                    else
+                    {
+                        if (ne.ShouldEventTrigger())
+                        {
+                            if (ne.cachedEndHour == null) ne.cachedEndHour = ne.eventEndHour;
+                            if (ne.cachedEndMinute == null) ne.cachedEndMinute = ne.eventEndMinute;
+
+                            TimeSpan eventStartTs = new(ne.eventHour, ne.eventMinute, 0);
+                            TimeSpan newEnd = new(ne.cachedEndHour.Value, ne.cachedEndMinute.Value, 0);
+
+                            newEnd = newEnd.Add(TimeSpan.FromSeconds(time).Subtract(eventStartTs));
+
+                            ne.SetEventEndTime(newEnd.Hours, newEnd.Minutes);
+                        }
+                    }
+                    continue;
+                }
+            }
+
             if (eventTransform.TryGetComponent(out TimedEvent e))
             {
                 if (e.ShouldEventTrigger())
@@ -95,6 +158,42 @@ public class TimeController : MonoBehaviour, IDataPersistence
                     lte.eventHasEnded = true;
                 }
             }
+        }
+    }
+
+    private bool IsNextInQueue(NeighbourAppearance appearance)
+    {
+        List<NeighbourAppearance> list = new List<NeighbourAppearance>();
+        foreach (Transform eventTransform in scheduledEvents)
+        {
+            if (eventTransform.TryGetComponent(out NeighbourAppearance e))
+            {
+                if (!e.eventHasEnded && doorEventLocation == e.endPosition)
+                {
+                    list.Add(e);
+                }
+            }
+        }
+        if (list.Count == 0) return false;
+
+        list = list.OrderBy(o => o.GetScheduledStartTime()).ToList();
+
+        return list[0] == appearance;
+    }
+
+    public void TurnOffAllLights()
+    {
+        foreach(GameObject light in roomLights)
+        {
+            light.GetComponent<Light>().intensity = 0f;
+        }
+    }
+
+    public void TurnOnAllLights()
+    {
+        foreach (GameObject light in roomLights)
+        {
+            light.GetComponent<Light>().intensity = 3f;
         }
     }
 
@@ -127,10 +226,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     private void UpdateClockUI()
     {
         TimeSpan ts = TimeSpan.FromSeconds(time);
-        string timeSuffix = ts.Hours < 12 ? "am" : "pm";
-        int amPmHours = ts.Hours % 12 == 0 ? 12 : ts.Hours % 12;
-
-        clockUI.text = string.Format("{0}:{1:00} {2}", amPmHours, ts.Minutes, timeSuffix);
+        clockUI.text = TimeSpanToClock(ts);
     }
 
     private Color GetSunColor(float percToLowSun)
@@ -148,6 +244,49 @@ public class TimeController : MonoBehaviour, IDataPersistence
     
     private void OnDayComplete()
     {
+        dayisComplete = true;
         daysComplete++;
+        completeEvents.Clear();
+        DayOver?.Invoke(this, EventArgs.Empty);
+    }
+
+    public TimeSpan CurrentTime()
+    {
+        return TimeSpan.FromSeconds(time);
+    }
+
+    public float InGameMinsToRealSeconds(int mins)
+    {
+        return (mins * 60f) / timeMultiplier;
+    }
+
+    public string TimeSpanToClock(TimeSpan ts)
+    {
+        string timeSuffix = ts.Hours < 12 ? "am" : "pm";
+        int amPmHours = ts.Hours % 12 == 0 ? 12 : ts.Hours % 12;
+
+        return string.Format("{0}:{1:00} {2}", amPmHours, ts.Minutes, timeSuffix);
+    }
+
+    public bool IsInTimeSpan(int hour1, int min1, int hour2, int min2)
+    {
+        return TimeHasPassed(hour1, min1) && !TimeHasPassed(hour2, min2);
+    }
+
+    public int TimeSpanToHour(TimeSpan ts)
+    {
+        int hour = ts.Hours;
+        return hour;
+    }
+
+    public int TimeSpanToMinute(TimeSpan ts)
+    {
+        int minutes = ts.Minutes;
+        return minutes;
+    }
+    
+    public void ToggleTimePause()
+    {
+        timeIsPaused = !timeIsPaused;
     }
 }

@@ -9,12 +9,16 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
 
     [SerializeField] private TextMeshProUGUI scoreDisplay;
     [SerializeField] private TextMeshProUGUI historicStatDisplay;
-    [SerializeField] private int totalObjectives = 10;
+    [SerializeField] private Transform objectiveParent;
 
-    private int objectivesComplete = 0;
+    public int totalObjectives = 11;
+    public int objectivesComplete = 0;
     private int objectivesCompleteAllTime = 0;
 
+    private static bool allObjectivesComplete = false;
+
     private const string HISTSTATPREFIX = "Total spreads found ever: ";
+    private const string FINALTHOUGHT = "Hey! I think I've finally spread enough to detox, maybe it's time to go to bed!";
 
 
     public int ObjectivesComplete
@@ -33,13 +37,39 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
         Instance = this;
     }
 
+    private void Start()
+    {
+        totalObjectives = objectiveParent.childCount;
+        scoreDisplay.text = objectivesComplete.ToString() + "/" + totalObjectives.ToString();
+        historicStatDisplay.text = HISTSTATPREFIX + (objectivesCompleteAllTime + objectivesComplete);
+    }
+
+    private void Update()
+    {
+        if(!allObjectivesComplete)
+        {
+            if(objectivesComplete == totalObjectives)
+            {
+                allObjectivesComplete = true;
+                ThoughtBubble.Instance.ShowThought(FINALTHOUGHT);
+            }
+        }
+    }
+
     public void LoadData(GameData data)
     {
         historicStatDisplay.text = HISTSTATPREFIX + data.spreadEventsTriggered;
         objectivesCompleteAllTime = data.spreadEventsTriggered;
+        ObjectivesComplete = data.numCompleteEvents;
     }
     public void SaveData(ref GameData data)
     {
         data.spreadEventsTriggered += objectivesComplete;
+        data.numCompleteEvents = ObjectivesComplete;
+    }
+
+    public static bool HasCompletedAllObjectives()
+    {
+        return allObjectivesComplete;
     }
 }

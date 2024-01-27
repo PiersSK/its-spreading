@@ -20,10 +20,8 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] TextMeshProUGUI interactableNameUI;
     [SerializeField] GameObject cyclePrompt;
 
-    [Header("Debug Fields")]
-    // Serialized for debugging only
-    [SerializeField] private List<Interactable> interactablesInRange = new();
-    [SerializeField] private Interactable selectedInteractable;
+    private List<Interactable> interactablesInRange = new();
+    private Interactable selectedInteractable;
 
     public bool persistSelectedInteractable = false;
 
@@ -75,18 +73,22 @@ public class PlayerInteract : MonoBehaviour
     {
         foreach (Interactable interactable in FindObjectsOfType<Interactable>())
         {
-            float distance = Vector3.Distance(interactable.transform.position, transform.position);
-            Vector3 direction = interactable.transform.position - transform.position;
+            Vector3 playerPos = transform.position + eyeOffset;
+
+            float distance = Vector3.Distance(interactable.transform.position, playerPos);
+            Vector3 direction = interactable.transform.position - playerPos;
             float angleToPlayer = Vector3.Angle(direction, transform.forward);
 
             // If the interactable is in range...
             if (distance < interactRange
                 && angleToPlayer >= -interactMaxAngle
                 && angleToPlayer <= interactMaxAngle
-                && interactable.CanInteract()) // ...and it's currently interactable...
+                && interactable.CanInteract()
+                && Player.Instance.controlActions.Interact.enabled
+                ) // ...and it's currently interactable...
             {
 
-                Ray ray = new(transform.position + eyeOffset, direction);
+                Ray ray = new(playerPos, direction);
                 Debug.DrawRay(ray.origin, ray.direction * distance);
                 RaycastHit hitInfo = new();
 
@@ -157,13 +159,21 @@ public class PlayerInteract : MonoBehaviour
     {
         float minDistance = Mathf.Infinity;
         Interactable toSelect = null;
-        foreach(Interactable interactable in interactablesInRange)
+
+        if (interactablesInRange.Any(o => o.priority != interactablesInRange[0].priority))
         {
-            float distanceToInteractable = Vector3.Distance(interactable.transform.position, transform.position);
-            if (distanceToInteractable < minDistance)
+            return interactablesInRange.OrderByDescending(o => o.priority).ToList()[0];
+        }
+        else
+        {
+            foreach (Interactable interactable in interactablesInRange)
             {
-                minDistance = distanceToInteractable;
-                toSelect = interactable;
+                float distanceToInteractable = Vector3.Distance(interactable.transform.position, transform.position);
+                if (distanceToInteractable < minDistance)
+                {
+                    minDistance = distanceToInteractable;
+                    toSelect = interactable;
+                }
             }
         }
 

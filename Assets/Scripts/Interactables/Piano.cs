@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class Piano : Interactable
+public class Piano : LockinInteractable
 {
     private AudioSource pianoAudio;
     private Animation noteAnim;
-    public bool isPlaying;
-
-    private const string PLAY = "Play";
-    private const string STOP = "Stop";
-
     private BackgroundMusicLayer pianoLayer;
+
+    private bool hasReacted = false;
+    private const string TUNETHOUGHT = "The show theme always gets stuck in my head.";
 
     private void Start()
     {
-        promptText = PLAY;
         pianoAudio = GetComponent<AudioSource>();
         noteAnim = GetComponent<Animation>();
         MusicController.Instance.LoopReset += ResetPianoTrack;
@@ -23,40 +21,41 @@ public class Piano : Interactable
         pianoLayer = new BackgroundMusicLayer(pianoAudio);
     }
 
-    public override void Interact()
+    protected override void LockedInInteract()
     {
-        if (!isPlaying)
+        base.LockedInInteract();
+
+        MusicController.Instance.playRandom = true;
+        pianoLayer.PauseLayer();
+
+        noteAnim.wrapMode = WrapMode.Once;
+
+        Player.Instance._animator.SetBool("isPlayingPiano", false);
+
+    }
+
+    protected override void FreeInteract()
+    {
+        base.FreeInteract();
+
+        if(!hasReacted)
         {
-            // Set background music correctly
-            MusicController.Instance.SetMusicIntensity(1);
-            MusicController.Instance.playRandom = false;
-
-            // Play piano intime with bg music
-            pianoLayer.PlayLayer();
-
-            noteAnim.wrapMode = WrapMode.Loop;
-            noteAnim.Play();
-
-            // Lock player here
-            Player.Instance.canMove = false;
-            Player.Instance.GetComponent<PlayerInteract>().SetObjectAndChildrenHighlight(transform, false);
-
-            // Toggle action
-            promptText = STOP;
-            isPlaying = true;
-        } else
-        {
-            MusicController.Instance.playRandom = true;
-
-            pianoLayer.PauseLayer();
-
-            noteAnim.wrapMode = WrapMode.Once;
-
-            Player.Instance.canMove = true;
-            Player.Instance.GetComponent<PlayerInteract>().SetObjectAndChildrenHighlight(transform, true);
-            promptText = PLAY;
-            isPlaying = false;
+            ThoughtBubble.Instance.ShowThought(TUNETHOUGHT);
+            hasReacted = true;
         }
+
+        // Set background music correctly
+        MusicController.Instance.SetMusicIntensity(1);
+        MusicController.Instance.playRandom = false;
+
+        // Play piano intime with bg music
+        pianoLayer.PlayLayer();
+
+        noteAnim.wrapMode = WrapMode.Loop;
+        noteAnim.Play();
+
+        Player.Instance._animator.SetBool("isPlayingPiano", true);
+
     }
 
     private void ResetPianoTrack(object sender, System.EventArgs e)
