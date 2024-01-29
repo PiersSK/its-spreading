@@ -27,7 +27,7 @@ public class Fire : Interactable, IDataPersistence
         if(wasLit)
         {
             LightFire();
-            Interact();
+            DouseFire();
         }
 
     }
@@ -80,11 +80,7 @@ public class Fire : Interactable, IDataPersistence
 
     public override void Interact()
     {
-        isLit = false;
-        fireLight.intensity = 0f;
-        SetParticleEmission(fireParticles, 0f);
-        SetParticleEmission(smokeParticles, smokeMaxEmission);
-        smokeTimer = smokeLife;
+        DouseFire();
 
         int firesLit = 0;
         foreach(Fire fire in FindObjectsOfType<Fire>())
@@ -93,6 +89,15 @@ public class Fire : Interactable, IDataPersistence
             ThoughtBubble.Instance.ShowThought(PUTOUTTHOUGHT);
 
     }
+
+    private void DouseFire()
+    {
+        isLit = false;
+        fireLight.intensity = 0f;
+        SetParticleEmission(fireParticles, 0f);
+        SetParticleEmission(smokeParticles, smokeMaxEmission);
+        smokeTimer = smokeLife;
+    } 
 
     public override bool CanInteract()
     {

@@ -40,7 +40,7 @@ public class MainMenu : MonoBehaviour
         leftOrigin = curtainLeft.anchoredPosition;
         rightOrigin = curtainRight.anchoredPosition;
 
-        fileHandler = new FileDataHandler(Application.persistentDataPath, DEFAULTFILENAME, false);
+        fileHandler = new FileDataHandler(Application.persistentDataPath, DEFAULTFILENAME, true);
         gameData = fileHandler.Load();
         if(gameData == null || gameData.dayIsComplete) resumeGame.gameObject.SetActive(false);
     }

@@ -8,10 +8,10 @@
             "dialogues": [
                 {
                     "id": 0,
-                    "prompt": "Hey Spreaddy, thanks for calling",
+                    "prompt": "Hey Spreaddy, thanks for calling.",
                     "responses": [
                         {
-                            "text": "Of course bubs, you doing okay",
+                            "text": "Of course bubs, you doing okay?",
                             "outcomeId": 1,
                             "requirement": null,
                             "outcomeFunction": null
@@ -23,7 +23,7 @@
                             "outcomeFunction": null
                         },
                         {
-                            "text": "Oops, sorry, I buttdialed you. I don’t understand the phone UI yet",
+                            "text": "Oops, sorry, I buttdialed you. I don’t understand the phone UI yet.",
                             "outcomeId": 7,
                             "requirement": null,
                             "outcomeFunction": null
@@ -35,13 +35,13 @@
                     "prompt": "Honestly, I've been exhausted lately. Work's been nonstop parties, my car's jesterdrive has been acting up so it can only fit four people at the moment, and my balloon-dog Bubbles floated off last week. I miss their squeak, y'know?",
                     "responses": [
                         {
-                            "text": "Awwh, that sucks, that sounds like a lot. You got any free time coming up, maybe take the edge off?",
+                            "text": "Awwh, that's a lot to be dealing with. You got any free time coming up, maybe take the edge off?",
                             "outcomeId": 2,
                             "requirement": null,
                             "outcomeFunction": null
                         },
                         {
-                            "text": "Wow, yikers. I don’t know what to say. Your life sounds kinda bad.",
+                            "text": "Wow, yikers. I don’t know what to say. Your life sounds... kinda bad.",
                             "outcomeId": 4,
                             "requirement": null,
                             "outcomeFunction": null
@@ -59,7 +59,7 @@
                             "outcomeFunction": null
                         },
                         {
-                            "text": "Yeah, I’d rather chug slugs than watch smug lugs hug",
+                            "text": "Yeah, I’d rather chug slugs than watch smug bugs hug.",
                             "outcomeId": 4,
                             "requirement": null,
                             "outcomeFunction": null
@@ -92,7 +92,7 @@
                 },
                 {
                     "id": 5,
-                    "prompt": "Oh, uh, of course. What is it",
+                    "prompt": "Oh, uh, of course. What is it?",
                     "responses": [
                         {
                             "text": "Can you ask Jiggles to give me back the front two walls of my apartment? It's really draughty in here.",
@@ -116,7 +116,7 @@
                 },
                 {
                     "id": 6,
-                    "prompt": "Uh... oh, my boss is squeaking his nose at me, I've got to start getting ready. It's going to be a long day at work, I won't be home until 6, and I'll probably just head to bed, so... speak to you tomorrow, maybe",
+                    "prompt": "Uh... oh, my boss is squeaking his nose at me, I've got to start getting ready. It's going to be a long day at work, I won't be home until 6, and I'll probably just head to bed, so... speak to you tomorrow, maybe.",
                     "responses": [
                         {
                             "text": "Give big boss Wiggles my love!",
@@ -128,7 +128,7 @@
                 },
                 {
                     "id": 7,
-                    "prompt": "Oh, I thought you'd seen my message. Are you... free to talk",
+                    "prompt": "Oh, I thought you'd seen my message. Are you... free to talk?",
                     "responses": [
                         {
                             "text": "Of course bubs, you doing okay?",
@@ -208,7 +208,7 @@
                     "prompt": "Classic you, you dork. I'm wiped out over here. Call me again tomorrow, m'kay?",
                     "responses": [
                         {
-                            "text": "I was just kidding, don't hang up! I was just giving an example of the effortless comedy you'll be seeing from Milly this weekend",
+                            "text": "I was just kidding, don't hang up! I was just giving an example of the effortless comedy you'll be seeing from Milly this weekend.",
                             "outcomeId": 1,
                             "requirement": null,
                             "outcomeFunction": null

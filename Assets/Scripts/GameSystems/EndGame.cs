@@ -176,6 +176,7 @@ public class EndGame : MonoBehaviour
 
     private void BackToMainMenu()
     {
+        DataPersistenceManager.Instance.SaveNewDayToFile();
         SceneManager.LoadScene(MAINMENUSCENE);
     }
 }

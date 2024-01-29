@@ -11,7 +11,7 @@ public class FileDataHandler
     private string dataFileName = "";
 
     private bool useEncryption = false;
-    private readonly string encryptionCodeWord = "thal's balls";
+    private readonly string encryptionCodeWord = "thalsballs";
 
 
 

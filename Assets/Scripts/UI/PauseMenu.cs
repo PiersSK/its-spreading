@@ -56,6 +56,22 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
-    
+    public void BackToMainMenu()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        DataPersistenceManager.Instance.SaveGame();
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void RestartDay()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        DataPersistenceManager.Instance.SaveNewDayToFile();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
 }

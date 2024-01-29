@@ -8,10 +8,10 @@
             "dialogues": [
                 {
                     "id": 0,
-                    "prompt": "Hellooooooo caller! Heard you got some important information for the other truth searching bedheads out there is that right?",
+                    "prompt": "Hellooooooo caller! Heard you got some important information for the other truth-searching bedheads out there is that right?",
                     "responses": [
                         {
-                            "text": "You betcha Eddy!",
+                            "text": "You bedcha, Eddy!",
                             "outcomeId": 1,
                             "requirement": null,
                             "outcomeFunction": null
@@ -35,14 +35,14 @@
                             "outcomeFunction": null
                         },
                         {
-                            "text": "This is gonna be a lot. Some among us... are actually horses trying to get us to eat more sugar",
+                            "text": "This is gonna be a lot. Hidden among us, some so-called 'people'... are actually horses trying to get us to eat more sugar.",
                             "outcomeId": 6,
                             "requirement": "HasReadHorsespiracy",
                             "outcomeFunction": null
                         }
                         ,
                         {
-                            "text": "Ummm.. I think I heard Milly Pead stays up past her bedtime...",
+                            "text": "Ummm... I think I heard Milly Pead stays up past her bedtime...",
                             "outcomeId": 10,
                             "requirement": "HasReadMillyPead",
                             "outcomeFunction": null
@@ -75,10 +75,10 @@
                 },
                 {
                     "id": 3,
-                    "prompt": "Wow. That really makes you think. Producer, pull up that video we have of Magic Darren doing a kickflip over me for the folks on stream",
+                    "prompt": "Wow, that really makes you think. Producer, pull up that video we have of Magic Darren doing a kickflip over me for the folks on stream.",
                     "responses": [
                         {
-                            "text": "Wow, I bet that would be a really special video to watch but one that is really hard to animate in a short space of time",
+                            "text": "Wow, I bet that would be a really special video to watch, but one that is probably really hard to animate in a short space of time.",
                             "outcomeId": 4,
                             "requirement": null,
                             "outcomeFunction": null
@@ -87,10 +87,10 @@
                 },
                 {
                     "id": 4,
-                    "prompt": "Well thanks for sharing the important word friend. Listeners, make sure to tell everyone you know this vital information. And caller, thanks for your time, and remember...",
+                    "prompt": "Well, thanks for sharing the important word, friend. Listeners, make sure to tell everyone you know about this vital information. And caller, thanks for your time, and remember...",
                     "responses": [
                         {
-                            "text": "WE SNOOZE BUT WE DON'T LOOSE!!!",
+                            "text": "WE SNOOZE BUT WE DON'T LOOOOSE!!!",
                             "outcomeId": 5,
                             "requirement": null,
                             "outcomeFunction": null
@@ -99,7 +99,7 @@
                 },
                 {
                     "id": 5,
-                    "prompt": "Hahaha that's right fella. Thanks for calling, keep listening",
+                    "prompt": "Hahaha that's right, fella. Thanks for calling, keep listening",
                     "responses": [
                         {
                             "text": "Goodbye!",
@@ -111,10 +111,10 @@
                 },
                 {
                     "id": 6,
-                    "prompt": "No. Way. That is the single biggest piece of news we've had in almost 2000 episodes of the Eddy Beddy Bedtime cast. Can you tell me what your source is?",
+                    "prompt": "No. Way. That is the single biggest piece of news we've had in almost 2,000 episodes of the Eddy Beddy Bedtime cast. Can you tell me what your source is?",
                     "responses": [
                         {
-                            "text": "My source has asked to remain anonymous.... oh it's too exciting, my source is... MIKE",
+                            "text": "My source has asked to remain anonymous.... oh it's too exciting, my source is... MIKE!",
                             "outcomeId": 7,
                             "requirement": null,
                             "outcomeFunction": null
@@ -138,7 +138,7 @@
                     "prompt": "BIG. SUGAR. NO.",
                     "responses": [
                         {
-                            "text": "yepp that's right Eddy",
+                            "text": "Yepp that's right, Eddy.",
                             "outcomeId": 9,
                             "requirement": null,
                             "outcomeFunction": null
@@ -150,7 +150,7 @@
                     "prompt": "Well let's pull up that video we have on Big Sugar to inform the people at home. In the meantime caller thanks for your time and remember...",
                     "responses": [
                         {
-                            "text": "WE SNOOZE BUT WE DON'T LOOSE!!!",
+                            "text": "WE SNOOZE BUT WE DON'T LOOOOSE!!!",
                             "outcomeId": 5,
                             "requirement": null,
                             "outcomeFunction": null
@@ -159,7 +159,7 @@
                 },
                 {
                     "id": 10,
-                    "prompt": "WOAH NO NO NO Producer cut this one off. Eddy Beddy has apologised for this and accepts these accusations are baseless and Milly Pead is a wonderful person with great talent and good manners. Caller, please don't pull this again. Bye.",
+                    "prompt": "WOAH NO NO NO. Producer, cut this one off. Eddy Beddy has apologised for this and accepts these accusations are baseless and Milly Pead is a wonderful person with great talent and good manners. Caller, please don't pull this again. Bye.",
                     "responses": [
                         {
                             "text": "...oh....",
