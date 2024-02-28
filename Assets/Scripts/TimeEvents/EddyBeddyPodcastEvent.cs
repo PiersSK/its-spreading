@@ -11,6 +11,7 @@ public class EddyBeddyPodcastEvent : LimitedTimedEvent
     [SerializeField] private DialogueNPC eddyBeddy;
 
     private bool podcastActivated = false;
+    private const string SHOWSTARTNOTIF = "IT'S BEDTIME! Call into the show now!";
 
     private void Update()
     {
@@ -30,6 +31,10 @@ public class EddyBeddyPodcastEvent : LimitedTimedEvent
     {
         if (GossipSpreadingEvent.Instance.PlayerHasGossip())
         {
+            Notification showStartNotif = PhoneUI.Instance.AddNotification(PhoneUI.PhoneApp.Bedheads, SHOWSTARTNOTIF);
+            Button notifButton = showStartNotif.GetComponent<Button>();
+            notifButton.onClick.RemoveAllListeners();
+            notifButton.onClick.AddListener(TalkToEddy);
             podcastActivated = true;
             callInButton.interactable = true;
             callInButton.onClick.AddListener(TalkToEddy);
