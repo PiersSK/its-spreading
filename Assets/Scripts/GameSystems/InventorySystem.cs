@@ -56,6 +56,7 @@ public class InventorySystem : MonoBehaviour, IDataPersistence
         if (inventory.ContainsValue(availableItemDict[itemName]))
         {
             inventory.Remove(itemName);
+            invIds.Remove(itemName);
             if (OnInventoryChanged != null) OnInventoryChanged.Invoke(this, new OnInventoryChangedEventArgs() { itemAdded = "", itemRemoved = itemName });
         }
     }
