@@ -27,6 +27,7 @@ public class InventorySystem : MonoBehaviour, IDataPersistence
         {
             AddItem(item);
         }
+        InventoryUI.Instance.newIcon.SetActive(false);
         
     }
 
@@ -47,6 +48,7 @@ public class InventorySystem : MonoBehaviour, IDataPersistence
         {
             inventory.Add(itemName, availableItemDict[itemName]);
             invIds.Add(itemName);
+            InventoryUI.Instance.newIcon.SetActive(true);
             if (OnInventoryChanged != null) OnInventoryChanged.Invoke(this, new OnInventoryChangedEventArgs() { itemAdded = itemName, itemRemoved = ""});
         }
     }
