@@ -51,7 +51,6 @@ public class LoveSpreadingEvent : SpreadingEvent
         TimeController.Instance.ToggleTimePause();
         Player.Instance.TogglePlayerIsEngaged(true);
         DialogueUI.Instance.LoadJsonConversationToUI(sisNPC.dialogueFile, sisNPC, 1);
-        DialogueUI.Instance.gameObject.SetActive(true);
         PhoneUI.Instance.TogglePhone();
 
         callSisBlock.SetActive(false);
