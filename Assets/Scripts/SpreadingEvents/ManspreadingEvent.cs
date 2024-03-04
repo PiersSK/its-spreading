@@ -92,7 +92,7 @@ public class ManspreadingEvent : SpreadingEvent
 
     private void IncrementCheckpoint()
     {
-        ThoughtBubble.Instance.ShowThought(thoughts[checkpoint], timeBetweenPrompt);
+        ThoughtBubble.Instance.ShowThought(thoughts[checkpoint], null, timeBetweenPrompt);
         CameraController.Instance.SetCameraZoom(7f - checkpoint, 0.2f);
         promptTimer = timeBetweenPrompt;
         waitingForPrompt = false;

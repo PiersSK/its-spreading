@@ -68,6 +68,6 @@ public class StartGame : MonoBehaviour, IDataPersistence
     {
         CameraController.Instance.SetCameraZoom(9f, 0.2f);
         Player.Instance.TogglePlayerIsEngaged();
-        _thoughtBubble.ShowThought(WAKEUPTHOUGHT);
+        _thoughtBubble.ShowThought(WAKEUPTHOUGHT, "jam");
     }
 }

@@ -44,7 +44,7 @@ public class ConfettiSpreadingEvent : SpreadingEvent
             if(confettiRooms == rooms.Count && !eventComplete)
             {
                 requirementMet = true;
-                ThoughtBubble.Instance.ShowThought(CONFETTITHOUGHT, 3f);
+                ThoughtBubble.Instance.ShowThought(CONFETTITHOUGHT, null, 3f);
             }
         }
     }
