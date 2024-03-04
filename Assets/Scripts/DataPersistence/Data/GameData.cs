@@ -29,6 +29,7 @@ public class GameData
     public bool gaveTicketsToSis;
     public bool calledSisNoSuccess;
     public bool wasKindToSis;
+    public bool hasTalkedToEddy;
 
     // default values for when the game starts with no data.
     public GameData()
@@ -54,6 +55,7 @@ public class GameData
         gaveTicketsToSis = false;
         calledSisNoSuccess = false;
         wasKindToSis = false;
+        hasTalkedToEddy = false;
         inventory = new();
     }
 
@@ -80,6 +82,7 @@ public class GameData
         gaveTicketsToSis = false;
         calledSisNoSuccess = false;
         wasKindToSis = false;
+        hasTalkedToEddy = false;
         inventory = new();
     }
 }
