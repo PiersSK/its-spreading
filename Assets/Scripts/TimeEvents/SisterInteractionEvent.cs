@@ -84,7 +84,6 @@ public class SisterInteractionEvent : LimitedTimedEvent
         TimeController.Instance.ToggleTimePause();
         Player.Instance.TogglePlayerIsEngaged(true);
         DialogueUI.Instance.LoadJsonConversationToUI(sisNPC.dialogueFile, sisNPC);
-        DialogueUI.Instance.gameObject.SetActive(true);
         PhoneUI.Instance.TogglePhone();
         LoveSpreadingEvent.Instance.calledSisNoSuccess = true;
 

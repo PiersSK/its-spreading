@@ -70,7 +70,6 @@ public class EddyBeddyPodcastEvent : LimitedTimedEvent, IDataPersistence
         TimeController.Instance.ToggleTimePause();
         Player.Instance.TogglePlayerIsEngaged(true);
         DialogueUI.Instance.LoadJsonConversationToUI(eddyBeddy.dialogueFile, eddyBeddy);
-        DialogueUI.Instance.gameObject.SetActive(true);
         PhoneUI.Instance.TogglePhone();
         hasTalkedToEddy = true;
     }
