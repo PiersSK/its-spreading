@@ -84,7 +84,7 @@ public class ThoughtBubble : MonoBehaviour
                 if(messages[0].prefabName != null)
                 {
                     sourceIconObject.SetActive(true);
-                    sourceIcon.sprite = Resources.Load<Sprite>("ThoughtSprites/" + messages[0].prefabName);
+                    sourceIcon.sprite = Resources.Load<Sprite>(messages[0].prefabName);
                 }
                 else
                 {
