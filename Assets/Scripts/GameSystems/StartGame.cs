@@ -49,7 +49,7 @@ public class StartGame : MonoBehaviour, IDataPersistence
     private void TutorialThoughts(object sender, System.EventArgs e)
     {
         if (spreadEventsFound == 0)
-            _thoughtBubble.ShowThought(PlayerThoughts.FIRSTSPREADTHOUGHT);
+            _thoughtBubble.ShowThought(PlayerThoughts.FirstSpread);
         else
         {
             foreach (SpreadingEvent spreadingEvent in spreadingEvents)
@@ -65,6 +65,6 @@ public class StartGame : MonoBehaviour, IDataPersistence
     {
         CameraController.Instance.SetCameraZoom(9f, 0.2f);
         Player.Instance.TogglePlayerIsEngaged();
-        _thoughtBubble.ShowThought(PlayerThoughts.WAKEUPTHOUGHT);
+        _thoughtBubble.ShowThought(PlayerThoughts.WakeUp);
     }
 }

@@ -53,24 +53,6 @@ public class ThoughtBubble : MonoBehaviour
 
     }
 
-    public void ShowThought(string thought)
-    {
-        messages.Add(new Thought(thought, null, defaultTimer));
-
-    }
-
-    public void ShowThought(string thought, string iconPrefabName)
-    {
-        messages.Add(new Thought(thought, iconPrefabName, defaultTimer));
-
-    }
-
-    public void ShowThought(string thought, string iconPrefabName, float timer)
-    {
-        messages.Add(new Thought(thought, iconPrefabName, timer));
-
-    }
-
     public void UpdateThoughtQueue()
     {
         if (messages.Count > 0)
