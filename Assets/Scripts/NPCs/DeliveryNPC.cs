@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static DeliveryNPC;
 
 public class DeliveryNPC : DialogueNPC, IDataPersistence
 {
     [SerializeField] private Door _door;
+    public List<string> ObjectsToDeliver = new List<string>();
 
-    private string objectToDeliverName;
-
-    private string objectToDeliver;
-    public string ObjectToDeliver
+    public void addObjectToDeliver(string objectToDeliver)
     {
-        get { return objectToDeliver; }
-        set
-        { 
-            objectToDeliver = value;
-            objectToDeliverName = Player.Instance.newInventory.availableItemDict[objectToDeliver].displayName;
-            promptText = "Take " + objectToDeliverName;
+        ObjectsToDeliver.Add(objectToDeliver);
+        if (ObjectsToDeliver.Count == 1 )
+        {
+            promptText = $"Take {Player.Instance.newInventory.availableItemDict[objectToDeliver].displayName}";
+        }
+        else
+        {
+            promptText = "Take items";
         }
     }
 
@@ -45,8 +46,11 @@ public class DeliveryNPC : DialogueNPC, IDataPersistence
 
     public override void NPCCoreAction()
     {
-        Debug.Log($"Given {objectToDeliverName}");
-        Player.Instance.newInventory.AddItem(objectToDeliver);
+        foreach(var item in ObjectsToDeliver)
+        {
+            Player.Instance.newInventory.AddItem(item);
+        }
         hasDelivered = true;
+        ObjectsToDeliver.Clear();
     }
 }

@@ -25,6 +25,8 @@ public class OrderItemUI : MonoBehaviour
 
     private string notifcationMessage;
     private string arrivalTime;
+    private TimeSpan prevStartTime;
+    private TimeSpan prevEndTime;
 
     private void Start()
     {
@@ -53,15 +55,26 @@ public class OrderItemUI : MonoBehaviour
 
         DeliveryNPC _deliverNPC = deliveryNPC.GetComponent<DeliveryNPC>();
 
-        deliveryNPC.ObjectToDeliver = objectBeingPurchased;
+        deliveryNPC.addObjectToDeliver(objectBeingPurchased);
         deliveryNPC.currentScheduler = npcArrival;
         deliveryNPC.hasDelivered = false;
 
         npcArrival.neighbour = deliveryNPC.GetComponent<NavMeshAgent>();
         npcArrival.endPosition = doorPosition;
         TimeSpan currentTime = TimeController.Instance.CurrentTime();
-        TimeSpan startTime = currentTime.Add(new TimeSpan(1, 0, 0));
-        TimeSpan endTime = currentTime.Add(new TimeSpan(1, 30, 0));
+        TimeSpan startTime = prevStartTime != null && !TimeController.Instance.TimeHasPassed(prevStartTime.Hours, prevStartTime.Minutes) ? prevStartTime : currentTime.Add(new TimeSpan(1, 0, 0));
+        TimeSpan endTime = prevEndTime != null && !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? prevEndTime : currentTime.Add(new TimeSpan(1, 30, 0));
+
+        if(prevStartTime == null)
+        {
+            if (!TimeController.Instance.TimeHasPassed(startTime.Hours, startTime.Minutes))
+                prevStartTime = startTime;
+        }
+        if (prevEndTime == null)
+        {
+            if (!TimeController.Instance.TimeHasPassed(startTime.Hours, startTime.Minutes))
+                prevEndTime = endTime;
+        }
 
 
         npcArrival.SetEventStartTime(startTime.Hours, startTime.Minutes);
