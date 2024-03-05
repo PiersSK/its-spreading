@@ -19,7 +19,8 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private Image npcPortrait;
     [SerializeField] private Image npcNameplate;
     [SerializeField] private TextMeshProUGUI npcName;
-    [SerializeField] private TextMeshProUGUI npcDialoguePrompt;
+    [SerializeField] private DialogueTypewriter npcDialoguePrompt;
+    [SerializeField] private GameObject optionsParent;
     [SerializeField] private List<DialogueOptionUI> dialogueOptions;
 
     private NPCDialogue loadedNPCDialogue;
@@ -40,6 +41,8 @@ public class DialogueUI : MonoBehaviour
 
     public void LoadJsonConversationToUI(TextAsset dialogueFile, NPC npcTalking, int conversationIndex = 0)
     {
+        gameObject.SetActive(true);
+
         currentNPC = npcTalking;
         npcNameplate.color = currentNPC.primaryColor;
         foreach (DialogueOptionUI option in dialogueOptions) option.GetComponent<Image>().color = currentNPC.secondaryColor;
@@ -56,8 +59,7 @@ public class DialogueUI : MonoBehaviour
     {
         NPCDialogue.Conversation conversation = loadedNPCDialogue.conversations[currentConversationIndex];
         NPCDialogue.DialogueItem dialogue = conversation.dialogues[index];
-
-        npcDialoguePrompt.text = dialogue.prompt;
+        npcDialoguePrompt.SetNewText(dialogue.prompt);
 
         for (int i = 0; i < dialogueOptions.Count; i++)
         {
@@ -84,7 +86,14 @@ public class DialogueUI : MonoBehaviour
             }
         }
 
-        ArrangeResponseOptions();
+        optionsParent.SetActive(false);
+
+        //ArrangeResponseOptions();
+    }
+
+    public void RevealDialogueOptions()
+    {
+        optionsParent.SetActive(true);
     }
 
     private void ArrangeResponseOptions()

@@ -33,6 +33,7 @@ public class GameData
     public bool petriInFridge;
     public bool petriReminderSent;
     public bool postRottenInteration;
+    public bool hasTalkedToEddy;
 
     // default values for when the game starts with no data.
     public GameData()
@@ -58,6 +59,7 @@ public class GameData
         gaveTicketsToSis = false;
         calledSisNoSuccess = false;
         wasKindToSis = false;
+        hasTalkedToEddy = false;
         inventory = new();
         breadIsFlipped = false;
         petriInFridge = false;
@@ -88,6 +90,7 @@ public class GameData
         gaveTicketsToSis = false;
         calledSisNoSuccess = false;
         wasKindToSis = false;
+        hasTalkedToEddy = false;
         inventory = new();
     }
 }

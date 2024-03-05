@@ -111,7 +111,7 @@
                 },
                 {
                     "id": 6,
-                    "prompt": "No. Way. That is the single biggest piece of news we've had in almost 2,000 episodes of the Eddy Beddy Bedtime cast. Can you tell me what your source is?",
+                    "prompt": "No.<wait=1> Way.<wait=1> That is the single biggest piece of news we've had in almost 2,000 episodes of the Eddy Beddy Bedtime cast. Can you tell me what your source is?",
                     "responses": [
                         {
                             "text": "My source has asked to remain anonymous.... oh it's too exciting, my source is... MIKE!",
@@ -135,7 +135,7 @@
                 },
                 {
                     "id": 8,
-                    "prompt": "BIG. SUGAR. NO.",
+                    "prompt": "BIG.<wait=1> SUGAR.<wait=1> NO.",
                     "responses": [
                         {
                             "text": "Yepp that's right, Eddy.",

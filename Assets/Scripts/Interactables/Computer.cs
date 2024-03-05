@@ -10,14 +10,15 @@ public class Computer : LockinInteractable
     {
         GetComponent<AudioSource>().PlayOneShot(keyboardSound);
         ComputerUI.Instance.gameObject.SetActive(true);
+        TimeController.Instance.ToggleTimePause();
         base.FreeInteract();
     }
 
     protected override void LockedInInteract()
     {
         ComputerUI.Instance.gameObject.SetActive(false);
+        TimeController.Instance.ToggleTimePause();
         base.LockedInInteract();
-
     }
 
     public void ExitComputerManually()
@@ -30,6 +31,8 @@ public class Computer : LockinInteractable
         Player.Instance.TogglePlayerIsEngaged();
         Player.Instance.GetComponent<PlayerInteract>().persistSelectedInteractable = false;
         promptText = freePrompt;
+
+        TimeController.Instance.ToggleTimePause();
 
         isLockedIn = false;
     }

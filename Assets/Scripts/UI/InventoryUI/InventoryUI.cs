@@ -1,27 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
 
+    public static InventoryUI Instance { get; private set; }
     [SerializeField] private GameObject itemSlotPrefab;
     [SerializeField] private Transform inventoryBar;
+    [SerializeField] public GameObject newIcon;
     
     private static Animator _animator;
     private static bool inventoryIsOpen = false;
 
     void Awake()
     {
+        Instance = this;
         Player.Instance.newInventory.OnInventoryChanged += OnUpdateInventory;
         _animator = GetComponent<Animator>();
     }
 
-    public static void ToggleInventoryUI()
+    public void ToggleInventoryUI()
     {
         inventoryIsOpen = !inventoryIsOpen;
         string animTrigger = inventoryIsOpen ? "openInventory" : "closeInventory";
         _animator.SetTrigger(animTrigger);
+        newIcon.SetActive(false);
     }
 
     private void OnUpdateInventory(object sender, InventorySystem.OnInventoryChangedEventArgs e)
