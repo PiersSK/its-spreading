@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,8 @@ public class Vines : Interactable, IDataPersistence
 
     [Range(0,120)]
     [SerializeField] private int coolDownInGameMins;
-    private float cooldownTimer = 0f;
     private bool onCooldown;
+    private TimeSpan onCooldownUntil;
 
     private bool hasExamined = false;
 
@@ -61,12 +62,7 @@ public class Vines : Interactable, IDataPersistence
 
     private void Update()
     {
-        if(onCooldown)
-        {
-            cooldownTimer += Time.deltaTime;
-            if(cooldownTimer >= TimeController.Instance.InGameMinsToRealSeconds(coolDownInGameMins))
-                onCooldown = false;
-        }
+        if(onCooldown && TimeController.Instance.TimeHasPassed(onCooldownUntil)) onCooldown = false;
 
         if(promptText != WATERPROMPT && Player.Instance.newInventory.HasItem(requiredItem))
         {
@@ -99,8 +95,15 @@ public class Vines : Interactable, IDataPersistence
             Player.Instance.newInventory.RemoveItem(requiredItem);
         }
 
+        PutOnCooldown();
+    }
+
+    private void PutOnCooldown()
+    {
         onCooldown = true;
-        cooldownTimer = 0f;
+        TimeSpan now = TimeController.Instance.CurrentTime();
+        onCooldownUntil = now + TimeSpan.FromMinutes(coolDownInGameMins);
+        Debug.Log("On cooldown until " + onCooldownUntil);
     }
 
     public override bool CanInteract()
