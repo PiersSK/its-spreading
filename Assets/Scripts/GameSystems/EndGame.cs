@@ -38,6 +38,8 @@ public class EndGame : MonoBehaviour
     [SerializeField] private float gameoverFadeInTime;
     private float currentTimerGameOver = 0f;
 
+    public bool creditsAreRolling = false;
+
     private Transform player;
     private Transform confettiMan;
 
@@ -93,6 +95,13 @@ public class EndGame : MonoBehaviour
             FailEnding();
     }
 
+    public void SkipCredits()
+    {
+        creditsAreRolling = false;
+        CancelInvoke();
+        ShowSuccessSplash();
+    }
+
     private void SuccessEnding()
     {
         Player.Instance.transform.SetParent(playerDanceLocation);
@@ -124,6 +133,8 @@ public class EndGame : MonoBehaviour
 
         Invoke(nameof(AllWave), 90f);
         Invoke(nameof(ShowSuccessSplash), 94f);
+
+        creditsAreRolling = true;
     }
 
     private void AllWave()

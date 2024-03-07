@@ -185,6 +185,10 @@ public class Player : MonoBehaviour, IDataPersistence
         {
             ComputerUI.Instance.gameObject.SetActive(false);
         }
+        else if (EndGame.Instance.creditsAreRolling)
+        {
+            EndGame.Instance.SkipCredits();
+        }
         else
         {
             PauseMenu.TogglePause();

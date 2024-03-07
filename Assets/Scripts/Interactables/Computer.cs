@@ -9,7 +9,10 @@ public class Computer : LockinInteractable
 
     private void Update()
     {
-        if (!ComputerUI.Instance.gameObject.activeSelf && isLockedIn) ExitComputerManually(); 
+        bool playerIsDancing = Player.Instance._animator.GetBool("isDancing");
+
+        if (!ComputerUI.Instance.gameObject.activeSelf && isLockedIn && !playerIsDancing)
+            ExitComputerManually(); 
     }
 
     protected override void FreeInteract()
