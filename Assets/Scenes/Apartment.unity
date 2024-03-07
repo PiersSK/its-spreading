@@ -137457,10 +137457,22 @@ PrefabInstance:
       propertyPath: computerAudio
       value: 
       objectReference: {fileID: 158382869}
+    - target: {fileID: 2116369180327786205, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2116369180327786205, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2672430800367703790, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 158382868}
+      objectReference: {fileID: 147846116}
+    - target: {fileID: 2672430800367703790, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 2885435167641836087, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
       propertyPath: chair
       value: 
@@ -137601,6 +137613,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Computer UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4659246098662987355, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659246098662987355, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4659246098662987355, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729447672265563483, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729447672265563483, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5418527778239752957, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -137621,6 +137653,30 @@ PrefabInstance:
       propertyPath: doorPosition
       value: 
       objectReference: {fileID: 959279656}
+    - target: {fileID: 5657319140122878081, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657319140122878081, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7102209501063606380, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7102209501063606380, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7102209501063606380, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7102209501063606380, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8146087465171010507, guid: 227b177118c84244bb07332d4ac1bdea, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

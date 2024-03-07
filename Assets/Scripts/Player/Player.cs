@@ -62,12 +62,30 @@ public class Player : MonoBehaviour, IDataPersistence
         newInventory = GetComponent<InventorySystem>();
         _animator = GetComponent<Animator>();
 
+        //// Player Controls
+        // Interactions
         controlActions.Interact.performed += ctx => Interact();
         controlActions.ToggleInteract.performed += ctx => ToggleInteract();
-        controlActions.Emote1.performed += ctx => Wave();
-        controlActions.Emote2.performed += ctx => Dance();
+
+        // UI
         controlActions.Inventory.performed += ctx => InventoryUI.Instance.ToggleInventoryUI();
         controlActions.Phone.performed += ctx => PhoneUI.Instance.TogglePhone();
+        controlActions.Pause.performed += ctx => EscapePressed();
+
+        // Emotes
+        controlActions.Emote1.performed += ctx => Wave();
+        controlActions.Emote2.performed += ctx => Dance();
+
+    }
+
+    private void OnEnable()
+    {
+        controlActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controlActions.Disable();
     }
 
     private void Update()
@@ -119,28 +137,8 @@ public class Player : MonoBehaviour, IDataPersistence
         Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
         return isoMatrix.MultiplyPoint3x4(toConvert);
     }
-    private void Wave()
-    {
-        _animator.SetTrigger(ANIMWAVE);
-        PlayerWaved?.Invoke(this, new EventArgs());
-    }
 
-
-    private void Dance()
-    {
-        if (playerHasLearnedToDance)
-        {
-            isDancing = !isDancing;
-            _animator.SetBool(ANIMDANCE, isDancing);
-            if (isDancing)
-                CameraController.Instance.SetCameraZoom(5f, 10f);
-            else
-                CameraController.Instance.SetCameraZoom(9f, 0.2f);
-
-            idleTimer = 0f;
-        }
-    }
-
+    // Interactions
     private void Interact()
     {
         if (!PauseMenu.isPaused)
@@ -159,15 +157,41 @@ public class Player : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void OnEnable()
+    // Emotes
+    private void Wave()
     {
-        controlActions.Enable();
+        _animator.SetTrigger(ANIMWAVE);
+        PlayerWaved?.Invoke(this, new EventArgs());
     }
 
-    private void OnDisable()
+    private void Dance()
     {
-        controlActions.Disable();
+        if (playerHasLearnedToDance)
+        {
+            isDancing = !isDancing;
+            _animator.SetBool(ANIMDANCE, isDancing);
+            if (isDancing)
+                CameraController.Instance.SetCameraZoom(5f, 10f);
+            else
+                CameraController.Instance.SetCameraZoom(9f, 0.2f);
+
+            idleTimer = 0f;
+        }
     }
+
+    private void EscapePressed()
+    {
+        if (ComputerUI.Instance.gameObject.activeSelf)
+        {
+            ComputerUI.Instance.gameObject.SetActive(false);
+        }
+        else
+        {
+            PauseMenu.TogglePause();
+        }
+    }
+
+    
 
     public void TogglePlayerIsEngaged(bool shouldDisableInteract = false)
     {
