@@ -28,7 +28,7 @@ public class BookTicketsUI : MonoBehaviour
         GetComponentInChildren<TextMeshProUGUI>().text = "Booked!";
 
         if(LoveSpreadingEvent.Instance.calledSis && LoveSpreadingEvent.Instance.wasKindToSis)
-            ThoughtBubble.Instance.ShowThought("Sis will love these! I should call her when she gets back from work to tell her the good news");
+            ThoughtBubble.Instance.ShowThought(PlayerThoughts.BookShowTickets);
 
         Invoke(nameof(SendBookingConfirmation), 5f);
     }

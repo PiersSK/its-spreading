@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SisResponse : DialogueResponse
 {
-    private const string FIRSTTHOUGHT = "Those tickets sounded important to her, she shouldn't miss out.";
     public void CloseWithSuccess()
     {
         LoveSpreadingEvent.Instance.calledSis = true;
@@ -12,7 +11,7 @@ public class SisResponse : DialogueResponse
         LoveSpreadingEvent.Instance.wasKindToSis = true;
         Player.Instance.TogglePlayerIsEngaged();
         CloseDialogue();
-        ThoughtBubble.Instance.ShowThought(FIRSTTHOUGHT);
+        ThoughtBubble.Instance.ShowThought(PlayerThoughts.SuccessfulSisCall);
     }
 
     public void CloseWithFailure()

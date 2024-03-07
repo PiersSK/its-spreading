@@ -41,7 +41,7 @@ public class BookClassUI : MonoBehaviour
 
         computerAudio.PlayOneShot(bookingConfirmed);
 
-        ThoughtBubble.Instance.ShowThought(BOOKINGTHOUGHT);
+        ThoughtBubble.Instance.ShowThought(PlayerThoughts.BookDanceClass);
 
         GetComponent<Button>().interactable = false;
         GetComponent<Button>().onClick.RemoveAllListeners();

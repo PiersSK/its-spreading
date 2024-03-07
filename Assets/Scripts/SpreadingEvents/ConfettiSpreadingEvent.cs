@@ -11,11 +11,13 @@ public class ConfettiSpreadingEvent : SpreadingEvent
     private bool triggerEvent = false;
 
     private const string CONFETTITHOUGHT = "God, the confetti is really getting everywhere It's... Oh";
+
     private int confettiRooms;
     private void Start()
     {
          ThoughtBubble.Instance.ThoughtBubbleDisplayed += StartConffettiCountdown;
     }
+
 
     private void StartConffettiCountdown(object sender, ThoughtBubble.ThoughBubbleDisplayedEventArgs e)
     {
@@ -44,7 +46,7 @@ public class ConfettiSpreadingEvent : SpreadingEvent
             if(confettiRooms == rooms.Count && !eventComplete)
             {
                 requirementMet = true;
-                ThoughtBubble.Instance.ShowThought(CONFETTITHOUGHT, 3f);
+                ThoughtBubble.Instance.ShowThought(PlayerThoughts.ConfettiHasSpread);
             }
         }
     }

@@ -35,9 +35,6 @@ public class Vines : Interactable, IDataPersistence
     private const string EXAMINEPROMPT = "Examine";
     private const string WATERPROMPT = "Try Super Plant Formula";
 
-    private const string EXAMINETHOUGHT = "These vines used to be spread all over the bathroom, now look at them...";
-    private const string FIRSTWATERTHOUGHT = "Well, I'll give you some more in a while, hang in there.";
-
     public void LoadData(GameData data)
     {
         currentState = data.plantState;
@@ -74,7 +71,7 @@ public class Vines : Interactable, IDataPersistence
     {
         if (currentState == PlantState.Dead && !Player.Instance.newInventory.HasItem(requiredItem))
         {
-            ThoughtBubble.Instance.ShowThought(EXAMINETHOUGHT);
+            ThoughtBubble.Instance.ShowThought(PlayerThoughts.InspectDeadVines);
             hasExamined = true;
             promptText = WATERPROMPT;
             return;
@@ -86,7 +83,7 @@ public class Vines : Interactable, IDataPersistence
         if (currentState == PlantState.Alive)
         {
             foreach (Renderer renderer in startingLeaves) renderer.material = aliveMaterial;
-            ThoughtBubble.Instance.ShowThought(FIRSTWATERTHOUGHT);
+            ThoughtBubble.Instance.ShowThought(PlayerThoughts.WateredVinesOnce);
         }
         _animator.SetInteger("plantGrowthIndex", (int)currentState);
 

@@ -12,7 +12,6 @@ public class ReligionSpreadingEvent : SpreadingEvent
     private bool hasReadPamphlet = false;
 
     private const float TIMETILLREAD = 10f;
-    private const string READINGREACTION = "This book is interesting, Magic Darren is quite impressive. Maybe I should tell someone else.";
 
     protected override void Update()
     {
@@ -27,7 +26,7 @@ public class ReligionSpreadingEvent : SpreadingEvent
     private void ReadPamphlet()
     {
         TogglePamplet();
-        ThoughtBubble.Instance.ShowThought(READINGREACTION);
+        ThoughtBubble.Instance.ShowThought(PlayerThoughts.ReadDarrenPamphlet);
         Invoke(nameof(TogglePamplet), 4f);
     }
 

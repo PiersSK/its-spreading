@@ -17,9 +17,6 @@ public class GossipSpreadingEvent : SpreadingEvent
 
     public bool hasSpreadGossip = false;
 
-    private const string FIRSTTHOUGHT = "Hmm, juicy goss, wonder who I could tell about this.";
-    private const string SECONDTHOUGHT = "More juicy goss.";
-
     private void Awake()
     {
         Instance = this;
@@ -48,9 +45,9 @@ public class GossipSpreadingEvent : SpreadingEvent
     private void AcknowledgeGossip()
     {
         if (gossipReactedTo == 0)
-            ThoughtBubble.Instance.ShowThought(FIRSTTHOUGHT);
+            ThoughtBubble.Instance.ShowThought(PlayerThoughts.FoundFirstGossip);
         else if (gossipReactedTo == 1)
-            ThoughtBubble.Instance.ShowThought(SECONDTHOUGHT);
+            ThoughtBubble.Instance.ShowThought(PlayerThoughts.FoundSecondGossip);
 
         gossipReactedTo++;
     }

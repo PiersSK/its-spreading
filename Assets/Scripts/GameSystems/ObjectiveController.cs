@@ -51,7 +51,7 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
             if(objectivesComplete == totalObjectives)
             {
                 allObjectivesComplete = true;
-                ThoughtBubble.Instance.ShowThought(FINALTHOUGHT);
+                ThoughtBubble.Instance.ShowThought(PlayerThoughts.LastSpread);
             }
         }
     }

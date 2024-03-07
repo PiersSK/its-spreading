@@ -10,7 +10,6 @@ public class Piano : LockinInteractable
     private BackgroundMusicLayer pianoLayer;
 
     private bool hasReacted = false;
-    private const string TUNETHOUGHT = "The show theme always gets stuck in my head.";
 
     private void Start()
     {
@@ -40,7 +39,7 @@ public class Piano : LockinInteractable
 
         if(!hasReacted)
         {
-            ThoughtBubble.Instance.ShowThought(TUNETHOUGHT);
+            ThoughtBubble.Instance.ShowThought(PlayerThoughts.PlayingPiano);
             hasReacted = true;
         }
 
