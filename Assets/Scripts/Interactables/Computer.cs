@@ -6,6 +6,15 @@ using UnityEngine;
 public class Computer : LockinInteractable
 {
     [SerializeField] private AudioClip keyboardSound;
+
+    private void Update()
+    {
+        bool playerIsDancing = Player.Instance._animator.GetBool("isDancing");
+
+        if (!ComputerUI.Instance.gameObject.activeSelf && isLockedIn && !playerIsDancing)
+            ExitComputerManually(); 
+    }
+
     protected override void FreeInteract()
     {
         GetComponent<AudioSource>().PlayOneShot(keyboardSound);
@@ -21,10 +30,8 @@ public class Computer : LockinInteractable
         base.LockedInInteract();
     }
 
-    public void ExitComputerManually()
+    private void ExitComputerManually()
     {
-        ComputerUI.Instance.gameObject.SetActive(false);
-
         Player.Instance.transform.position = resetPosition;
         Player.Instance.transform.rotation = resetRotation;
 

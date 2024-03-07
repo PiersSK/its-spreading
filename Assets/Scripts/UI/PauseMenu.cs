@@ -18,37 +18,13 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
     }
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(isPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-    }
 
-    public void Pause()
+    public static void TogglePause()
     {
-        isPaused = true;
-        pauseMenu.SetActive(true);
-        //MusicController.Instance.PausePlayMusic(); keeping this as I think the below fix is a touch extreme, we may want _some_ form of music on the pause screen in future
-        AudioListener.pause = true;
-        Time.timeScale = 0f;
-    }
-
-    public void Resume()
-    {
-        isPaused = false;
-        pauseMenu.SetActive(false);
-       // MusicController.Instance.PausePlayMusic(); see above.
-        AudioListener.pause = false;
-        Time.timeScale = 1f;
+        isPaused = !isPaused;
+        UIManager.Instance.TogglePauseUI();
+        AudioListener.pause = !AudioListener.pause;
+        Time.timeScale = isPaused ? 0f : 1f;
     }
 
     public void Quit()
