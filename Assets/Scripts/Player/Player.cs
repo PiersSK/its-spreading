@@ -32,6 +32,12 @@ public class Player : MonoBehaviour, IDataPersistence
     [SerializeField] private float idleTimer = 0f; // Serialized for debug
     private const int NUMBEROFIDLEANIMS = 4;
 
+    public enum PlayerEmotes
+    {
+        Wave,
+        Dance
+    }
+
     private const string ANIMWALKING = "isWalking";
     private const string ANIMIDLE = "idle";
     private const string ANIMIDLEINDEX = "idleIndex";
@@ -73,8 +79,8 @@ public class Player : MonoBehaviour, IDataPersistence
         controlActions.Pause.performed += ctx => EscapePressed();
 
         // Emotes
-        controlActions.Emote1.performed += ctx => Wave();
-        controlActions.Emote2.performed += ctx => Dance();
+        controlActions.Emote1.performed += ctx => Emote(PlayerEmotes.Wave);
+        controlActions.Emote2.performed += ctx => Emote(PlayerEmotes.Dance);
 
     }
 
@@ -154,6 +160,21 @@ public class Player : MonoBehaviour, IDataPersistence
         {
             _playerInteract.CycleInteractable();
             idleTimer = 0f;
+        }
+    }
+
+    private void Emote(PlayerEmotes emote)
+    {
+        if (!isUnengaged) return;
+
+        switch(emote)
+        {
+            case PlayerEmotes.Wave:
+                Wave();
+                break;
+            case PlayerEmotes.Dance:
+                Dance();
+                break;
         }
     }
 
