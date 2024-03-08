@@ -40,6 +40,19 @@ public class DialogueUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void StartConversation(TextAsset dialogueFile, NPC npcTalking, int conversationIndex = 0)
+    {
+        playerEngagedPreConvo = !Player.Instance.isUnengaged;
+
+        TimeController.Instance.ToggleTimePause();
+        Player.Instance.LockPlayerIfNotEngaged(true, true);
+
+        if (playerEngagedPreConvo)
+            Player.Instance.LockOptionalLockableActions();
+
+        LoadJsonConversationToUI(dialogueFile, npcTalking, conversationIndex);
+    }
+
     public void LoadJsonConversationToUI(TextAsset dialogueFile, NPC npcTalking, int conversationIndex = 0)
     {
         gameObject.SetActive(true);

@@ -67,10 +67,7 @@ public class EddyBeddyPodcastEvent : LimitedTimedEvent, IDataPersistence
 
     private void TalkToEddy()
     {
-        TimeController.Instance.ToggleTimePause();
-        Player.Instance.LockPlayerIfNotEngaged(true);
-        DialogueUI.Instance.playerEngagedPreConvo = !Player.Instance.isUnengaged;
-        DialogueUI.Instance.LoadJsonConversationToUI(eddyBeddy.dialogueFile, eddyBeddy);
+        DialogueUI.Instance.StartConversation(eddyBeddy.dialogueFile, eddyBeddy);
         PhoneUI.Instance.TogglePhone();
         hasTalkedToEddy = true;
     }

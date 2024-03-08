@@ -24,7 +24,9 @@ public class EddyResponse : DialogueResponse
     {
         base.CloseDialogue();
         if (!DialogueUI.Instance.playerEngagedPreConvo)
-            Player.Instance.FreePlayerIfEngaged();
+            Player.Instance.FreePlayerIfEngaged(true, true);
+        else
+            Player.Instance.UnlockOptionalLockableActions();
         GossipSpreadingEvent.Instance.hasSpreadGossip = true;
     }
 
@@ -32,6 +34,8 @@ public class EddyResponse : DialogueResponse
     {
         base.CloseDialogue();
         if (!DialogueUI.Instance.playerEngagedPreConvo)
-            Player.Instance.FreePlayerIfEngaged();
+            Player.Instance.FreePlayerIfEngaged(true, true);
+        else
+            Player.Instance.UnlockOptionalLockableActions();
     }
 }

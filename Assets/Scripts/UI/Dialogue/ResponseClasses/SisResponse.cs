@@ -10,7 +10,9 @@ public class SisResponse : DialogueResponse
         LoveSpreadingEvent.Instance.calledSisNoSuccess = false;
         LoveSpreadingEvent.Instance.wasKindToSis = true;
         if (!DialogueUI.Instance.playerEngagedPreConvo)
-            Player.Instance.FreePlayerIfEngaged();
+            Player.Instance.FreePlayerIfEngaged(true, true);
+        else
+            Player.Instance.UnlockOptionalLockableActions();
         CloseDialogue();
         ThoughtBubble.Instance.ShowThought(PlayerThoughts.SuccessfulSisCall);
     }
@@ -20,7 +22,9 @@ public class SisResponse : DialogueResponse
         LoveSpreadingEvent.Instance.calledSis = true;
         LoveSpreadingEvent.Instance.wasKindToSis = false;
         if (!DialogueUI.Instance.playerEngagedPreConvo)
-            Player.Instance.FreePlayerIfEngaged();
+            Player.Instance.FreePlayerIfEngaged(true, true);
+        else
+            Player.Instance.UnlockOptionalLockableActions();
         CloseDialogue();
     }
 
@@ -28,7 +32,9 @@ public class SisResponse : DialogueResponse
     {
         LoveSpreadingEvent.Instance.gaveTicketsToSis = true;
         if (!DialogueUI.Instance.playerEngagedPreConvo)
-            Player.Instance.FreePlayerIfEngaged();
+            Player.Instance.FreePlayerIfEngaged(true, true);
+        else
+            Player.Instance.UnlockOptionalLockableActions();
         CloseDialogue();
     }
 }

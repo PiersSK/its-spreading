@@ -6,7 +6,7 @@ public class DeliveryResponse : DialogueResponse
 {
     public override void CloseDialogue()
     {
-        Player.Instance.FreePlayerIfEngaged();
+        Player.Instance.FreePlayerIfEngaged(true, true);
         DialogueUI.Instance.currentNPC.currentScheduler.TriggerEventEnd();
         base.CloseDialogue();
     }

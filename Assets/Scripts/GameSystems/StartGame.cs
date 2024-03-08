@@ -35,7 +35,7 @@ public class StartGame : MonoBehaviour, IDataPersistence
     public void StartDayFresh()
     {
         Player.Instance.ForcePlayerToPosition(startPosition);
-        Player.Instance.LockPlayerIfNotEngaged(true);
+        Player.Instance.LockPlayerIfNotEngaged(true, true);
         Player.Instance._animator.SetTrigger("stretch");
         CameraController.Instance.SetCameraZoom(5f, 0.5f);
         Invoke(nameof(WakeupThought), 4f);
@@ -64,7 +64,7 @@ public class StartGame : MonoBehaviour, IDataPersistence
     private void WakeupThought()
     {
         CameraController.Instance.SetCameraZoom(9f, 0.2f);
-        Player.Instance.FreePlayerIfEngaged();
+        Player.Instance.FreePlayerIfEngaged(true, true);
         _thoughtBubble.ShowThought(PlayerThoughts.WakeUp);
     }
 }

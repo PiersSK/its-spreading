@@ -247,6 +247,20 @@ public class Player : MonoBehaviour, IDataPersistence
 
     }
 
+    public void UnlockOptionalLockableActions()
+    {
+        if (!controlActions.Phone.enabled) ToggleInputAction(controlActions.Phone);
+        if (!controlActions.Inventory.enabled) ToggleInputAction(controlActions.Inventory);
+        if (!controlActions.Interact.enabled) ToggleInputAction(controlActions.Interact);
+    }
+
+    public void LockOptionalLockableActions()
+    {
+        if (controlActions.Phone.enabled) ToggleInputAction(controlActions.Phone);
+        if (controlActions.Inventory.enabled) ToggleInputAction(controlActions.Inventory);
+        if (controlActions.Interact.enabled) ToggleInputAction(controlActions.Interact);
+    }
+
     private void ToggleInputAction(UnityEngine.InputSystem.InputAction action)
     {
         if (action.enabled)
