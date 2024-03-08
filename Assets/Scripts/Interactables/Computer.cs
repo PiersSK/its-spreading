@@ -35,7 +35,7 @@ public class Computer : LockinInteractable
         Player.Instance.transform.position = resetPosition;
         Player.Instance.transform.rotation = resetRotation;
 
-        Player.Instance.TogglePlayerIsEngaged();
+        Player.Instance.FreePlayerIfEngaged();
         Player.Instance.GetComponent<PlayerInteract>().persistSelectedInteractable = false;
         promptText = freePrompt;
 

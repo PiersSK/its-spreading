@@ -82,7 +82,7 @@ public class EndGame : MonoBehaviour
     public void DayIsOver()
     {
         TimeController.Instance.ToggleTimePause();
-        Player.Instance.TogglePlayerIsEngaged();
+        Player.Instance.LockPlayerIfNotEngaged();
 
         if (ObjectiveController.allObjectivesComplete)
         {

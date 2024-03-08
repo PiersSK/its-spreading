@@ -216,7 +216,15 @@ public class Player : MonoBehaviour, IDataPersistence
         }
     }
 
-    
+    public void LockPlayerIfNotEngaged(bool shouldDisableInteract = false)
+    {
+        if (isUnengaged) TogglePlayerIsEngaged(shouldDisableInteract);
+    }
+
+    public void FreePlayerIfEngaged(bool shouldDisableInteract = false)
+    {
+        if (!isUnengaged) TogglePlayerIsEngaged(shouldDisableInteract);
+    }
 
     public void TogglePlayerIsEngaged(bool shouldDisableInteract = false)
     {

@@ -26,6 +26,7 @@ public class DialogueUI : MonoBehaviour
     private NPCDialogue loadedNPCDialogue;
     private int currentConversationIndex = 0;
     public NPC currentNPC;
+    public bool playerEngagedPreConvo = false;
 
     private const string PORTRAITFOLDER = "CharacterPortraits/";
 
