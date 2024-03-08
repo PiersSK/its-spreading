@@ -84,7 +84,7 @@ public class EndGame : MonoBehaviour
         TimeController.Instance.ToggleTimePause();
         Player.Instance.TogglePlayerIsEngaged();
 
-        if (ObjectiveController.HasCompletedAllObjectives())
+        if (ObjectiveController.allObjectivesComplete)
         {
             bgMusic.Pause();
             boombox.Pause();
