@@ -216,36 +216,43 @@ public class Player : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void LockPlayerIfNotEngaged(bool shouldDisableInteract = false)
+    public void LockPlayerIfNotEngaged(bool shouldDisableInteract = false, bool shouldDisableUI = false)
     {
-        if (isUnengaged) TogglePlayerIsEngaged(shouldDisableInteract);
+        if (isUnengaged) TogglePlayerIsEngaged(shouldDisableInteract, shouldDisableUI);
     }
 
-    public void FreePlayerIfEngaged(bool shouldDisableInteract = false)
+    public void FreePlayerIfEngaged(bool shouldDisableInteract = false, bool shouldDisableUI = false)
     {
-        if (!isUnengaged) TogglePlayerIsEngaged(shouldDisableInteract);
+        if (!isUnengaged) TogglePlayerIsEngaged(shouldDisableInteract, shouldDisableUI);
     }
 
-    public void TogglePlayerIsEngaged(bool shouldDisableInteract = false)
+    public void TogglePlayerIsEngaged(bool shouldDisableInteract = false, bool shouldDisableUI = false)
     {
         isUnengaged = !isUnengaged;
         _characterController.enabled = !_characterController.enabled;
 
-        if (controlActions.ToggleInteract.enabled)
-            controlActions.ToggleInteract.Disable();
-        else
-            controlActions.ToggleInteract.Enable();
+        ToggleInputAction(controlActions.ToggleInteract);
 
-        if (shouldDisableInteract && controlActions.Interact.enabled)
-            controlActions.Interact.Disable();
-        else if (!controlActions.Interact.enabled)
-            controlActions.Interact.Enable(); //Always reactivate if toggled off
+        if (shouldDisableInteract) ToggleInputAction(controlActions.Interact);
+        if (shouldDisableUI)
+        {
+            ToggleInputAction(controlActions.Phone);
+            ToggleInputAction(controlActions.Inventory);
+        }
 
         ResetEmotes();
 
         _animator.SetTrigger(ANIMINTERRUPT);
         _animator.SetBool(ANIMWALKING, false);
 
+    }
+
+    private void ToggleInputAction(UnityEngine.InputSystem.InputAction action)
+    {
+        if (action.enabled)
+            action.Disable();
+        else
+            action.Enable();
     }
 
     private void ResetEmotes()
