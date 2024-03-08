@@ -23,8 +23,14 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private GameObject optionsParent;
     [SerializeField] private List<DialogueOptionUI> dialogueOptions;
 
+    [Header("UI Elements To Hide")]
+    [SerializeField] private GameObject gameplayUI;
+    [SerializeField] private GameObject inventoryUI;
+    [SerializeField] private GameObject phonePrompt;
+
     private NPCDialogue loadedNPCDialogue;
     private int currentConversationIndex = 0;
+    [Header("Debug")]
     public NPC currentNPC;
     public bool playerEngagedPreConvo = false;
 
@@ -38,6 +44,20 @@ public class DialogueUI : MonoBehaviour
     private void Start()
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        gameplayUI.SetActive(false);
+        inventoryUI.SetActive(false);
+        phonePrompt.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        gameplayUI.SetActive(true);
+        inventoryUI.SetActive(true);
+        phonePrompt.SetActive(true);
     }
 
     public void StartConversation(TextAsset dialogueFile, NPC npcTalking, int conversationIndex = 0)
