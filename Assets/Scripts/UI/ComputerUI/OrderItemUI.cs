@@ -25,6 +25,8 @@ public class OrderItemUI : MonoBehaviour
 
     private string notifcationMessage;
     private string arrivalTime;
+    private TimeSpan startTime = TimeSpan.Zero;
+    private TimeSpan endTime = TimeSpan.Zero;
     private TimeSpan prevStartTime;
     private TimeSpan prevEndTime;
 
@@ -36,17 +38,14 @@ public class OrderItemUI : MonoBehaviour
 
     private void Update()
     {
-
-        if(!isUiUpdated && deliveryNPC.hasDelivered)
+        if (!isUiUpdated && deliveryNPC.hasDelivered)
         {
             GetComponent<Button>().interactable = false;
             GetComponent<Image>().color = new Color(0.55f, 0.55f, 0.55f);
             GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
             isUiUpdated = true;
         }
-
     }
-    
 
     private void OrderItem()
     {
@@ -62,20 +61,15 @@ public class OrderItemUI : MonoBehaviour
         npcArrival.neighbour = deliveryNPC.GetComponent<NavMeshAgent>();
         npcArrival.endPosition = doorPosition;
         TimeSpan currentTime = TimeController.Instance.CurrentTime();
-        TimeSpan startTime = prevStartTime != null && !TimeController.Instance.TimeHasPassed(prevStartTime.Hours, prevStartTime.Minutes) ? prevStartTime : currentTime.Add(new TimeSpan(1, 0, 0));
-        TimeSpan endTime = prevEndTime != null && !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? prevEndTime : currentTime.Add(new TimeSpan(1, 30, 0));
+        Debug.Log($"Before asignment: StartTime: {startTime}, EndTime:{endTime}, PrevStartTime:{prevStartTime}, PrevEndTime:{prevEndTime}");
+        prevStartTime = deliveryNPC.Arrival;
+        prevEndTime = deliveryNPC.Exit;
+        startTime = prevStartTime != TimeSpan.Zero && !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? prevStartTime : currentTime.Add(new TimeSpan(1, 0, 0));
+        endTime = prevEndTime != TimeSpan.Zero && !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? prevEndTime : currentTime.Add(new TimeSpan(1, 30, 0));
+        deliveryNPC.Arrival = startTime;
+        deliveryNPC.Exit = endTime;
 
-        if(prevStartTime == null)
-        {
-            if (!TimeController.Instance.TimeHasPassed(startTime.Hours, startTime.Minutes))
-                prevStartTime = startTime;
-        }
-        if (prevEndTime == null)
-        {
-            if (!TimeController.Instance.TimeHasPassed(startTime.Hours, startTime.Minutes))
-                prevEndTime = endTime;
-        }
-
+        Debug.Log($"Post assignment asignment: StartTime: {startTime}, EndTime:{endTime}, PrevStartTime:{prevStartTime}, PrevEndTime:{prevEndTime}");
 
         npcArrival.SetEventStartTime(startTime.Hours, startTime.Minutes);
         npcArrival.SetEventEndTime(endTime.Hours, endTime.Minutes);
@@ -87,7 +81,10 @@ public class OrderItemUI : MonoBehaviour
         GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
 
         scrollWindow.enabled = false;
-        arrivalTime = TimeController.Instance.TimeSpanToClock(startTime);
+
+        Debug.Log($"Has previous endtime pass? -> {TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes)}");
+
+        arrivalTime = TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? TimeController.Instance.TimeSpanToClock(startTime) : TimeController.Instance.TimeSpanToClock(prevStartTime);
         purchaseConfirmedTime.text = arrivalTime;
         purchaseConfirmed.SetActive(true);
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,8 @@ public class DeliveryNPC : DialogueNPC, IDataPersistence
     }
 
     public bool hasDelivered;
+    public TimeSpan Arrival;
+    public TimeSpan Exit;
 
     public void LoadData(GameData data)
     {
