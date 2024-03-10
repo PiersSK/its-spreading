@@ -50,39 +50,40 @@ public class OrderItemUI : MonoBehaviour
     private void OrderItem()
     {
 
-        NeighbourAppearance npcArrival = Instantiate(Resources.Load<NeighbourAppearance>("DynamicEvents/NPCArrival"), TimeController.Instance.scheduledEvents);
-
         DeliveryNPC _deliverNPC = deliveryNPC.GetComponent<DeliveryNPC>();
 
         deliveryNPC.addObjectToDeliver(objectBeingPurchased);
-        deliveryNPC.currentScheduler = npcArrival;
         deliveryNPC.hasDelivered = false;
 
-        npcArrival.neighbour = deliveryNPC.GetComponent<NavMeshAgent>();
-        npcArrival.endPosition = doorPosition;
         TimeSpan currentTime = TimeController.Instance.CurrentTime();
-        Debug.Log($"Before asignment: StartTime: {startTime}, EndTime:{endTime}, PrevStartTime:{prevStartTime}, PrevEndTime:{prevEndTime}");
+
         prevStartTime = deliveryNPC.Arrival;
         prevEndTime = deliveryNPC.Exit;
+
+        bool hasPrevEventPassed = !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes);
+
         startTime = prevStartTime != TimeSpan.Zero && !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? prevStartTime : currentTime.Add(new TimeSpan(1, 0, 0));
         endTime = prevEndTime != TimeSpan.Zero && !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? prevEndTime : currentTime.Add(new TimeSpan(1, 30, 0));
         deliveryNPC.Arrival = startTime;
         deliveryNPC.Exit = endTime;
 
-        Debug.Log($"Post assignment asignment: StartTime: {startTime}, EndTime:{endTime}, PrevStartTime:{prevStartTime}, PrevEndTime:{prevEndTime}");
+        if (!hasPrevEventPassed)
+        {
+            NeighbourAppearance npcArrival = Instantiate(Resources.Load<NeighbourAppearance>("DynamicEvents/NPCArrival"), TimeController.Instance.scheduledEvents);
+            deliveryNPC.currentScheduler = npcArrival;
+            npcArrival.neighbour = deliveryNPC.GetComponent<NavMeshAgent>();
+            npcArrival.endPosition = doorPosition;
 
-        npcArrival.SetEventStartTime(startTime.Hours, startTime.Minutes);
-        npcArrival.SetEventEndTime(endTime.Hours, endTime.Minutes);
+            npcArrival.SetEventStartTime(startTime.Hours, startTime.Minutes);
+            npcArrival.SetEventEndTime(endTime.Hours, endTime.Minutes);
 
-        npcArrival.NPCReachedDestination += NpcArrival_NPCReachedDestination;
-
+            npcArrival.NPCReachedDestination += NpcArrival_NPCReachedDestination;
+        }
         GetComponent<Button>().interactable = false;
         GetComponent<Image>().color = new Color(0.55f, 0.55f, 0.55f);
         GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
 
         scrollWindow.enabled = false;
-
-        Debug.Log($"Has previous endtime pass? -> {TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes)}");
 
         arrivalTime = TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? TimeController.Instance.TimeSpanToClock(startTime) : TimeController.Instance.TimeSpanToClock(prevStartTime);
         purchaseConfirmedTime.text = arrivalTime;
