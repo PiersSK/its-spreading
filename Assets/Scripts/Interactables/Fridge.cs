@@ -9,6 +9,7 @@ public class Fridge : Interactable, IDataPersistence
     [SerializeField] public bool petriInFridge = false;
     [SerializeField] public bool postRottenInteract = false;
     public bool reminderSent = false;
+    public bool hasReactedToRottenFridge = false;
 
     [SerializeField] private int rottingTimeSpan = 1;
     [SerializeField] private int checkOnFriendReminderminutes = 30;
@@ -75,6 +76,7 @@ public class Fridge : Interactable, IDataPersistence
         petriInFridge = data.petriInFridge;
         reminderSent = data.petriReminderSent;
         postRottenInteract = data.postRottenInteration;
+        hasReactedToRottenFridge = data.hasReactedToRottenFridge;
 
         if(postRottenInteract)
         {
@@ -87,5 +89,6 @@ public class Fridge : Interactable, IDataPersistence
         data.petriInFridge = petriInFridge;
         data.petriReminderSent = reminderSent;
         data.postRottenInteration = postRottenInteract;
+        data.hasReactedToRottenFridge = hasReactedToRottenFridge;
     }
 }

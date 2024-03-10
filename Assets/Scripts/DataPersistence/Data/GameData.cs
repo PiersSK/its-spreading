@@ -34,6 +34,7 @@ public class GameData
     public bool petriReminderSent;
     public bool postRottenInteration;
     public bool hasTalkedToEddy;
+    public bool hasReactedToRottenFridge;
 
     // default values for when the game starts with no data.
     public GameData()
@@ -65,6 +66,7 @@ public class GameData
         petriInFridge = false;
         petriReminderSent = false;
         postRottenInteration = false;
+        hasReactedToRottenFridge = false;
     }
 
     public GameData(int spreadEventsTriggered, int daysComplete)
@@ -91,6 +93,7 @@ public class GameData
         calledSisNoSuccess = false;
         wasKindToSis = false;
         hasTalkedToEddy = false;
+        hasReactedToRottenFridge = false;
         inventory = new();
     }
 }
