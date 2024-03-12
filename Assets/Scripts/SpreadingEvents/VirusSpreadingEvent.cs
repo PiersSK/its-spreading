@@ -14,6 +14,8 @@ public class VirusSpreadingEvent : SpreadingEvent
     private bool hasWatched = false;
     private bool hasReacted = false;
 
+    private const string INITIALTHOUGHT = "Oh spaghettios, they're considering a lockdown in response to the spreading of the gigglepox pandemic.";
+
     protected override void Update()
     {
         base.Update();
@@ -22,7 +24,7 @@ public class VirusSpreadingEvent : SpreadingEvent
             && sofa.isLockedIn))
         {
             hasWatched = true;
-            ThoughtBubble.Instance.ShowThought(PlayerThoughts.WatchingNews);
+            ThoughtBubble.Instance.ShowThought(INITIALTHOUGHT);
             Invoke(nameof(EventEnd), 5f);
         }
     }

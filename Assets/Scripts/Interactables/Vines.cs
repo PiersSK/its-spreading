@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +8,8 @@ public class Vines : Interactable, IDataPersistence
 
     [Range(0,120)]
     [SerializeField] private int coolDownInGameMins;
+    private float cooldownTimer = 0f;
     private bool onCooldown;
-    private TimeSpan onCooldownUntil;
 
     private bool hasExamined = false;
 
@@ -34,6 +33,9 @@ public class Vines : Interactable, IDataPersistence
     private AudioSource _audioSource;
     private const string EXAMINEPROMPT = "Examine";
     private const string WATERPROMPT = "Try Super Plant Formula";
+
+    private const string EXAMINETHOUGHT = "These vines used to be spread all over the bathroom, now look at them...";
+    private const string FIRSTWATERTHOUGHT = "Well, I'll give you some more in a while, hang in there.";
 
     public void LoadData(GameData data)
     {
@@ -59,7 +61,12 @@ public class Vines : Interactable, IDataPersistence
 
     private void Update()
     {
-        if(onCooldown && TimeController.Instance.TimeHasPassed(onCooldownUntil)) onCooldown = false;
+        if(onCooldown)
+        {
+            cooldownTimer += Time.deltaTime;
+            if(cooldownTimer >= TimeController.Instance.InGameMinsToRealSeconds(coolDownInGameMins))
+                onCooldown = false;
+        }
 
         if(promptText != WATERPROMPT && Player.Instance.newInventory.HasItem(requiredItem))
         {
@@ -71,7 +78,7 @@ public class Vines : Interactable, IDataPersistence
     {
         if (currentState == PlantState.Dead && !Player.Instance.newInventory.HasItem(requiredItem))
         {
-            ThoughtBubble.Instance.ShowThought(PlayerThoughts.InspectDeadVines);
+            ThoughtBubble.Instance.ShowThought(EXAMINETHOUGHT);
             hasExamined = true;
             promptText = WATERPROMPT;
             return;
@@ -83,7 +90,7 @@ public class Vines : Interactable, IDataPersistence
         if (currentState == PlantState.Alive)
         {
             foreach (Renderer renderer in startingLeaves) renderer.material = aliveMaterial;
-            ThoughtBubble.Instance.ShowThought(PlayerThoughts.WateredVinesOnce);
+            ThoughtBubble.Instance.ShowThought(FIRSTWATERTHOUGHT);
         }
         _animator.SetInteger("plantGrowthIndex", (int)currentState);
 
@@ -92,15 +99,8 @@ public class Vines : Interactable, IDataPersistence
             Player.Instance.newInventory.RemoveItem(requiredItem);
         }
 
-        PutOnCooldown();
-    }
-
-    private void PutOnCooldown()
-    {
         onCooldown = true;
-        TimeSpan now = TimeController.Instance.CurrentTime();
-        onCooldownUntil = now + TimeSpan.FromMinutes(coolDownInGameMins);
-        Debug.Log("On cooldown until " + onCooldownUntil);
+        cooldownTimer = 0f;
     }
 
     public override bool CanInteract()

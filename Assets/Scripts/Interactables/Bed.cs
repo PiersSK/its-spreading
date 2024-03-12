@@ -6,7 +6,7 @@ public class Bed : LockinInteractable
 
     protected override void FreeInteract()
     {
-        if (!ObjectiveController.allObjectivesComplete)
+        if (!ObjectiveController.HasCompletedAllObjectives())
         {
             base.FreeInteract();
             TimeController.Instance.tempMultiplier = restTimeMultiplier;

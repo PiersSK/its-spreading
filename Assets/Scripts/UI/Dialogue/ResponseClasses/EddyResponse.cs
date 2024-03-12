@@ -23,15 +23,13 @@ public class EddyResponse : DialogueResponse
     public override void CloseDialogue()
     {
         base.CloseDialogue();
-        if (!DialogueUI.Instance.playerEngagedPreConvo)
-            Player.Instance.FreePlayerIfEngaged();
+        Player.Instance.TogglePlayerIsEngaged();
         GossipSpreadingEvent.Instance.hasSpreadGossip = true;
     }
 
     public void CloseWithFailure()
     {
         base.CloseDialogue();
-        if (!DialogueUI.Instance.playerEngagedPreConvo)
-            Player.Instance.FreePlayerIfEngaged();
+        Player.Instance.TogglePlayerIsEngaged();
     }
 }

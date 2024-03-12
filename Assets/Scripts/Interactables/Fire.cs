@@ -86,7 +86,7 @@ public class Fire : Interactable, IDataPersistence
         foreach(Fire fire in FindObjectsOfType<Fire>())
             if(fire.isLit) firesLit++;
         if (firesLit == 0) // put out last fire
-            ThoughtBubble.Instance.ShowThought(PlayerThoughts.PutOutFire);
+            ThoughtBubble.Instance.ShowThought(PUTOUTTHOUGHT);
 
     }
 

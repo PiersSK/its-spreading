@@ -108,7 +108,7 @@ public class Bathtub : Interactable
                 _audioSource.PlayOneShot(waterEnter, 1f);
 
                 player.GetComponent<PlayerInteract>().persistSelectedInteractable = true;
-                player.LockPlayerIfNotEngaged();
+                player.TogglePlayerIsEngaged();
 
                 resetPosition = player.transform.position;
                 resetRotation = player.transform.rotation;
@@ -124,7 +124,7 @@ public class Bathtub : Interactable
                 player.transform.position = resetPosition;
                 player.transform.rotation = resetRotation;
 
-                player.FreePlayerIfEngaged();
+                player.TogglePlayerIsEngaged();
                 player.GetComponent<PlayerInteract>().persistSelectedInteractable = false;
 
                 promptText = DRAIN;

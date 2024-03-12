@@ -32,12 +32,6 @@ public class Player : MonoBehaviour, IDataPersistence
     [SerializeField] private float idleTimer = 0f; // Serialized for debug
     private const int NUMBEROFIDLEANIMS = 4;
 
-    public enum PlayerEmotes
-    {
-        Wave,
-        Dance
-    }
-
     private const string ANIMWALKING = "isWalking";
     private const string ANIMIDLE = "idle";
     private const string ANIMIDLEINDEX = "idleIndex";
@@ -69,30 +63,12 @@ public class Player : MonoBehaviour, IDataPersistence
         newInventory = GetComponent<InventorySystem>();
         _animator = GetComponent<Animator>();
 
-        //// Player Controls
-        // Interactions
         controlActions.Interact.performed += ctx => Interact();
         controlActions.ToggleInteract.performed += ctx => ToggleInteract();
-
-        // UI
+        controlActions.Emote1.performed += ctx => Wave();
+        controlActions.Emote2.performed += ctx => Dance();
         controlActions.Inventory.performed += ctx => InventoryUI.Instance.ToggleInventoryUI();
         controlActions.Phone.performed += ctx => PhoneUI.Instance.TogglePhone();
-        controlActions.Pause.performed += ctx => EscapePressed();
-
-        // Emotes
-        controlActions.Emote1.performed += ctx => Emote(PlayerEmotes.Wave);
-        controlActions.Emote2.performed += ctx => Emote(PlayerEmotes.Dance);
-
-    }
-
-    private void OnEnable()
-    {
-        controlActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controlActions.Disable();
     }
 
     private void Update()
@@ -144,8 +120,28 @@ public class Player : MonoBehaviour, IDataPersistence
         Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
         return isoMatrix.MultiplyPoint3x4(toConvert);
     }
+    private void Wave()
+    {
+        _animator.SetTrigger(ANIMWAVE);
+        PlayerWaved?.Invoke(this, new EventArgs());
+    }
 
-    // Interactions
+
+    private void Dance()
+    {
+        if (playerHasLearnedToDance)
+        {
+            isDancing = !isDancing;
+            _animator.SetBool(ANIMDANCE, isDancing);
+            if (isDancing)
+                CameraController.Instance.SetCameraZoom(5f, 10f);
+            else
+                CameraController.Instance.SetCameraZoom(9f, 0.2f);
+
+            idleTimer = 0f;
+        }
+    }
+
     private void Interact()
     {
         if (!PauseMenu.isPaused)
@@ -164,67 +160,14 @@ public class Player : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void Emote(PlayerEmotes emote)
+    private void OnEnable()
     {
-        if (!isUnengaged) return;
-
-        switch(emote)
-        {
-            case PlayerEmotes.Wave:
-                Wave();
-                break;
-            case PlayerEmotes.Dance:
-                Dance();
-                break;
-        }
+        controlActions.Enable();
     }
 
-    // Emotes
-    private void Wave()
+    private void OnDisable()
     {
-        _animator.SetTrigger(ANIMWAVE);
-        PlayerWaved?.Invoke(this, new EventArgs());
-    }
-
-    private void Dance()
-    {
-        if (playerHasLearnedToDance)
-        {
-            isDancing = !isDancing;
-            _animator.SetBool(ANIMDANCE, isDancing);
-            if (isDancing)
-                CameraController.Instance.SetCameraZoom(5f, 10f);
-            else
-                CameraController.Instance.SetCameraZoom(9f, 0.2f);
-
-            idleTimer = 0f;
-        }
-    }
-
-    private void EscapePressed()
-    {
-        if (ComputerUI.Instance.gameObject.activeSelf)
-        {
-            ComputerUI.Instance.gameObject.SetActive(false);
-        }
-        else if (EndGame.Instance.creditsAreRolling)
-        {
-            EndGame.Instance.SkipCredits();
-        }
-        else
-        {
-            PauseMenu.TogglePause();
-        }
-    }
-
-    public void LockPlayerIfNotEngaged(bool shouldDisableInteract = false)
-    {
-        if (isUnengaged) TogglePlayerIsEngaged(shouldDisableInteract);
-    }
-
-    public void FreePlayerIfEngaged(bool shouldDisableInteract = false)
-    {
-        if (!isUnengaged) TogglePlayerIsEngaged(shouldDisableInteract);
+        controlActions.Disable();
     }
 
     public void TogglePlayerIsEngaged(bool shouldDisableInteract = false)

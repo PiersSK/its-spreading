@@ -31,11 +31,11 @@ public class ManspreadingEvent : SpreadingEvent
     private int checkpoint = 0;
     private int maxCheckpoint = 2;
 
-    private List<ThoughtBubble.Thought> thoughts = new ()
+    private List<string> thoughts = new ()
     {
-        PlayerThoughts.ManspreadFirstThought,
-        PlayerThoughts.ManspreadSecondThought,
-        PlayerThoughts.ManspreadThirdThought
+        "Maybe just this once..."
+        ,"I mean, I'm all alone..."
+        ,"Getting comfortable can't hurt, right?"
     };
 
     private List<KeyCode> promptKeys = new()
@@ -92,7 +92,7 @@ public class ManspreadingEvent : SpreadingEvent
 
     private void IncrementCheckpoint()
     {
-        ThoughtBubble.Instance.ShowThought(thoughts[checkpoint]);
+        ThoughtBubble.Instance.ShowThought(thoughts[checkpoint], timeBetweenPrompt);
         CameraController.Instance.SetCameraZoom(7f - checkpoint, 0.2f);
         promptTimer = timeBetweenPrompt;
         waitingForPrompt = false;

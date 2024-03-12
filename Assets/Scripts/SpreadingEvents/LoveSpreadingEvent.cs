@@ -49,7 +49,7 @@ public class LoveSpreadingEvent : SpreadingEvent
     private void CallSis()
     {
         TimeController.Instance.ToggleTimePause();
-        Player.Instance.LockPlayerIfNotEngaged(true);
+        Player.Instance.TogglePlayerIsEngaged(true);
         DialogueUI.Instance.LoadJsonConversationToUI(sisNPC.dialogueFile, sisNPC, 1);
         PhoneUI.Instance.TogglePhone();
 

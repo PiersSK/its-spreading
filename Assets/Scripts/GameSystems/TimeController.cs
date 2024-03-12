@@ -241,12 +241,7 @@ public class TimeController : MonoBehaviour, IDataPersistence
     {
         return time > hours * REALHOURLENGTHSECONDS + minutes * 60f;
     }
-
-    public bool TimeHasPassed(TimeSpan timeToCompare)
-    {
-        return CurrentTime() >= timeToCompare;
-    }
-
+    
     private void OnDayComplete()
     {
         dayisComplete = true;

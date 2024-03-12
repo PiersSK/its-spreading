@@ -28,7 +28,7 @@ public class LockinInteractable : Interactable
         Player.Instance.transform.position = resetPosition;
         Player.Instance.transform.rotation = resetRotation;
 
-        Player.Instance.FreePlayerIfEngaged();
+        Player.Instance.TogglePlayerIsEngaged();
         Player.Instance.GetComponent<PlayerInteract>().persistSelectedInteractable = false;
         promptText = freePrompt;
 
@@ -38,7 +38,7 @@ public class LockinInteractable : Interactable
     protected virtual void FreeInteract()
     {
         Player.Instance.GetComponent<PlayerInteract>().persistSelectedInteractable = true;
-        Player.Instance.LockPlayerIfNotEngaged();
+        Player.Instance.TogglePlayerIsEngaged();
 
         resetPosition = Player.Instance.transform.position;
         resetRotation = Player.Instance.transform.rotation;

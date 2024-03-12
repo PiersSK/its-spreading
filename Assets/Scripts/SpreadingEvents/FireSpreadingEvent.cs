@@ -10,12 +10,14 @@ public class FireSpreadingEvent : SpreadingEvent
 
     private bool hasReacted = false;
 
+    private const string FIRSTFIRETHOUGHT = "It dances so beautifully.";
+
     protected override void Update()
     {
         base.Update();
         if(firstFire.isLit && !spreadFire.isLit && !hasReacted && Player.Instance.currentRoom == kitchen)
         {
-            ThoughtBubble.Instance.ShowThought(PlayerThoughts.StartFirstFire);
+            ThoughtBubble.Instance.ShowThought(FIRSTFIRETHOUGHT);
             hasReacted = true;
         }
     }

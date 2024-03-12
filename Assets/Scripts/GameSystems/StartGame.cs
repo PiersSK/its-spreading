@@ -14,6 +14,9 @@ public class StartGame : MonoBehaviour, IDataPersistence
 
     private int spreadEventsFound = 0;
 
+    private const string WAKEUPTHOUGHT = "Mmmm finally a day off, let's start the day with some lovely jam on toast";
+    private const string FIRSTSPREADTHOUGHT = "Oh my! That shouldn't happen here... I must've been doused with too many spreadheads at work. I need to spread 11 things by midnight to tire them out";
+
     private void Awake()
     {
         Instance = this;
@@ -35,7 +38,7 @@ public class StartGame : MonoBehaviour, IDataPersistence
     public void StartDayFresh()
     {
         Player.Instance.ForcePlayerToPosition(startPosition);
-        Player.Instance.LockPlayerIfNotEngaged(true);
+        Player.Instance.TogglePlayerIsEngaged(true);
         Player.Instance._animator.SetTrigger("stretch");
         CameraController.Instance.SetCameraZoom(5f, 0.5f);
         Invoke(nameof(WakeupThought), 4f);
@@ -49,7 +52,7 @@ public class StartGame : MonoBehaviour, IDataPersistence
     private void TutorialThoughts(object sender, System.EventArgs e)
     {
         if (spreadEventsFound == 0)
-            _thoughtBubble.ShowThought(PlayerThoughts.FirstSpread);
+            _thoughtBubble.ShowThought(FIRSTSPREADTHOUGHT);
         else
         {
             foreach (SpreadingEvent spreadingEvent in spreadingEvents)
@@ -64,7 +67,7 @@ public class StartGame : MonoBehaviour, IDataPersistence
     private void WakeupThought()
     {
         CameraController.Instance.SetCameraZoom(9f, 0.2f);
-        Player.Instance.FreePlayerIfEngaged();
-        _thoughtBubble.ShowThought(PlayerThoughts.WakeUp);
+        Player.Instance.TogglePlayerIsEngaged();
+        _thoughtBubble.ShowThought(WAKEUPTHOUGHT);
     }
 }
