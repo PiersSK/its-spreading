@@ -15,7 +15,7 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
     public int objectivesComplete = 0;
     private int objectivesCompleteAllTime = 0;
 
-    private static bool allObjectivesComplete = false;
+    public static bool allObjectivesComplete = false;
 
     private const string HISTSTATPREFIX = "Total spreads found ever: ";
     private const string FINALTHOUGHT = "Hey! I think I've finally spread enough to detox, maybe it's time to go to bed!";
@@ -39,6 +39,7 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        allObjectivesComplete = false;
         totalObjectives = objectiveParent.childCount;
         scoreDisplay.text = objectivesComplete.ToString() + "/" + totalObjectives.ToString();
         historicStatDisplay.text = HISTSTATPREFIX + (objectivesCompleteAllTime + objectivesComplete);
@@ -51,7 +52,7 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
             if(objectivesComplete == totalObjectives)
             {
                 allObjectivesComplete = true;
-                ThoughtBubble.Instance.ShowThought(FINALTHOUGHT);
+                ThoughtBubble.Instance.ShowThought(PlayerThoughts.LastSpread);
             }
         }
     }
@@ -66,10 +67,5 @@ public class ObjectiveController : MonoBehaviour, IDataPersistence
     {
         data.spreadEventsTriggered += objectivesComplete;
         data.numCompleteEvents = ObjectivesComplete;
-    }
-
-    public static bool HasCompletedAllObjectives()
-    {
-        return allObjectivesComplete;
     }
 }

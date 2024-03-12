@@ -30,7 +30,8 @@ public class Objective : MonoBehaviour
 
     private void FollowUpThought()
     {
-        ThoughtBubble.Instance.ShowThought(completionThought);
+        Debug.Log(completedIcon.name);
+        ThoughtBubble.Instance.ShowThought(new ThoughtBubble.Thought(completionThought, PlayerThoughts.ICONFPATH + completedIcon.name, 5f));
     }
 
 }

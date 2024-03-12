@@ -9,7 +9,7 @@ public class DialogueNPC : NPC
     public override void Interact()
     {
         TimeController.Instance.ToggleTimePause();
-        Player.Instance.TogglePlayerIsEngaged(true);
+        Player.Instance.LockPlayerIfNotEngaged(true);
         currentScheduler.npcIsEngaged = true;
         DialogueUI.Instance.LoadJsonConversationToUI(dialogueFile, this);
         DialogueUI.Instance.gameObject.SetActive(true);

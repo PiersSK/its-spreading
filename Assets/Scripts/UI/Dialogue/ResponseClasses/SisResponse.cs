@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class SisResponse : DialogueResponse
 {
-    private const string FIRSTTHOUGHT = "Those tickets sounded important to her, she shouldn't miss out.";
     public void CloseWithSuccess()
     {
         LoveSpreadingEvent.Instance.calledSis = true;
         LoveSpreadingEvent.Instance.calledSisNoSuccess = false;
         LoveSpreadingEvent.Instance.wasKindToSis = true;
-        Player.Instance.TogglePlayerIsEngaged();
+        if (!DialogueUI.Instance.playerEngagedPreConvo)
+            Player.Instance.FreePlayerIfEngaged();
         CloseDialogue();
-        ThoughtBubble.Instance.ShowThought(FIRSTTHOUGHT);
+        ThoughtBubble.Instance.ShowThought(PlayerThoughts.SuccessfulSisCall);
     }
 
     public void CloseWithFailure()
     {
         LoveSpreadingEvent.Instance.calledSis = true;
         LoveSpreadingEvent.Instance.wasKindToSis = false;
-        Player.Instance.TogglePlayerIsEngaged();
+        if (!DialogueUI.Instance.playerEngagedPreConvo)
+            Player.Instance.FreePlayerIfEngaged();
         CloseDialogue();
     }
 
     public void CloseWithSpread()
     {
         LoveSpreadingEvent.Instance.gaveTicketsToSis = true;
-        Player.Instance.TogglePlayerIsEngaged();
+        if (!DialogueUI.Instance.playerEngagedPreConvo)
+            Player.Instance.FreePlayerIfEngaged();
         CloseDialogue();
     }
 }

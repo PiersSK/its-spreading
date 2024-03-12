@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThoughtBubble : MonoBehaviour
 {
@@ -17,13 +18,18 @@ public class ThoughtBubble : MonoBehaviour
     [SerializeField] private float defaultTimer = 5f;
     [SerializeField] private AudioClip thoughtEnterExitSound;
 
-    private class Thought
+    [SerializeField] private GameObject sourceIconObject;
+    [SerializeField] private Image sourceIcon;
+
+    public class Thought
     {
         public string message;
+        public string prefabName;
         public float timer;
-        public Thought(string message, float timer)
+        public Thought(string message, string prefabName, float timer)
         {
             this.message = message;
+            this.prefabName = prefabName;
             this.timer = timer;
         }
     }
@@ -41,17 +47,9 @@ public class ThoughtBubble : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ShowThought(string thought)
+    public void ShowThought(Thought thought)
     {
-        Debug.Log("Adding thought");
-        messages.Add(new Thought(thought, defaultTimer));
-        Debug.Log(messages.Count.ToString() + " thought in queue");
-
-    }
-
-    public void ShowThought(string thought, float timer)
-    {
-        messages.Add(new Thought(thought, timer));
+        messages.Add(thought);
 
     }
 
@@ -65,6 +63,15 @@ public class ThoughtBubble : MonoBehaviour
                 currentLife = messages[0].timer;
                 message.text = messages[0].message;
                 gameObject.SetActive(true);
+                if(messages[0].prefabName != null)
+                {
+                    sourceIconObject.SetActive(true);
+                    sourceIcon.sprite = Resources.Load<Sprite>(messages[0].prefabName);
+                }
+                else
+                {
+                    sourceIconObject.SetActive(false);
+                }
                 Player.Instance.GetComponent<AudioSource>().PlayOneShot(thoughtEnterExitSound);
                 ThoughtBubbleDisplayed?.Invoke(this, new ThoughBubbleDisplayedEventArgs() { thoughtText = messages[0].message });
             }

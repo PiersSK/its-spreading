@@ -41,7 +41,7 @@ public class BookClassUI : MonoBehaviour
 
         computerAudio.PlayOneShot(bookingConfirmed);
 
-        ThoughtBubble.Instance.ShowThought(BOOKINGTHOUGHT);
+        ThoughtBubble.Instance.ShowThought(PlayerThoughts.BookDanceClass);
 
         GetComponent<Button>().interactable = false;
         GetComponent<Button>().onClick.RemoveAllListeners();
@@ -62,8 +62,8 @@ public class BookClassUI : MonoBehaviour
         CameraController.Instance.SetCameraZoom(5f, 10f);
         boomboxAudio.GetComponent<Animator>().SetBool("isPlaying", true);
 
-        ComputerUI.Instance.gameObject.SetActive(false);
         Player.Instance._animator.SetBool("isDancing", true);
+        ComputerUI.Instance.gameObject.SetActive(false);
     }
 
     private void DanceClass()

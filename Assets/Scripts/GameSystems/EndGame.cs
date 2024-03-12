@@ -38,6 +38,8 @@ public class EndGame : MonoBehaviour
     [SerializeField] private float gameoverFadeInTime;
     private float currentTimerGameOver = 0f;
 
+    public bool creditsAreRolling = false;
+
     private Transform player;
     private Transform confettiMan;
 
@@ -80,9 +82,9 @@ public class EndGame : MonoBehaviour
     public void DayIsOver()
     {
         TimeController.Instance.ToggleTimePause();
-        Player.Instance.TogglePlayerIsEngaged();
+        Player.Instance.LockPlayerIfNotEngaged();
 
-        if (ObjectiveController.HasCompletedAllObjectives())
+        if (ObjectiveController.allObjectivesComplete)
         {
             bgMusic.Pause();
             boombox.Pause();
@@ -91,6 +93,13 @@ public class EndGame : MonoBehaviour
         }
         else
             FailEnding();
+    }
+
+    public void SkipCredits()
+    {
+        creditsAreRolling = false;
+        CancelInvoke();
+        ShowSuccessSplash();
     }
 
     private void SuccessEnding()
@@ -124,6 +133,8 @@ public class EndGame : MonoBehaviour
 
         Invoke(nameof(AllWave), 90f);
         Invoke(nameof(ShowSuccessSplash), 94f);
+
+        creditsAreRolling = true;
     }
 
     private void AllWave()
