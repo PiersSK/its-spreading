@@ -8,6 +8,10 @@ public class DeliveryNPC : DialogueNPC, IDataPersistence
 {
     [SerializeField] private Door _door;
     public List<string> ObjectsToDeliver = new List<string>();
+    public List<string> PendingOrders = new List<string>();
+
+    public bool hasDelivered;
+    public string deliveredTag = "-Delivered";
 
     public void addObjectToDeliver(string objectToDeliver)
     {
@@ -22,17 +26,20 @@ public class DeliveryNPC : DialogueNPC, IDataPersistence
         }
     }
 
-    public bool hasDelivered;
-    public TimeSpan Arrival;
-    public TimeSpan Exit;
+    public bool hasOrderedOrDeliveredItem(string item)
+    {
+        return ObjectsToDeliver.Contains(item + deliveredTag) || ObjectsToDeliver.Contains(item);
+    }
 
     public void LoadData(GameData data)
     {
+        //ObjectsToDeliver = data.itemsBeingDelivered;
         hasDelivered = data.hasReceivedDelivery;
     }
     
     public void SaveData(ref GameData data)
     {
+        //data.itemsBeingDelivered = ObjectsToDeliver;
         data.hasReceivedDelivery = hasDelivered;
     }
 
@@ -49,11 +56,14 @@ public class DeliveryNPC : DialogueNPC, IDataPersistence
 
     public override void NPCCoreAction()
     {
-        foreach(var item in ObjectsToDeliver)
+        for(int i = 0; i < ObjectsToDeliver.Count; i++)
         {
-            Player.Instance.newInventory.AddItem(item);
+            if (!ObjectsToDeliver[i].EndsWith(deliveredTag))
+            {
+                Player.Instance.newInventory.AddItem(ObjectsToDeliver[i]);
+                ObjectsToDeliver[i] = ObjectsToDeliver[i] + deliveredTag;
+            }
         }
         hasDelivered = true;
-        ObjectsToDeliver.Clear();
     }
 }

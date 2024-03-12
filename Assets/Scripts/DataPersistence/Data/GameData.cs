@@ -22,6 +22,7 @@ public class GameData
     public bool hasDarrenGossip;
     public bool hasReadHorsepiracy;
     public bool hasReadMillyPead;
+    //public List<string> itemsBeingDelivered;
 
     public List<string> roomsWithConfetti;
     public bool calledSis;
@@ -67,6 +68,7 @@ public class GameData
         petriReminderSent = false;
         postRottenInteration = false;
         hasReactedToRottenFridge = false;
+        //itemsBeingDelivered = new List<string>();
     }
 
     public GameData(int spreadEventsTriggered, int daysComplete)
@@ -95,5 +97,6 @@ public class GameData
         hasTalkedToEddy = false;
         hasReactedToRottenFridge = false;
         inventory = new();
+        //itemsBeingDelivered = new List<string>();
     }
 }

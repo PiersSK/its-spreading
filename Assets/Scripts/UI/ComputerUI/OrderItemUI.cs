@@ -28,7 +28,8 @@ public class OrderItemUI : MonoBehaviour
     private TimeSpan startTime = TimeSpan.Zero;
     private TimeSpan endTime = TimeSpan.Zero;
     private TimeSpan prevStartTime;
-    private TimeSpan prevEndTime;
+    private bool prevEventStarted = false;
+    private bool prevEventEnded = true;
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class OrderItemUI : MonoBehaviour
 
     private void Update()
     {
-        if (!isUiUpdated && deliveryNPC.hasDelivered)
+        if (!isUiUpdated && deliveryNPC.hasOrderedOrDeliveredItem(objectBeingPurchased))
         {
             GetComponent<Button>().interactable = false;
             GetComponent<Image>().color = new Color(0.55f, 0.55f, 0.55f);
@@ -53,22 +54,21 @@ public class OrderItemUI : MonoBehaviour
         DeliveryNPC _deliverNPC = deliveryNPC.GetComponent<DeliveryNPC>();
 
         deliveryNPC.addObjectToDeliver(objectBeingPurchased);
-        deliveryNPC.hasDelivered = false;
+
+        if(deliveryNPC.currentScheduler != null) //we have a delivery event already scheduled
+        {
+            prevStartTime = deliveryNPC.currentScheduler.GetScheduledStartTime();
+            prevEventStarted = deliveryNPC.currentScheduler.hasBeenTriggered;
+            prevEventEnded = deliveryNPC.currentScheduler.eventHasEnded;
+        }
 
         TimeSpan currentTime = TimeController.Instance.CurrentTime();
+        startTime = prevEventStarted ? prevStartTime : currentTime.Add(new TimeSpan(1, 0, 0));
+        endTime = currentTime.Add(new TimeSpan(1, 30, 0));
 
-        prevStartTime = deliveryNPC.Arrival;
-        prevEndTime = deliveryNPC.Exit;
-
-        bool hasPrevEventPassed = !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes);
-
-        startTime = prevStartTime != TimeSpan.Zero && !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? prevStartTime : currentTime.Add(new TimeSpan(1, 0, 0));
-        endTime = prevEndTime != TimeSpan.Zero && !TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? prevEndTime : currentTime.Add(new TimeSpan(1, 30, 0));
-        deliveryNPC.Arrival = startTime;
-        deliveryNPC.Exit = endTime;
-
-        if (!hasPrevEventPassed)
+        if ( prevEventEnded || deliveryNPC.hasDelivered)
         {
+            startTime = currentTime.Add(new TimeSpan(1,0,0));
             NeighbourAppearance npcArrival = Instantiate(Resources.Load<NeighbourAppearance>("DynamicEvents/NPCArrival"), TimeController.Instance.scheduledEvents);
             deliveryNPC.currentScheduler = npcArrival;
             npcArrival.neighbour = deliveryNPC.GetComponent<NavMeshAgent>();
@@ -83,9 +83,10 @@ public class OrderItemUI : MonoBehaviour
         GetComponent<Image>().color = new Color(0.55f, 0.55f, 0.55f);
         GetComponent<Button>().transform.GetComponentInChildren<TextMeshProUGUI>().text = "Out Of Stock";
 
+        deliveryNPC.hasDelivered = false;
         scrollWindow.enabled = false;
 
-        arrivalTime = TimeController.Instance.TimeHasPassed(prevEndTime.Hours, prevEndTime.Minutes) ? TimeController.Instance.TimeSpanToClock(startTime) : TimeController.Instance.TimeSpanToClock(prevStartTime);
+        arrivalTime = TimeController.Instance.TimeSpanToClock(startTime);
         purchaseConfirmedTime.text = arrivalTime;
         purchaseConfirmed.SetActive(true);
 
